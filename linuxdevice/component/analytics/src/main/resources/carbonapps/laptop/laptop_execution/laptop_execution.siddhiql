@@ -28,25 +28,25 @@ define stream networkinfo (meta_owner string, meta_deviceType string, meta_devic
 define stream diskioinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskioinfo string);
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, batteryinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, batteryinfo
 insert into batteryinfo;
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, cpuinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, cpuinfo
 insert into cpuinfo;
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, memoryinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, memoryinfo
 insert into memoryinfo;
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskinfo
 insert into diskinfo;
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, networkinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, networkinfo
 insert into networkinfo;
 
 from laptop
-select meta_owner, 'laptop' as meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskioinfo
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskioinfo
 insert into diskioinfo;

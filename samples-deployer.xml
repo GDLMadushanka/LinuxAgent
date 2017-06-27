@@ -189,7 +189,6 @@
         </repository>
     </repositories>
     <properties>
-        <carbon.device.mgt.plugin.version>3.0.43-SNAPSHOT</carbon.device.mgt.plugin.version>
-        <org.coffeeking.version>1.0.0</org.coffeeking.version>
+        <carbon.device.mgt.plugin.version>4.0.9-SNAPSHOT</carbon.device.mgt.plugin.version>
     </properties>
 </project>

@@ -18,7 +18,7 @@
   -->
 <eventReceiver name="laptop_receiver-carbon.super" statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventreceiver">
     <from eventAdapterType="oauth-mqtt">
-        <property name="topic">carbon.super/laptop/+/data</property>
+        <property name="topic">carbon.super/linuxdevice/+/data</property>
         <property name="clientId">laptop_receiver-carbon.super</property>
     </from>
     <mapping customMapping="disable" type="json"/>

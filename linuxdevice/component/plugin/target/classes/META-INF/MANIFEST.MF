@@ -4,7 +4,7 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-SymbolicName: org.laptop.linuxdevice.plugin
 Built-By: lahiru
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1497938633113
+Bnd-LastModified: 1498358505357
 Bundle-DocURL: http://www.wso2.org/
 Bundle-Vendor: WSO2
 Import-Package: javax.naming;resolution:=optional,javax.sql;resolution
@@ -12,42 +12,44 @@ Import-Package: javax.naming;resolution:=optional,javax.sql;resolution
  ommons.logging,org.osgi.framework,org.osgi.service.component,org.wso2
  .carbon.base;version="1.0",org.wso2.carbon.context;version="4.4",org.
  wso2.carbon.core;version="4.4",org.wso2.carbon.core.util;version="4.4
- ",org.wso2.carbon.device.mgt.common;version="2.0.75.SNAPSHOT",org.wso
- 2.carbon.device.mgt.common.app.mgt;version="2.0.75.SNAPSHOT",org.wso2
- .carbon.device.mgt.common.configuration.mgt;version="2.0.75.SNAPSHOT"
- ,org.wso2.carbon.device.mgt.common.license.mgt;version="2.0.75.SNAPSH
- OT",org.wso2.carbon.device.mgt.common.policy.mgt;version="2.0.75.SNAP
- SHOT",org.wso2.carbon.device.mgt.common.push.notification;version="2.
- 0.75.SNAPSHOT",org.wso2.carbon.device.mgt.common.spi;version="2.0.75.
- SNAPSHOT",org.wso2.carbon.event.output.adapter.core;version="5.1",org
- .wso2.carbon.event.output.adapter.core.exception;version="5.1",org.ws
- o2.carbon.utils;version="4.4",org.wso2.carbon.utils.dbcreator;version
- ="4.4"
+ ",org.wso2.carbon.device.mgt.common;version="3.0.11.SNAPSHOT",org.wso
+ 2.carbon.device.mgt.common.app.mgt;version="3.0.11.SNAPSHOT",org.wso2
+ .carbon.device.mgt.common.configuration.mgt;version="3.0.11.SNAPSHOT"
+ ,org.wso2.carbon.device.mgt.common.license.mgt;version="3.0.11.SNAPSH
+ OT",org.wso2.carbon.device.mgt.common.policy.mgt;version="3.0.11.SNAP
+ SHOT",org.wso2.carbon.device.mgt.common.pull.notification;version="3.
+ 0.11.SNAPSHOT",org.wso2.carbon.device.mgt.common.push.notification;ve
+ rsion="3.0.11.SNAPSHOT",org.wso2.carbon.device.mgt.common.spi;version
+ ="3.0.11.SNAPSHOT",org.wso2.carbon.event.output.adapter.core;version=
+ "5.1",org.wso2.carbon.event.output.adapter.core.exception;version="5.
+ 1",org.wso2.carbon.utils;version="4.4",org.wso2.carbon.utils.dbcreato
+ r;version="4.4"
 Service-Component: OSGI-INF/serviceComponents.xml
 Tool: Bnd-0.0.238
 Export-Package: org.laptop.linuxdevice.plugin.constants;uses:="org.wso
  2.carbon.utils",org.laptop.linuxdevice.plugin.impl;uses:="org.laptop.
  linuxdevice.plugin.constants,org.laptop.linuxdevice.plugin.impl.featu
  re,org.wso2.carbon.device.mgt.common.configuration.mgt,org.wso2.carbo
- n.device.mgt.common.app.mgt,org.wso2.carbon.device.mgt.common.license
- .mgt,org.wso2.carbon.device.mgt.common.policy.mgt,org.wso2.carbon.dev
- ice.mgt.common,org.apache.commons.logging,org.wso2.carbon.device.mgt.
- common.spi,org.wso2.carbon.device.mgt.common.push.notification,org.la
- ptop.linuxdevice.plugin.exception,org.laptop.linuxdevice.plugin.impl.
- dao.impl,org.laptop.linuxdevice.plugin.impl.dao",org.laptop.linuxdevi
- ce.plugin.impl.util;uses:="org.laptop.linuxdevice.plugin.constants,ja
- vax.sql,javax.naming,org.wso2.carbon.core.util,org.wso2.carbon.base,o
- rg.wso2.carbon.utils,org.apache.commons.logging,org.wso2.carbon.utils
- .dbcreator,org.laptop.linuxdevice.plugin.exception",org.laptop.linuxd
- evice.plugin.impl.feature;uses:="org.wso2.carbon.device.mgt.common",o
- rg.laptop.linuxdevice.plugin.exception,org.laptop.linuxdevice.plugin.
- impl.dao.impl;uses:="org.laptop.linuxdevice.plugin.constants,org.lapt
- op.linuxdevice.plugin.impl.util,org.apache.commons.logging,org.wso2.c
- arbon.device.mgt.common,org.laptop.linuxdevice.plugin.exception,org.l
- aptop.linuxdevice.plugin.impl.dao",org.laptop.linuxdevice.plugin.impl
- .dao;uses:="org.laptop.linuxdevice.plugin.constants,org.apache.common
- s.logging,javax.naming,org.laptop.linuxdevice.plugin.exception,javax.
- sql,org.laptop.linuxdevice.plugin.impl.dao.impl"
+ n.device.mgt.common.app.mgt,org.wso2.carbon.device.mgt.common.pull.no
+ tification,org.wso2.carbon.device.mgt.common.license.mgt,org.wso2.car
+ bon.device.mgt.common.policy.mgt,org.wso2.carbon.device.mgt.common,or
+ g.apache.commons.logging,org.wso2.carbon.device.mgt.common.spi,org.ws
+ o2.carbon.device.mgt.common.push.notification,org.laptop.linuxdevice.
+ plugin.exception,org.laptop.linuxdevice.plugin.impl.dao.impl,org.lapt
+ op.linuxdevice.plugin.impl.dao",org.laptop.linuxdevice.plugin.impl.ut
+ il;uses:="org.laptop.linuxdevice.plugin.constants,javax.sql,javax.nam
+ ing,org.wso2.carbon.core.util,org.wso2.carbon.base,org.wso2.carbon.ut
+ ils,org.apache.commons.logging,org.wso2.carbon.utils.dbcreator,org.la
+ ptop.linuxdevice.plugin.exception",org.laptop.linuxdevice.plugin.impl
+ .feature;uses:="org.wso2.carbon.device.mgt.common",org.laptop.linuxde
+ vice.plugin.exception,org.laptop.linuxdevice.plugin.impl.dao.impl;use
+ s:="org.laptop.linuxdevice.plugin.constants,org.laptop.linuxdevice.pl
+ ugin.impl.util,org.apache.commons.logging,org.wso2.carbon.device.mgt.
+ common,org.laptop.linuxdevice.plugin.exception,org.laptop.linuxdevice
+ .plugin.impl.dao",org.laptop.linuxdevice.plugin.impl.dao;uses:="org.l
+ aptop.linuxdevice.plugin.constants,org.apache.commons.logging,javax.n
+ aming,org.laptop.linuxdevice.plugin.exception,javax.sql,org.laptop.li
+ nuxdevice.plugin.impl.dao.impl"
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Name: org.laptop.linuxdevice.plugin
 Private-Package: org.laptop.linuxdevice.plugin.internal

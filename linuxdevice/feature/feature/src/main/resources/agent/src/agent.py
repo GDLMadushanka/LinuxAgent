@@ -116,14 +116,14 @@ def connectAndPushData():
     # rPiTemperature = iotUtils.LAST_TEMP  # Push the last read temperature value
     # PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, rPiTemperature)
 
-    battery_level = float(iotUtils.BATTERY_LEVEL)
-    battery_status = float(iotUtils.BATTERY_STATUS)
-    cpuusage = float(iotUtils.CPU_USAGE)
-    memory_space = float(iotUtils.MEMORY_SPACE)
-    disk_space = float(iotUtils.DISK_SPACE)
-    load_average = float(iotUtils.LOAD_AVERAGE)
+    battery_info = iotUtils.BATTERY_INFO
+    cpu_info =iotUtils.CPU_INFO
+    memory_info = iotUtils.MEMORY_INFO
+    disk_info = iotUtils.DISK_INFO
+    network_info = iotUtils.NETWORK_INFO
+    disk_io_info = iotUtils.DISK_IO_INFO
 
-    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, battery_level, battery_status, cpuusage, memory_space, disk_space, load_average)
+    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, battery_info,cpu_info,memory_info,disk_info, network_info,disk_io_info)
 
     print '~~~~~~~~~~~~~~~~~~~~~~~~ Publishing Device-Data ~~~~~~~~~~~~~~~~~~~~~~~~~'
     print ('PUBLISHED DATA: ' + PUSH_DATA)
@@ -138,12 +138,13 @@ def connectAndPushData():
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def collectData():
 
-    iotUtils.BATTERY_LEVEL = getBatteryLevel()
-    iotUtils.BATTERY_STATUS = getBatteryStatus()
-    iotUtils.CPU_USAGE = getCPUUsage()
-    iotUtils.MEMORY_SPACE = getMemorySpace()
-    iotUtils.DISK_SPACE = getDiskSpace()
-    iotUtils.LOAD_AVERAGE = getLoadAverage()
+    iotUtils.BATTERY_INFO = getBatteryInfo()
+    iotUtils.CPU_INFO = getCpuUsage()
+    iotUtils.MEMORY_INFO = getMemoryInfo()
+    iotUtils.DISK_INFO = getDisksInfo()
+    iotUtils.NETWORK_INFO = getNetworkData()
+    iotUtils.DISK_IO_INFO = getDiskIO()
+    iotUtils.DISK_IO_INFO = getDiskIO()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -257,17 +258,8 @@ def main():
 
     time.sleep(10)
     while True:
-        try:
-            if iotUtils.BATTERY_LEVEL > 0:  # Push data only if there had been a successful temperature read
-                connectAndPushData()  # Push Sensor (Temperature) data to WSO2 BAM
-                time.sleep(15)
-
-        except (KeyboardInterrupt, Exception) as e:
-            print "RASPBERRY_STATS: Exception in RaspberryAgentThread (either KeyboardInterrupt or Other)"
-            print ("RASPBERRY_STATS: " + str(e))
-            print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-            pass
-
+        connectAndPushData()  # Push Sensor (Temperature) data to WSO2 BAM
+        time.sleep(15)
 
 if __name__ == "__main__":
     main()

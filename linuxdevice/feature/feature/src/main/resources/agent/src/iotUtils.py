@@ -37,18 +37,13 @@ HTTP_SERVER_PORT = 5678 # http server port which is listening on
 # LAST_TEMP = 25  # The Last read temperature value from the DHT sensor. Kept globally
 
 # laptop statistics
-global BATTERY_LEVEL
-BATTERY_LEVEL = 0
-global BATTERY_STATUS
-BATTERY_STATUS = 0
-global CPU_USAGE
-CPU_USAGE = 0
-global MEMORY_SPACE
-MEMORY_SPACE = 0
-global DISK_SPACE
-DISK_SPACE = 0
-global LOAD_AVERAGE
-LOAD_AVERAGE = 0
+global BATTERY_INFO
+global CPU_INFO
+global MEMORY_INFO
+global DISK_INFO
+global NETWORK_INFO
+global DISK_IO_INFO
+
 
 # Linux Agent
 DATA_READING_INTERVAL_REAL_MODE = 3
@@ -75,7 +70,7 @@ AUTH_TOKEN = configParser.get('Device-Configurations', 'auth-token')
 CONTROLLER_CONTEXT = configParser.get('Device-Configurations', 'controller-context')
 # MQTT_SUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-sub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
 # MQTT_PUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-pub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
-DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","type":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"batterylevelsensor":{:.2f}, "batterystatussensor":{:.2f}, "cpuusagesensor":{:.2f}, "memoryspacesensor":{:.2f}, "diskspacesensor":{:.2f}, "loadaveragesensor":{:.2f}}}}}}}'
+DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","deviceType":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"batteryinfo":{:s}, "cpuinfo":{:s}, "memoryinfo":{:s}, "diskinfo":{:s}, "networkinfo":{:s}, "diskioinfo":{:s}}}}}}}'
 
 HTTPS_EP = configParser.get('Device-Configurations', 'https-ep')
 # HTTP_EP = configParser.get('Device-Configurations', 'http-ep')

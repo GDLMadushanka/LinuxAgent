@@ -15,6 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 function onRequest(context) {
     var log = new Log("stats.js");
     var carbonServer = require("carbon").server;
@@ -27,29 +28,31 @@ function onRequest(context) {
     var jwtClient = jwtService.getJWTClient();
     var encodedClientKeys = session.get(constants["ENCODED_TENANT_BASED_WEB_SOCKET_CLIENT_CREDENTIALS"]);
     var token = "";
+	var user = session.get(constants.USER_SESSION_KEY);
+	if (!user) {
+		log.error("User object was not found in the session");
+		throw constants.ERRORS.USER_NOT_FOUND;
+	}
+
     if (encodedClientKeys) {
-        var tokenUtil = require("/app/modules/oauth/token-handler-utils.js")["utils"];
-        var resp = tokenUtil.decode(encodedClientKeys).split(":");
-        var tokenPair = jwtClient.getAccessToken(resp[0], resp[1], context.user.username,"default", {});
-        if (tokenPair) {
-            token = tokenPair.accessToken;
-        }
-        var websocketToken= {'name':'websocket-token','value': token, 'path':'/', "maxAge":18000};
-        response.addCookie(websocketToken);
+		var tokenUtil = require("/app/modules/oauth/token-handler-utils.js")["utils"];
+		var resp = tokenUtil.decode(encodedClientKeys).split(":");
+		if (user.domain == "carbon.super") {
+			var tokenPair = jwtClient.getAccessToken(resp[0], resp[1], context.user.username , "default", {});
+			if (tokenPair) {
+				token = tokenPair.accessToken;
+			}
+			websocketEndpoint = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop/1.0.0?"
+				+ "deviceId=" + device.deviceIdentifier + "&deviceType=" + device.type + "&websocketToken=" + token;
+		} else {
+			var tokenPair = jwtClient.getAccessToken(resp[0], resp[1], context.user.username + "@" + user.domain
+				, "default", {});
+			if (tokenPair) {
+				token = tokenPair.accessToken;
+			}
+			websocketEndpoint = websocketEndpoint + "/secured-websocket/t/" + user.domain + "/iot.per.device.stream.laptop/1.0.0?"
+				+ "deviceId=" + device.deviceIdentifier + "&deviceType=" + device.type + "&websocketToken=" + token;
+		}
     }
-    var websocketEndpointForStream1 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.batterylevel/1.0.0?deviceId=" + device.deviceIdentifier + "&deviceType=laptop"+"&websocketToken=" + token;
-    var websocketEndpointForStream2 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.batterystatus/1.0.0?deviceId=" + device.deviceIdentifier + "&deviceType=laptop"+"&websocketToken=" + token;
-    var websocketEndpointForStream3 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.cpuusage/1.0.0?deviceId=" + device.deviceIdentifier+ "&deviceType=laptop" + "&websocketToken=" + token;
-    var websocketEndpointForStream4 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.memoryspace/1.0.0?deviceId=" + device.deviceIdentifier+"&deviceType=laptop" + "&websocketToken=" + token;
-    var websocketEndpointForStream5 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.diskspace/1.0.0?deviceId=" + device.deviceIdentifier+"&deviceType=laptop" + "&websocketToken=" + token;
-    var websocketEndpointForStream6 = websocketEndpoint + "/secured-websocket/iot.per.device.stream.laptop.loadaverage/1.0.0?deviceId=" + device.deviceIdentifier+"&deviceType=laptop" + "&websocketToken=" + token;
-    return {
-        "device": device,
-        "websocketEndpointForStream1": websocketEndpointForStream1,
-        "websocketEndpointForStream2": websocketEndpointForStream2,
-        "websocketEndpointForStream3": websocketEndpointForStream3,
-        "websocketEndpointForStream4": websocketEndpointForStream4,
-        "websocketEndpointForStream5": websocketEndpointForStream5,
-        "websocketEndpointForStream6": websocketEndpointForStream6
-    };
+    return {"device": device, "websocketEndpoint": websocketEndpoint};
 }

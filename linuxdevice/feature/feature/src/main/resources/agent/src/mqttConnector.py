@@ -100,10 +100,10 @@ def main():
     # DEV_ID = "001"
 
     global TOPIC_TO_SUBSCRIBE
-    TOPIC_TO_SUBSCRIBE = SERVER_NAME + "/laptop/" + DEV_ID
+    TOPIC_TO_SUBSCRIBE = SERVER_NAME + "/linuxdevice/" + DEV_ID
 
     global TOPIC_TO_PUBLISH
-    TOPIC_TO_PUBLISH = SERVER_NAME + "/laptop/" + DEV_ID + "/data"
+    TOPIC_TO_PUBLISH = SERVER_NAME + "/linuxdevice/" + DEV_ID + "/data"
 
     print ("MQTT_LISTENER: MQTT_ENDPOINT is " + str(MQTT_ENDPOINT))
     print ("MQTT_LISTENER: MQTT_TOPIC is " + TOPIC_TO_SUBSCRIBE)

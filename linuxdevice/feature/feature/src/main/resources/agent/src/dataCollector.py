@@ -19,147 +19,82 @@
 **/
 """
 
-import multiprocessing
-import os
-import subprocess
+import psutil
+import json
 
+def getCpuUsage():
+    numCPU = psutil.cpu_count()
+    cpuPercentages = psutil.cpu_percent(interval=1, percpu=True)
+    CPU_usage_data = {}
+    CPU_usage_data['numOfCpu'] = numCPU
+    CPU_usage_data['cpuPercentages'] = cpuPercentages
+    json_data = json.dumps(CPU_usage_data)
+    return json_data
 
-def getBatteryLevel():
+def getBatteryInfo():
+    battery = psutil.sensors_battery()
+    batteryData={}
+    batteryData['percentage'] = round(battery.percent,2)
+    batteryData['isPlugged'] =battery.power_plugged
+    json_data = json.dumps(batteryData)
+    return json_data
 
-    fileexist = os.path.isfile('/sys/class/power_supply/BAT0/capacity')
+def getMemoryInfo():
+    mem = psutil.virtual_memory()
+    memoryData={}
+    memoryData['used'] = round(float(mem.used)/1024/1024/1024,2)
+    memoryData['percentage'] = mem.percent
+    memoryData['total'] = round(float(mem.total/1024/1024/1024),2)
+    json_data = json.dumps(memoryData)
+    return json_data
 
-    if fileexist is True:
-        read_battery_level = open('/sys/class/power_supply/BAT0/capacity', 'r')
-    else:
-        read_battery_level = open('/sys/class/power_supply/BAT1/capacity', 'r')
+def getDisksInfo():
+    disksData={}
+    diskDetails=[]
+    disks = psutil.disk_partitions()
+    numPartitions = len(disks)
+    numDisks=0
+    disksData['details'] = diskDetails
+    for i in range(0,numPartitions):
+        if disks[i].fstype=='ext4':
+            numDisks+=1
+            mountpoint = disks[i].mountpoint
+            diskusage = psutil.disk_usage(mountpoint)
+            temp={}
+            temp['total'] = round(float(diskusage.total)/1024/1024/1024,2)
+            temp['used'] = round(float(diskusage.used) / 1024 / 1024 / 1024, 2)
+            temp['percentage'] = diskusage.percent
+            diskDetails.append(temp)
+    disksData['numOfDisks'] = numDisks
+    json_data = json.dumps(disksData)
+    return json_data
 
-    battery_level = read_battery_level.read()
-    read_battery_level.close()
+def getDiskIO():
+    IOdata={}
+    temp = psutil.disk_io_counters()
+    IOdata['readCount'] = temp.read_count
+    IOdata['writeCount'] = temp.write_count
+    IOdata['readBytes'] = temp.read_bytes
+    IOdata['writeBytes'] = temp.write_bytes
+    IOdata['readTime'] = temp.read_time
+    IOdata['writeTime'] = temp.write_time
+    return json.dumps(IOdata)
 
-    if " " in battery_level[:3]:
-        battery_level = battery_level[:2]
-    else:
-        battery_level = battery_level[:3]
-
-    # print "----- BATTERY LEVEL -----"
-    # print(battery_level + "%")
-    # print
-
-    return int(battery_level)
-
-
-def getBatteryStatus():
-
-    fileexist = os.path.isfile('/sys/class/power_supply/BAT0/status')
-
-    if fileexist is True:
-        read_battery_status = open('/sys/class/power_supply/BAT0/status', 'r')
-    else:
-        read_battery_status = open('/sys/class/power_supply/BAT1/status', 'r')
-
-    battery_status = read_battery_status.read()
-    read_battery_status.close()
-    battery_status = battery_status.split(' ')[0]
-
-    # charging = 1 / discharging = 0 / battery full = -1
-
-    # if battery_status[:8] == "Charging"
-    # unknown status assigns when the battery is full and the device is still plugged into charge
-    if battery_status[:7] == "Unknown":
-        battery_status = 1
-    elif battery_status[:11] == "Discharging":
-        battery_status = 0
-    else:
-        battery_status = 1
-
-    # print "----- BATTERY STATUS -----"
-    # print("Battery " + str(battery_status))
-    # print
-
-    return battery_status
-
-def getCPUUsage():
-
-    speed_list = []
-
-    proc = subprocess.Popen(["cat", "/proc/cpuinfo"], stdout=subprocess.PIPE)
-    out, err = proc.communicate()
-
-    cores = multiprocessing.cpu_count()
-
-    total = 0
-
-    count = 1
-    for line in out.split("\n"):
-
-        if "cpu MHz" in line:
-            speed = float(line.split(":")[1])
-
-            total += speed
-
-            # only is need to get all usages of each core
-            # store data into a 2d array - add core number, processor speed and the total speed of a processor
-            speed_list.append([count, speed])
-            # print "Processor %d : %s MHz" % (count, speed)
-            # break
-            count += 1
-
-    average = total / cores
-    # TODO get the speed of one core in GHz "speedofone"
-    speedofone = 2
-    percentage = average * 100 / (speedofone * 1000)
-
-    if percentage > 100:
-        percentage = 99
-
-    # sizeofone()
-    percentage = round(percentage, 2)
-
-    return percentage
-
-def getDiskSpace():
-
-    df = subprocess.Popen(["df", "/home/"], stdout=subprocess.PIPE)
-    output = df.communicate()[0]
-
-    details = output.split("\n")[1].split()
-
-    df1 = subprocess.Popen(["df", "/"], stdout=subprocess.PIPE)
-    output1 = df1.communicate()[0]
-
-    details1 = output1.split("\n")[1].split()
-
-    percentage = ((float(details[3]) + float(details1[3])) * 100) / (float(details[1]) + float(details1[1]))
-    #return "%.2f" % round(percentage, 2)
-    total = (float(details[1]) + float(details1[1])) / 1000000
-    return "%.2f" % round(total, 2)
-
-def getMemorySpace():
-
-    proc = subprocess.Popen(["cat", "/proc/meminfo"], stdout=subprocess.PIPE)
-    out, err = proc.communicate()
-
-    total_memoey = 0
-    free_memory = 0
-
-    for line in out.split("\n"):
-
-        if "MemTotal" in line:
-            total = line.split(":")[1].replace(" ", "")
-            total_memoey = float(total.split("k")[0])
-
-        if "MemAvailable" in line:
-            free = line.split(":")[1].replace(" ", "")
-            free_memory = float(free.split("k")[0])
-
-    percentage = (free_memory * 100) / total_memoey
-    #return "%.2f" % round(percentage, 2)
-    return "%.2f" % round((free_memory/1000), 2)
-
-def getLoadAverage():
-
-    average = os.getloadavg()
-    load_average = str(average).split(", ")[0].replace("(", "")
-
-    return float(load_average)
-
+def getNetworkData():
+    networkData = psutil.net_io_counters(pernic=True)
+    del networkData['lo']
+    bytesSent=0
+    bytesRecv=0
+    packetsSent=0
+    packetsRecv=0
+    for value in networkData.items():
+        bytesSent+=value[1].bytes_sent
+        bytesRecv+=value[1].bytes_recv
+        packetsSent+=value[1].packets_sent
+        packetsRecv+=value[1].packets_recv
+    netData={}
+    netData['bytesSent']=bytesSent
+    netData['bytesRecv']=bytesRecv
+    netData['packetsSent']=packetsSent
+    netData['packetsRecv']=packetsRecv
+    return json.dumps(netData)
