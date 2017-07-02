@@ -15,34 +15,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 var palette = new Rickshaw.Color.Palette({scheme: "classic9"});
-var sensorType1 = "batterylevel";
-var sensorType2 = "batterystatus";
-var sensorType3 = "cpuusage";
-var sensorType4 = "memoryspace";
-var sensorType5 = "diskspace";
-var sensorType6 = "loadaverage";
+var sensorTypes = ["batteryinfo","memoryinfo","networkinfo"];
+var graphs=[];
+var graphConfigs=[];
+for (var i=0;i<sensorTypes.length;i++) {
+    graphs[i] = {graph:{}};
+    graphConfigs[i] = {graphConfig:{}};
+}
 
-var sensorType1Graph;
-var sensorType2Graph;
-var sensorType3Graph;
-var sensorType4Graph;
-var sensorType5Graph;
-var sensorType6Graph;
 
 function drawGraph_linuxdevice(from, to)
 {
-    var devices = $("#details").data("devices");
+
+    var devices = $("#devicetype-details").data("devices");
     var tzOffset = new Date().getTimezoneOffset() * 60;
     var chartWrapperElmId = "#chartDivSensorType1";
     var graphWidth = $(chartWrapperElmId).width() - 50;
-    var graphConfigSensorType1 = getGraphConfig("chartSensorType1");
-    var graphConfigSensorType2 = getGraphConfig("chartSensorType2");
-    var graphConfigSensorType3 = getGraphConfig("chartSensorType3");
-    var graphConfigSensorType4 = getGraphConfig("chartSensorType4");
-    var graphConfigSensorType5 = getGraphConfig("chartSensorType5");
-    var graphConfigSensorType6 = getGraphConfig("chartSensorType6");
+    for(var i=0;i<sensorTypes.length;i++) {
+        graphConfigs[i].graphConfig = getGraphConfig("chartSensorType"+(i+1).toString());
+    }
 
     function getGraphConfig(placeHolder) {
         return {
@@ -50,7 +42,7 @@ function drawGraph_linuxdevice(from, to)
             width: graphWidth,
             height: 400,
             strokeWidth: 2,
-            renderer: 'line',
+            renderer: 'area',
             interpolation: "linear",
             unstack: true,
             stack: false,
@@ -60,150 +52,39 @@ function drawGraph_linuxdevice(from, to)
         }
     };
 
-    if (devices) {
-        for (var i = 0; i < devices.length; i++) {
-            graphConfigSensorType1['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-
-            graphConfigSensorType2['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-            graphConfigSensorType3['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-            graphConfigSensorType4['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-            graphConfigSensorType5['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-            graphConfigSensorType6['series'].push(
-                {
-                    'color': palette.color(),
-                    'data': [{
-                        x: parseInt(new Date().getTime() / 1000),
-                        y: 0
-                    }],
-                    'name': devices[i].name
-                });
-        }
-    } else {
-        graphConfigSensorType1['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType1
-            });
-        graphConfigSensorType2['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType2
-            });
-        graphConfigSensorType3['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType3
-            });
-        graphConfigSensorType4['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType4
-            });
-        graphConfigSensorType5['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType5
-            });
-        graphConfigSensorType6['series'].push(
-            {
-                'color': palette.color(),
-                'data': [{
-                    x: parseInt(new Date().getTime() / 1000),
-                    y: 0
-                }],
-                'name': sensorType6
-            });
+    for(var i=0;i<sensorTypes.length;i++) {
+        graphConfigs[i].graphConfig['series'].push ({
+            'color': palette.color(),
+            'data': [{
+                x: parseInt(new Date().getTime() / 1000),
+                y: 0
+            }],
+            'name': sensorTypes[i]
+        });
     }
 
-    sensorType1Graph = new Rickshaw.Graph(graphConfigSensorType1);
-    sensorType2Graph = new Rickshaw.Graph(graphConfigSensorType2);
-    sensorType3Graph = new Rickshaw.Graph(graphConfigSensorType3);
-    sensorType4Graph = new Rickshaw.Graph(graphConfigSensorType4);
-    sensorType5Graph = new Rickshaw.Graph(graphConfigSensorType5);
-    sensorType6Graph = new Rickshaw.Graph(graphConfigSensorType6);
+    for(var i=0;i<sensorTypes.length;i++) {
+        graphs[i].graph = new Rickshaw.Graph(graphConfigs[i].graphConfig);
+    }
 
-    drawGraph(sensorType1Graph, "sensorType1yAxis", "sensorType1Slider", "sensorType1Legend", sensorType1
-        , graphConfigSensorType1, "chartSensorType1");
-    drawGraph(sensorType2Graph, "sensorType2yAxis", "sensorType2Slider", "sensorType2Legend", sensorType2
-        , graphConfigSensorType2, "chartSensorType2");
-    drawGraph(sensorType3Graph, "sensorType3yAxis", "sensorType3Slider", "sensorType3Legend", sensorType3
-        , graphConfigSensorType3, "chartSensorType3");
-    drawGraph(sensorType4Graph, "sensorType4yAxis", "sensorType4Slider", "sensorType4Legend", sensorType4
-        , graphConfigSensorType4, "chartSensorType4");
-    drawGraph(sensorType5Graph, "sensorType5yAxis", "sensorType5Slider", "sensorType5Legend", sensorType5
-        , graphConfigSensorType5, "chartSensorType5");
-    drawGraph(sensorType6Graph, "sensorType6yAxis", "sensorType6Slider", "sensorType6Legend", sensorType6
-        , graphConfigSensorType6, "chartSensorType6");
+    for(var i=0;i<sensorTypes.length;i++) {
+        drawGraph(graphs[i], "sensorType"+(i+1).toString()+"yAxis", "sensorType"+(i+1).toString()+"Slider", "sensorType"+(i+1).toString()+"Legend", sensorTypes[i]
+            , graphConfigs[i], "chartSensorType"+(i+1).toString());
+    }
 
 
     function drawGraph(graph, yAxis, slider, legend, sensorType, graphConfig, chart) {
-        graph.render();
+        console.log(yAxis);
+        console.log(slider);
+        console.log(legend);
+        console.log(chart);
+        graph.graph.render();
         var xAxis = new Rickshaw.Graph.Axis.Time({
-            graph: graph
+            graph: graph.graph
         });
         xAxis.render();
         var yAxis = new Rickshaw.Graph.Axis.Y({
-            graph: graph,
+            graph: graph.graph,
             orientation: 'left',
             element: document.getElementById(yAxis),
             width: 40,
@@ -211,15 +92,15 @@ function drawGraph_linuxdevice(from, to)
         });
         yAxis.render();
         var slider = new Rickshaw.Graph.RangeSlider.Preview({
-            graph: graph,
+            graph: graph.graph,
             element: document.getElementById(slider)
         });
         var legend = new Rickshaw.Graph.Legend({
-            graph: graph,
+            graph: graph.graph,
             element: document.getElementById(legend)
         });
         var hoverDetail = new Rickshaw.Graph.HoverDetail({
-            graph: graph,
+            graph: graph.graph,
             formatter: function (series, x, y) {
                 var date = '<span class="date">' +
                     moment.unix(x + tzOffset).format('Do MMM YYYY h:mm:ss a') + '</span>';
@@ -229,26 +110,26 @@ function drawGraph_linuxdevice(from, to)
             }
         });
         var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
-            graph: graph,
+            graph: graph.graph,
             legend: legend
         });
         var order = new Rickshaw.Graph.Behavior.Series.Order({
-            graph: graph,
+            graph: graph.graph,
             legend: legend
         });
         var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
-            graph: graph,
+            graph: graph.graph,
             legend: legend
         });
         var deviceIndex = 0;
         if (devices) {
             getData(chat, deviceIndex, sensorType);
         } else {
-            var backendApiUrl = $("#" + chart + "").data("backend-api-url") + "?from=" + from + "&to=" + to
+            var backendApiUrl = $("#devicetype-details").data("backend-api-url") + "?from=" + from + "&to=" + to
                 + "&sensorType=" + sensorType;
             var successCallback = function (data) {
                 if (data) {
-                    drawLineGraph(JSON.parse(data), sensorType, deviceIndex, graphConfig, graph);
+                    drawLineGraph(JSON.parse(data), sensorType, deviceIndex, graphConfig.graphConfig, graph.graph);
                 }
             };
             invokerUtil.get(backendApiUrl, successCallback, function (message) {
@@ -263,6 +144,7 @@ function drawGraph_linuxdevice(from, to)
         }
         var backendApiUrl = $("#" + placeHolder + "").data("backend-api-url") + devices[deviceIndex].deviceIdentifier
             + "?from=" + from + "&to=" + to + "&sensorType=" + sensorType;
+        console.log(backendApiUrl);
         var successCallback = function (data) {
             if (data) {
                 drawLineGraph(JSON.parse(data), sensorType, deviceIndex, graphConfig, graph);
@@ -282,15 +164,53 @@ function drawGraph_linuxdevice(from, to)
             return;
         }
         var chartData = [];
-        for (var i = 0; i < data.length; i++) {
-            chartData.push(
-                {
-                    x: parseInt(data[i].values.meta_time) - tzOffset,
-                    y: parseInt(data[i].values[sensorType])
-                }
-            );
+        var chartData2=[];
+
+        if(sensorType=="batteryinfo"){
+            for (var i = 0; i < data.length; i++) {
+                var temp = JSON.parse(data[i].values.batteryinfo);
+                chartData.push(
+                    {
+                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
+                        y: parseInt(temp.percentage)
+                    }
+                );
+            }
+            graphConfig.series[deviceIndex].data = chartData;
+            graph.update();
         }
-        graphConfig.series[deviceIndex].data = chartData;
-        graph.update();
+
+        else if(sensorType=="memoryinfo") {
+            for (var i = 0; i < data.length; i++) {
+                var temp = JSON.parse(data[i].values.memoryinfo);
+                chartData.push(
+                    {
+                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
+                        y: parseInt(temp.percentage)
+                    }
+                );
+            }
+            graphConfig.series[deviceIndex].data = chartData;
+            graph.update();
+        }
+
+        else if(sensorType=="networkinfo") {
+            var tempp = JSON.parse(data[0].values.networkinfo);
+            var initialvalue = tempp.bytesRecv;
+            for (var i = 0; i < data.length; i++) {
+                var temp = JSON.parse(data[i].values.networkinfo);
+                chartData.push(
+                    {
+                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
+                        y: parseInt(temp.bytesRecv)-initialvalue
+                    }
+                );
+                initialvalue = temp.bytesRecv;
+            }
+            graphConfig.series[deviceIndex].data = chartData;
+            graph.update();
+        }
+
+
     }
 }

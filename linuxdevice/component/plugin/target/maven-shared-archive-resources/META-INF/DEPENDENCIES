@@ -247,19 +247,19 @@ From: 'WSO2' (http://www.wso2.org/)
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - Eclipse P2 engine (http://wso2.org/org.eclipse.equinox.p2.engine) org.eclipse.equinox:org.eclipse.equinox.p2.engine:jar:2.3.0.v20130526-2122-wso2v1
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics Data API (http://wso2.org/components/analytics-io/org.wso2.carbon.analytics.api) org.wso2.carbon.analytics:org.wso2.carbon.analytics.api:bundle:1.3.0
+  - WSO2 Carbon - Analytics Data API (http://wso2.org/components/analytics-io/org.wso2.carbon.analytics.api) org.wso2.carbon.analytics:org.wso2.carbon.analytics.api:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics Data Service Commons (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.dataservice.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.dataservice.commons:bundle:1.3.0
+  - WSO2 Carbon - Analytics Data Service Commons (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.dataservice.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.dataservice.commons:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics Data Service (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.dataservice.core) org.wso2.carbon.analytics:org.wso2.carbon.analytics.dataservice.core:bundle:1.3.0
+  - WSO2 Carbon - Analytics Data Service (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.dataservice.core) org.wso2.carbon.analytics:org.wso2.carbon.analytics.dataservice.core:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics Data Source Commons (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.datasource.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.datasource.commons:bundle:1.3.0
+  - WSO2 Carbon - Analytics Data Source Commons (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.datasource.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.datasource.commons:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics Data Source Core (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.datasource.core) org.wso2.carbon.analytics:org.wso2.carbon.analytics.datasource.core:bundle:1.3.0
+  - WSO2 Carbon - Analytics Data Source Core (http://wso2.org/components/analytics-core/org.wso2.carbon.analytics.datasource.core) org.wso2.carbon.analytics:org.wso2.carbon.analytics.datasource.core:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Analytics IO Commons (http://wso2.org/components/analytics-io/org.wso2.carbon.analytics.io.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.io.commons:bundle:1.3.0
+  - WSO2 Carbon - Analytics IO Commons (http://wso2.org/components/analytics-io/org.wso2.carbon.analytics.io.commons) org.wso2.carbon.analytics:org.wso2.carbon.analytics.io.commons:bundle:1.3.3
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
-  - WSO2 Carbon - Event Output Adapter Core Module (http://wso2.org) org.wso2.carbon.analytics-common:org.wso2.carbon.event.output.adapter.core:bundle:5.1.5
+  - WSO2 Carbon - Event Output Adapter Core Module (http://wso2.org) org.wso2.carbon.analytics-common:org.wso2.carbon.event.output.adapter.core:bundle:5.1.17
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - WSO2 Carbon - Tasks Common (http://wso2.org) org.wso2.carbon.commons:org.wso2.carbon.ntask.common:bundle:4.4.8
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)

@@ -16,7 +16,7 @@
   under the License.
 }}
 <span id="devicetype-details" data-devices="{{devices}}" data-devicename="{{device.name}}"
-      data-deviceid="{{device.deviceIdentifier}}"
+      data-deviceid="{{device.deviceIdentifier}}"  data-backend-api-url = "{{backendApiUri}}"
       data-appcontext="{{@app.context}}"></span>
 
 <div id="chartDivSensorType1">
@@ -27,7 +27,7 @@
             <div id="smoother" title="Smoothing"></div>
             <div id="sensorType1Legend"></div>
         </div>
-        <div id="chartSensorType1" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
+        <div id="chartSensorType1" class="custom_rickshaw_graph"></div>
         <div id="sensorType1xAxis" class="custom_x_axis"></div>
         <div id="sensorType1Slider" class="custom_slider"></div>
     </div>
@@ -35,13 +35,13 @@
 
 <div id="chartDivSensorType2">
     <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType2Title">Battery status</span>
+        <span id="sensorType2Title">Memory Usage</span>
         <div id="sensorType2yAxis" class="custom_y_axis"></div>
         <div class="legend_container">
             <div id="smoother" title="Smoothing"></div>
             <div id="sensorType2Legend"></div>
         </div>
-        <div id="chartSensorType2" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
+        <div id="chartSensorType2" class="custom_rickshaw_graph"></div>
         <div id="sensorType2xAxis" class="custom_x_axis"></div>
         <div id="sensorType2Slider" class="custom_slider"></div>
     </div>
@@ -49,57 +49,15 @@
 
 <div id="chartDivSensorType3">
     <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType3Title">CPU Usage</span>
+        <span id="sensorType3Title">Network (Downloads)</span>
         <div id="sensorType3yAxis" class="custom_y_axis"></div>
         <div class="legend_container">
             <div id="smoother" title="Smoothing"></div>
             <div id="sensorType3Legend"></div>
         </div>
-        <div id="chartSensorType3" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
+        <div id="chartSensorType3" class="custom_rickshaw_graph"></div>
         <div id="sensorType3xAxis" class="custom_x_axis"></div>
         <div id="sensorType3Slider" class="custom_slider"></div>
-    </div>
-</div>
-
-<div id="chartDivSensorType4">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType4Title">Memory space</span>
-        <div id="sensorType4yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType4Legend"></div>
-        </div>
-        <div id="chartSensorType4" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType4xAxis" class="custom_x_axis"></div>
-        <div id="sensorType4Slider" class="custom_slider"></div>
-    </div>
-</div>
-
-<div id="chartDivSensorType5">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType5Title">Disk space</span>
-        <div id="sensorType5yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType5Legend"></div>
-        </div>
-        <div id="chartSensorType5" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType5xAxis" class="custom_x_axis"></div>
-        <div id="sensorType5Slider" class="custom_slider"></div>
-    </div>
-</div>
-
-<div id="chartDivSensorType6">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType6Title">Load average</span>
-        <div id="sensorType6yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType6Legend"></div>
-        </div>
-        <div id="chartSensorType6" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType6xAxis" class="custom_x_axis"></div>
-        <div id="sensorType6Slider" class="custom_slider"></div>
     </div>
 </div>
 

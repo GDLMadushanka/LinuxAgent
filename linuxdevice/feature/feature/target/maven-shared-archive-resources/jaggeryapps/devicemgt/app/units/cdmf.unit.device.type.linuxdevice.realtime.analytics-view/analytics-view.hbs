@@ -1,97 +1,132 @@
+{{!
+  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+  WSO2 Inc. licenses this file to you under the Apache License,
+  Version 2.0 (the "License"); you may not use this file except
+  in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied. See the License for the
+  specific language governing permissions and limitations
+  under the License.
+}}
 {{unit "cdmf.unit.lib.rickshaw-graph"}}
 
-<div id="div-chart-sensorType1" data-websocketurlStream="{{websocketEndpointForStream1}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="batterylevel">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType1" class="custom_y_axis">Battery level</div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="legend"></div>
-        </div>
-        <div id="chartSensorType1" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
-    </div>
-</div>
-<div id="div-chart-sensorType2" data-websocketurlStream="{{websocketEndpointForStream2}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="batterystatus">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType2" class="custom_y_axis">Battery plugged in status</div>
-        <div class="legend_container">
-            <div id="smootherSensorType2" title="Smoothing"></div>
-            <div id="legendSensorType2"></div>
-        </div>
-        <div id="chartSensorType2" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
-    </div>
-</div>
-{{! cpuusage }}
-{{! pass device ID}}
-<div id="div-chart-sensorType3" data-websocketurlStream="{{websocketEndpointForStream3}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="cpuusage">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType3" class="custom_y_axis">CPU usage</div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="legend"></div>
-        </div>
-        <div id="chartSensorType3" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
-    </div>
-</div>
+{{#zone "topCss"}}
+    {{css "css/custom.css"}}
+{{/zone}}
 
-{{! new stats }}
-<div id="div-chart-sensorType4" data-websocketurlStream="{{websocketEndpointForStream4}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="memoryusage">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType4" class="custom_y_axis">Memory usage (MB)</div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="legend"></div>
+<span id="laptop-details" data-websocketurl="{{websocketEndpoint}}" data-devices="{{devices}}"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-cpu">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_cpu" class="custom_y_axis">CPU Usage</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_cpu"></div>
+                        </div>
+                        <div id="chart_cpu" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="chartSensorType4" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-memory">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_memory" class="custom_y_axis">Memory Usage</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_memory"></div>
+                        </div>
+                        <div id="chart_memory" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-network">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_network" class="custom_y_axis">Network Usage</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_network"></div>
+                        </div>
+                        <div id="chart_network" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-disk">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_disk" class="custom_y_axis">HardDisk Usage</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_disk"></div>
+                        </div>
+                        <div id="chart_disk" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-diskio">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_diskio" class="custom_y_axis">HardDisk read/write</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_diskio"></div>
+                        </div>
+                        <div id="chart_diskio" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 graph">
+            <div class="sensor_graph">
+                <div id="div-chart-battery">
+                    <div class="chartWrapper" id="chartWrapper">
+                        <div id="y_axis_battery" class="custom_y_axis">Battery</div>
+                        <div class="legend_container">
+                            <div id="smoother" title="Smoothing"></div>
+                            <div id="legend_battery"></div>
+                        </div>
+                        <div id="chart_battery" class="custom_rickshaw_graph"></div>
+                        <div class="custom_x_axis">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div id="div-chart-sensorType5" data-websocketurlStream="{{websocketEndpointForStream5}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="diskusage">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType5" class="custom_y_axis">Disk usage (MB)</div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="legend"></div>
-        </div>
-        <div id="chartSensorType5" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
-    </div>
-</div>
-<div id="div-chart-sensorType6" data-websocketurlStream="{{websocketEndpointForStream6}}" data-deviceID="{{device.deviceIdentifier}}" data-sensorType="loadaverage">
-    <div class="chartWrapper" id="chartWrapper">
-        <div id="yAxisSensorType6" class="custom_y_axis">Load average</div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="legend"></div>
-        </div>
-        <div id="chartSensorType6" class="custom_rickshaw_graph"></div>
-        <div class="custom_x_axis">Time</div>
-    </div>
-</div>
-
 <a class="padding-left"
-   href="{{@app.context}}/device/{{device.type}}/analytics?deviceId={{device.deviceIdentifier}}
-   &deviceName={{device.name}}">
+   href="{{@app.context}}/device/{{device.type}}/analytics?deviceId={{device.deviceIdentifier}}&deviceName={{device.name}}">
     <span class="fw-stack">
-        <i class="fw fw-ring fw-stack-2x"></i>
+        <i class="fw fw-circle-outline fw-stack-2x"></i>
         <i class="fw fw-statistics fw-stack-1x"></i>
     </span> View Device Analytics
 </a>
-
-<br>
-
-<!-- device group page link -->
-<a class="padding-left"
-   href="{{@app.context}}/device/{{device.type}}/groupanalytics?deviceId={{device.deviceIdentifier}}
-   &deviceName={{device.name}}">
-    <span class="fw-stack">
-        <i class="fw fw-ring fw-stack-2x"></i>
-        <i class="fw fw-statistics fw-stack-1x"></i>
-    </span> View Linux Group Analytics
-</a>
-
 <!-- /statistics -->
 {{#zone "bottomJs"}}
     {{js "js/moment.min.js"}}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/linuxdevice.iml" filepath="$PROJECT_DIR$/linuxdevice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/linuxdevice-component.iml" filepath="$PROJECT_DIR$/component/linuxdevice-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/feature/linuxdevice-feature.iml" filepath="$PROJECT_DIR$/feature/linuxdevice-feature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/analytics/org.laptop.linuxdevice.analytics.iml" filepath="$PROJECT_DIR$/component/analytics/org.laptop.linuxdevice.analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/api/org.laptop.linuxdevice.api.iml" filepath="$PROJECT_DIR$/component/api/org.laptop.linuxdevice.api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/feature/feature/org.laptop.linuxdevice.feature.iml" filepath="$PROJECT_DIR$/feature/feature/org.laptop.linuxdevice.feature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/plugin/org.laptop.linuxdevice.plugin.iml" filepath="$PROJECT_DIR$/component/plugin/org.laptop.linuxdevice.plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/component/ui/org.laptop.linuxdevice.ui.iml" filepath="$PROJECT_DIR$/component/ui/org.laptop.linuxdevice.ui.iml" />
+    </modules>
+  </component>
+</project>

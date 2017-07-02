@@ -21,8 +21,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          metadata-complete="true">
-	<display-name>WSO2 IoT Server</display-name>
-	<description>WSO2 IoT Server</description>
+	<display-name>LinuxDevice</display-name>
+	<description>LinuxDevice</description>
 
     <servlet>
         <servlet-name>CXFServlet</servlet-name>
@@ -39,7 +39,7 @@
     </context-param>
     <context-param>
         <param-name>isSharedWithAllTenants</param-name>
-        <param-value>false</param-value>
+        <param-value>true</param-value>
     </context-param>
 
     <!--publish to apim-->

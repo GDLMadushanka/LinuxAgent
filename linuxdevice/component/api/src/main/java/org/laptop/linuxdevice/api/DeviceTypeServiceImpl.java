@@ -198,7 +198,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
-                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDevice(sensorTableName, query, sortByFields);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,20);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -226,7 +226,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String toDate = String.valueOf(to);
         String from_date = fromDate + "000";
         String to_date = toDate + "000";
-        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:laptop"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
+        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
         String sensorTableName = null;
         if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE1)){
             sensorTableName = DeviceTypeConstants.SENSOR_TYPE1_EVENT_TABLE;
@@ -250,7 +250,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
-                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDevice(sensorTableName, query, sortByFields);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,100);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {

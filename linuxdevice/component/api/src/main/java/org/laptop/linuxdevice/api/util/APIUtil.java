@@ -129,6 +129,24 @@ public class APIUtil {
         return sortedSensorData;
     }
 
+    public static List<SensorRecord> getAllEventsForDeviceWithLimit(String tableName, String query,
+                                                           List<SortByField> sortByFields,int limit) throws AnalyticsException {
+        int tenantId = CarbonContext.getThreadLocalCarbonContext().getTenantId();
+        AnalyticsDataAPI analyticsDataAPI = getAnalyticsDataAPI();
+        int eventCount = limit;
+        if (eventCount == 0) {
+            return null;
+        }
+        List<SearchResultEntry> resultEntries = analyticsDataAPI.search(tenantId, tableName, query, 0, eventCount,
+                sortByFields);
+        List<String> recordIds = getRecordIds(resultEntries);
+        AnalyticsDataResponse response = analyticsDataAPI.get(tenantId, tableName, 1, null, recordIds);
+        Map<String, SensorRecord> sensorDatas = createSensorData(AnalyticsDataAPIUtil.listRecords(
+                analyticsDataAPI, response));
+        List<SensorRecord> sortedSensorData = getSortedSensorData(sensorDatas, resultEntries);
+        return sortedSensorData;
+    }
+
     public static List<SensorRecord> getSortedSensorData(Map<String, SensorRecord> sensorDatas,
                                                          List<SearchResultEntry> searchResults) {
         List<SensorRecord> sortedRecords = new ArrayList<>();

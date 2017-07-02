@@ -33,22 +33,21 @@ public class DeviceTypeConstants {
     public final static String STATE_OFF = "OFF";
 
     //sensor events summerized table name
-    public static final String SENSOR_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYLEVEL";
-    public static final String SENSOR_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYSTATUS";
-    public static final String SENSOR_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_CPUUSAGE";
-    public static final String SENSOR_TYPE4_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_MEMORYSPACE";
-    public static final String SENSOR_TYPE5_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKSPACE";
-    public static final String SENSOR_TYPE6_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LOADAVERAGE";
+    public static final String SENSOR_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYINFO";
+    public static final String SENSOR_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_CPUINFO";
+    public static final String SENSOR_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_MEMORYINFO";
+    public static final String SENSOR_TYPE4_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKINFO";
+    public static final String SENSOR_TYPE5_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_NETWORKINFO";
+    public static final String SENSOR_TYPE6_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKIOINFO";
 
     public static final String DATA_SOURCE_NAME = "jdbc/linuxdeviceDM_DB";
     public final static String DEVICE_TYPE_PROVIDER_DOMAIN = "carbon.super";
-    public final static String SENSOR_TYPE1 = "batterylevel";
-    public final static String SENSOR_TYPE2 = "batterystatus";
-    //cpuusage
-    public final static String SENSOR_TYPE3 = "cpuusage";
-    public final static String SENSOR_TYPE4 = "memoryspace";
-    public final static String SENSOR_TYPE5 = "diskspace";
-    public final static String SENSOR_TYPE6 = "loadaverage";
+    public final static String SENSOR_TYPE1 = "batteryinfo";
+    public final static String SENSOR_TYPE2 = "cpuinfo";
+    public final static String SENSOR_TYPE3 = "memoryinfo";
+    public final static String SENSOR_TYPE4 = "diskinfo";
+    public final static String SENSOR_TYPE5 = "networkinfo";
+    public final static String SENSOR_TYPE6 = "diskioinfo";
 
     //mqtt tranport related constants
     public static final String MQTT_ADAPTER_NAME = "batterylevelsensor_mqtt";

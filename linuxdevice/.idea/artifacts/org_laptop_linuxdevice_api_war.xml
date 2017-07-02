@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="org.laptop.linuxdevice.api:war">
+    <output-path>$PROJECT_DIR$/component/api/target</output-path>
+    <root id="archive" name="org.laptop.linuxdevice.api.war">
+      <element id="artifact" artifact-name="org.laptop.linuxdevice.api:war exploded" />
+    </root>
+  </artifact>
+</component>

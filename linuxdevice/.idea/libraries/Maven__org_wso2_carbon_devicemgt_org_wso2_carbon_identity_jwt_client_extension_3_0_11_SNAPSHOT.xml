@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.wso2.carbon.devicemgt:org.wso2.carbon.identity.jwt.client.extension:3.0.11-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.identity.jwt.client.extension/3.0.11-SNAPSHOT/org.wso2.carbon.identity.jwt.client.extension-3.0.11-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.identity.jwt.client.extension/3.0.11-SNAPSHOT/org.wso2.carbon.identity.jwt.client.extension-3.0.11-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.identity.jwt.client.extension/3.0.11-SNAPSHOT/org.wso2.carbon.identity.jwt.client.extension-3.0.11-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

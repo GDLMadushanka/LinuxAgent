@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="org.laptop.linuxdevice.api" />
+        <module name="org.laptop.linuxdevice.plugin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="linuxdevice" target="1.7" />
+      <module name="linuxdevice-component" target="1.7" />
+      <module name="linuxdevice-feature" target="1.7" />
+      <module name="org.laptop.linuxdevice.analytics" target="1.7" />
+      <module name="org.laptop.linuxdevice.api" target="1.7" />
+      <module name="org.laptop.linuxdevice.feature" target="1.7" />
+      <module name="org.laptop.linuxdevice.plugin" target="1.7" />
+      <module name="org.laptop.linuxdevice.ui" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
