@@ -337,6 +337,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
     }
 
+    private ArrayList<String> getDeviceprofiles() {
+        ArrayList<String> arr = new ArrayList<>();
+
+    }
+
     private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {
