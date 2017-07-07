@@ -84,6 +84,8 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     private static final String KEY_TYPE = "PRODUCTION";
     private static Log log = LogFactory.getLog(DeviceTypeService.class);
     private static ApiApplicationKey apiApplicationKey;
+    LaptopDAO laptopDAO = new LaptopDAO();
+    LaptopDAOImpl laptopDAOImpl= new LaptopDAOImpl();
 
     private static String shortUUID() {
         UUID uuid = UUID.randomUUID();
@@ -278,9 +280,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @GET
     @Produces("application/zip")
     public Response downloadSketch(@QueryParam("deviceName") String deviceName,
-                                   @QueryParam("sketchType") String sketchType) {
+                                   @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName) {
         try {
-            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType);
+            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileName);
             Response.ResponseBuilder response = Response.ok(FileUtils.readFileToByteArray(zipFile.getZipFile()));
             response.status(Response.Status.OK);
             response.type("application/zip");
@@ -314,7 +316,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
      * @param name  name for the device type instance
      * @return check whether device is installed into cdmf
      */
-    private boolean register(String deviceId, String name) {
+    private boolean register(String deviceId, String name,String profileName) {
         try {
             DeviceIdentifier deviceIdentifier = new DeviceIdentifier();
             deviceIdentifier.setId(deviceId);
@@ -333,7 +335,23 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             device.setType(DeviceTypeConstants.DEVICE_TYPE);
             enrolmentInfo.setOwner(APIUtil.getAuthenticatedUser());
             device.setEnrolmentInfo(enrolmentInfo);
+            deviceProfile pro;
+            try {
+                pro = laptopDAOImpl.getProfileByName(profileName);
+            } catch (DeviceTypeException e) {
+                e.printStackTrace();
+            }
             boolean added = APIUtil.getDeviceManagementService().enrollDevice(device);
+            deviceProfile profile;
+            if(added){
+                try {
+                    profile = laptopDAOImpl.getProfileByName(profileName);
+                    added = laptopDAOImpl.updateDevice(deviceId,profile.getProfileId());
+                } catch (DeviceTypeException e) {
+                    added = false;
+                    e.printStackTrace();
+                }
+            }
             return added;
         } catch (DeviceManagementException e) {
             log.error(e.getMessage(), e);
@@ -346,8 +364,6 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @Produces("application/json")
     public Response getDeviceprofiles() {
         List<deviceProfile> arr = new ArrayList<deviceProfile>();
-        LaptopDAO laptopDAO = new LaptopDAO();
-        LaptopDAOImpl laptopDAOImpl= new LaptopDAOImpl();
         try {
             arr = laptopDAOImpl.getAllProfiles();
         } catch (DeviceTypeException e) {
@@ -356,7 +372,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.OK).entity(arr).build();
     }
 
-    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType)
+    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileName)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {
         //create new device id
@@ -379,7 +395,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         //create token
         String accessToken = accessTokenInfo.getAccessToken();
         String refreshToken = accessTokenInfo.getRefreshToken();
-        boolean status = register(deviceId, deviceName);
+        boolean status = register(deviceId, deviceName,profileName);
+
+
         if (!status) {
             String msg = "Error occurred while registering the device with " + "id: " + deviceId + " owner:" + owner;
             throw new DeviceManagementException(msg);

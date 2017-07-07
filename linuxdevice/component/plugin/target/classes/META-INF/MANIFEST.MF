@@ -4,7 +4,7 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-SymbolicName: org.laptop.linuxdevice.plugin
 Built-By: lahiru
 Bundle-ManifestVersion: 2
-Bnd-LastModified: 1499325195171
+Bnd-LastModified: 1499413486889
 Bundle-DocURL: http://www.wso2.org/
 Bundle-Vendor: WSO2
 Import-Package: javax.naming;resolution:=optional,javax.sql;resolution
