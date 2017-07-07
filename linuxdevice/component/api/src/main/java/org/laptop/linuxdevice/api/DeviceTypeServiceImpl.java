@@ -18,8 +18,12 @@
 
 package org.laptop.linuxdevice.api;
 
+import org.laptop.linuxdevice.api.dao.LaptopDAO;
+import org.laptop.linuxdevice.api.dao.LaptopDAOImpl;
 import org.laptop.linuxdevice.api.dto.DeviceJSON;
 import org.laptop.linuxdevice.api.dto.SensorRecord;
+import org.laptop.linuxdevice.api.dto.deviceProfile;
+import org.laptop.linuxdevice.api.exception.DeviceTypeException;
 import org.laptop.linuxdevice.api.util.APIUtil;
 import org.laptop.linuxdevice.api.util.ZipUtil;
 import org.laptop.linuxdevice.api.util.ZipArchive;
@@ -337,9 +341,19 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
     }
 
-    private ArrayList<String> getDeviceprofiles() {
-        ArrayList<String> arr = new ArrayList<>();
-
+    @Path("/device/profiles")
+    @GET
+    @Produces("application/json")
+    public Response getDeviceprofiles() {
+        List<deviceProfile> arr = new ArrayList<deviceProfile>();
+        LaptopDAO laptopDAO = new LaptopDAO();
+        LaptopDAOImpl laptopDAOImpl= new LaptopDAOImpl();
+        try {
+            arr = laptopDAOImpl.getAllProfiles();
+        } catch (DeviceTypeException e) {
+            e.printStackTrace();
+        }
+        return Response.status(Response.Status.OK).entity(arr).build();
     }
 
     private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType)

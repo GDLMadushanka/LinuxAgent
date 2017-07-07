@@ -83,10 +83,11 @@ public class DeviceTypeDAOImpl {
         try {
             conn = DeviceTypeDAO.getConnection();
             String createDBQuery =
-                    "INSERT INTO linuxdevice_DEVICE(linuxdevice_DEVICE_ID, DEVICE_NAME) VALUES (?, ?)";
+                    "INSERT INTO linuxdevice_DEVICE(linuxdevice_DEVICE_ID, DEVICE_NAME,PROFILE_ID) VALUES (?, ?,?)";
             stmt = conn.prepareStatement(createDBQuery);
             stmt.setString(1, device.getDeviceIdentifier());
             stmt.setString(2, device.getName());
+            stmt.setString(3,"profileid1"); //change later
             int rows = stmt.executeUpdate();
             if (rows > 0) {
                 status = true;

@@ -146,4 +146,26 @@ public interface DeviceTypeService {
             }
     )
     Response downloadSketch(@QueryParam("deviceName") String deviceName, @QueryParam("sketchType") String sketchType);
+
+    /**
+     * To download device type agent source code as zip file
+     * @return  Agent source code as zip file
+     */
+    @Path("/device/profiles")
+    @GET
+    @Produces("application/json")
+    @ApiOperation(
+            consumes = MediaType.APPLICATION_JSON,
+            httpMethod = "GET",
+            value = "Get all profiles",
+            notes = "",
+            response = Response.class,
+            tags = "linuxdevice",
+            extensions = {
+                    @Extension(properties = {
+                            @ExtensionProperty(name = SCOPE, value = "perm:linuxdevice:enroll")
+                    })
+            }
+    )
+    Response getDeviceprofiles();
 }

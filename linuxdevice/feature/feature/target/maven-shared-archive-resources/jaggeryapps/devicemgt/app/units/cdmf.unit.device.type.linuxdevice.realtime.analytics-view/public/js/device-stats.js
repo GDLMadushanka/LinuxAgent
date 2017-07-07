@@ -168,7 +168,6 @@ function connect(target) {
                 if(payloadData.batteryinfo.isPlugged) {
                     plugged = 100;
                 }
-                console.log(payloadData.batteryinfo.isPlugged);
                 batteryChartData[0].push({
                     x: parseInt(metaData.time),
                     y: parseFloat(payloadData.batteryinfo.percentage)

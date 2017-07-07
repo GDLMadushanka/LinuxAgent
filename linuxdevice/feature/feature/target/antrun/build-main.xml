@@ -4,13 +4,13 @@
   <property name="db.dir" value="target/maven-shared-archive-resources/database"/>
   <property name="userid" value="wso2carbon"/>
   <property name="password" value="wso2carbon"/>
-  <property name="dbURL" value="jdbc:h2:file:/home/lahiru/Documents/iot/backup2/linuxdevice/feature/feature/${db.dir}/linuxdeviceDM_DB;DB_CLOSE_ON_EXIT=FALSE"/>
-  <mkdir dir="/home/lahiru/Documents/iot/backup2/linuxdevice/feature/feature/${db.dir}"/>
+  <property name="dbURL" value="jdbc:h2:file:/home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/${db.dir}/linuxdeviceDM_DB;DB_CLOSE_ON_EXIT=FALSE"/>
+  <mkdir dir="/home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/${db.dir}"/>
   <sql password="${password}" autocommit="true" driver="org.h2.Driver" onerror="continue" userid="${userid}" url="${dbURL}">
     <classpath refid="maven.dependency.classpath"/>
     <classpath refid="maven.compile.classpath"/>
     <classpath refid="maven.runtime.classpath"/>
-    <fileset file="/home/lahiru/Documents/iot/backup2/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql"/>
+    <fileset file="/home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql"/>
   </sql>
 </target>
 </project>
