@@ -23,78 +23,45 @@ import psutil
 import json
 
 def getCpuUsage():
-    numCPU = psutil.cpu_count()
-    cpuPercentages = psutil.cpu_percent(interval=1, percpu=True)
-    CPU_usage_data = {}
-    CPU_usage_data['numOfCpu'] = numCPU
-    CPU_usage_data['cpuPercentages'] = cpuPercentages
-    json_data = json.dumps(CPU_usage_data)
-    return json_data
+    return psutil.cpu_percent(interval=1, percpu=False)
 
-def getBatteryInfo():
-    battery = psutil.sensors_battery()
-    batteryData={}
-    batteryData['percentage'] = round(battery.percent,2)
-    batteryData['isPlugged'] =battery.power_plugged
-    json_data = json.dumps(batteryData)
-    return json_data
+def getBatteryPercentage():
+    return round(psutil.sensors_battery().percent,2)
 
-def getMemoryInfo():
-    mem = psutil.virtual_memory()
-    memoryData={}
-    memoryData['used'] = round(float(mem.used)/1024/1024/1024,2)
-    memoryData['percentage'] = mem.percent
-    memoryData['total'] = round(float(mem.total/1024/1024/1024),2)
-    json_data = json.dumps(memoryData)
-    return json_data
+def getBatteryPluggedin():
+    return psutil.sensors_battery().power_plugged
 
-def getDisksInfo():
-    disksData={}
-    diskDetails=[]
-    disks = psutil.disk_partitions()
-    numPartitions = len(disks)
-    numDisks=0
-    disksData['details'] = diskDetails
-    for i in range(0,numPartitions):
-        if disks[i].fstype=='ext4':
-            numDisks+=1
-            mountpoint = disks[i].mountpoint
-            diskusage = psutil.disk_usage(mountpoint)
-            temp={}
-            temp['total'] = round(float(diskusage.total)/1024/1024/1024,2)
-            temp['used'] = round(float(diskusage.used) / 1024 / 1024 / 1024, 2)
-            temp['percentage'] = diskusage.percent
-            diskDetails.append(temp)
-    disksData['numOfDisks'] = numDisks
-    json_data = json.dumps(disksData)
-    return json_data
+def getMemoryUsage():
+    return psutil.virtual_memory().percent
 
-def getDiskIO():
-    IOdata={}
-    temp = psutil.disk_io_counters()
-    IOdata['readCount'] = temp.read_count
-    IOdata['writeCount'] = temp.write_count
-    IOdata['readBytes'] = temp.read_bytes
-    IOdata['writeBytes'] = temp.write_bytes
-    IOdata['readTime'] = temp.read_time
-    IOdata['writeTime'] = temp.write_time
-    return json.dumps(IOdata)
+def getDisksUsage():
+    return psutil.disk_usage('/').percent
 
-def getNetworkData():
+def getDiskReads():
+    return psutil.disk_io_counters().read_bytes
+
+def getDiskWrites():
+    return psutil.disk_io_counters().write_bytes
+
+def getDiskReadCount():
+    return psutil.disk_io_counters().read_count
+
+def getDiskWriteCount():
+    return psutil.disk_io_counters().write_count
+
+def getBytesSent():
     networkData = psutil.net_io_counters(pernic=True)
     del networkData['lo']
-    bytesSent=0
-    bytesRecv=0
-    packetsSent=0
-    packetsRecv=0
+    bytesSent = 0
     for value in networkData.items():
-        bytesSent+=value[1].bytes_sent
+        bytesSent += value[1].bytes_sent
+    return bytesSent
+
+def getBytesRecv():
+    networkData = psutil.net_io_counters(pernic=True)
+    del networkData['lo']
+    bytesRecv=0
+    for value in networkData.items():
         bytesRecv+=value[1].bytes_recv
-        packetsSent+=value[1].packets_sent
-        packetsRecv+=value[1].packets_recv
-    netData={}
-    netData['bytesSent']=bytesSent
-    netData['bytesRecv']=bytesRecv
-    netData['packetsSent']=packetsSent
-    netData['packetsRecv']=packetsRecv
-    return json.dumps(netData)
+    return bytesRecv
+

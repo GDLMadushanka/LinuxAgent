@@ -75,7 +75,7 @@ AUTH_TOKEN = configParser.get('Device-Configurations', 'auth-token')
 CONTROLLER_CONTEXT = configParser.get('Device-Configurations', 'controller-context')
 # MQTT_SUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-sub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
 # MQTT_PUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-pub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
-DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","type":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"cpuusage":{:.2f},' \
+DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","deviceType":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"cpuusage":{:.2f},' \
                                                                                                                                                            ' "batterypercentage":{:.2f}, "batterypluggedin":{:f}, "memoryusage":{:.2f}, "diskusage":{:.2f}, "diskreads":{:.2f}, "diskwrites":{:.2f},"diskreadcount":{:.2f} ,' \
                                                                                                                                                            '"diskwritecount":{:.2f}, "bytessent":{:.2f},"bytesrecv":{:.2f},  }}}}}}'
 
