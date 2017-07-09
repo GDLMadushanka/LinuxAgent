@@ -10,14 +10,16 @@
     {"name":"time","type":"LONG"}
   ],
   "payloadData": [
-    {"name": "batteryinfo","type": "STRING"},
-    {"name": "cpuinfo", "type": "STRING"},
-    {"name": "memoryinfo", "type": "STRING"},
-    {"name": "diskinfo", "type": "STRING"},
-    {"name": "networkinfo", "type": "STRING"},
-    {"name": "diskioinfo", "type": "STRING"}
+    {"name": "cpuusage","type": "DOUBLE"},
+    {"name": "batterypercentage","type": "DOUBLE"},
+    {"name": "batterypluggedin","type": "DOUBLE"},
+    {"name": "memoryusage","type": "DOUBLE"},
+    {"name": "diskusage","type": "DOUBLE"},
+    {"name": "diskreads","type": "DOUBLE"},
+    {"name": "diskwrites","type": "DOUBLE"},
+    {"name": "diskreadcount","type": "DOUBLE"},
+    {"name": "diskwritecount","type": "DOUBLE"},
+    {"name": "bytessent","type": "DOUBLE"},
+    {"name": "bytesrecv","type": "DOUBLE"}
   ]
 }
-	
-
-				                                    		

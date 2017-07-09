@@ -37,12 +37,17 @@ HTTP_SERVER_PORT = 5678 # http server port which is listening on
 # LAST_TEMP = 25  # The Last read temperature value from the DHT sensor. Kept globally
 
 # laptop statistics
-global BATTERY_INFO
-global CPU_INFO
-global MEMORY_INFO
-global DISK_INFO
-global NETWORK_INFO
-global DISK_IO_INFO
+global cpuusage
+global batterypercentage
+global batterypluggedin
+global memoryusage
+global diskusage
+global diskreads
+global diskwrites
+global diskreadcount
+global diskwritecount
+global bytessent
+global bytesrecv
 
 
 # Linux Agent
@@ -70,7 +75,25 @@ AUTH_TOKEN = configParser.get('Device-Configurations', 'auth-token')
 CONTROLLER_CONTEXT = configParser.get('Device-Configurations', 'controller-context')
 # MQTT_SUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-sub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
 # MQTT_PUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-pub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
-DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","deviceType":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"batteryinfo":{:s}, "cpuinfo":{:s}, "memoryinfo":{:s}, "diskinfo":{:s}, "networkinfo":{:s}, "diskioinfo":{:s}}}}}}}'
+DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","type":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"cpuusage":{:.2f},' \
+                                                                                                                                                           ' "batterypercentage":{:.2f}, "batterypluggedin":{:f}, "memoryusage":{:.2f}, "diskusage":{:.2f}, "diskreads":{:.2f}, "diskwrites":{:.2f},"diskreadcount":{:.2f} ,' \
+                                                                                                                                                           '"diskwritecount":{:.2f}, "bytessent":{:.2f},"bytesrecv":{:.2f},  }}}}}}'
+
+
+'''
+cpuusage
+batterypercentage
+batterypluggedin
+memoryusage
+diskusage
+diskreads
+diskwrites
+diskreadcount
+diskwritecount
+bytessent
+bytesrecv
+
+'''
 
 HTTPS_EP = configParser.get('Device-Configurations', 'https-ep')
 # HTTP_EP = configParser.get('Device-Configurations', 'http-ep')
@@ -122,7 +145,7 @@ def main():
     global HOST_NAME
     # HOST_NAME = getDeviceIP()
     # if running_mode.RUNNING_MODE == 'N':
-        # setUpGPIOPins()
+    # setUpGPIOPins()
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,3 +1,4 @@
+
 /* Enter a unique ExecutionPlan */
 @Plan:name('laptop_execution')
 
@@ -7,46 +8,73 @@
 /* define streams/tables and write queries here ... */
 
 @Import('iot.per.device.stream.laptop:1.0.0')
-define stream laptop (meta_owner string, meta_deviceType string,meta_deviceId string, meta_time long, batteryinfo string, cpuinfo string,memoryinfo string,diskinfo string, networkinfo string,diskioinfo string);
+define stream laptop (meta_owner string, meta_deviceType string,meta_deviceId string, meta_time long,cpuusage double,
+batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
+diskwritecount double, bytessent double, bytesrecv double);
 
-@Export('iot.per.device.stream.laptop.batteryinfo:1.0.0')
-define stream batteryinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, batteryinfo string);
+@Export('iot.per.device.stream.laptop.cpuusage:1.0.0')
+define stream cpuusage (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, cpuusage double);
 
-@Export('iot.per.device.stream.laptop.cpuinfo:1.0.0')
-define stream cpuinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, cpuinfo string);
+@Export('iot.per.device.stream.laptop.batterypercentage:1.0.0')
+define stream batterypercentage (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, batterypercentage double);
 
-@Export('iot.per.device.stream.laptop.memoryinfo:1.0.0')
-define stream memoryinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, memoryinfo string);
+@Export('iot.per.device.stream.laptop.batterypluggedin:1.0.0')
+define stream batterypluggedin (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, batterypluggedin double);
 
-@Export('iot.per.device.stream.laptop.diskinfo:1.0.0')
-define stream diskinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskinfo string);
+@Export('iot.per.device.stream.laptop.memoryusage:1.0.0')
+define stream memoryusage (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, memoryusage double);
 
-@Export('iot.per.device.stream.laptop.networkinfo:1.0.0')
-define stream networkinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, networkinfo string);
+@Export('iot.per.device.stream.laptop.diskusage:1.0.0')
+define stream diskusage (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskusage double);
 
-@Export('iot.per.device.stream.laptop.diskioinfo:1.0.0')
-define stream diskioinfo (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskioinfo string);
+@Export('iot.per.device.stream.laptop.diskreads:1.0.0')
+define stream diskreads (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskreads double);
 
-from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, batteryinfo
-insert into batteryinfo;
+@Export('iot.per.device.stream.laptop.diskwrites:1.0.0')
+define stream diskwrites (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, diskwrites double);
 
-from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, cpuinfo
-insert into cpuinfo;
+@Export('iot.per.device.stream.laptop.bytessent:1.0.0')
+define stream bytessent (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, bytessent double);
 
-from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, memoryinfo
-insert into memoryinfo;
-
-from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskinfo
-insert into diskinfo;
+@Export('iot.per.device.stream.laptop.bytesrecv:1.0.0')
+define stream bytesrecv (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, bytesrecv double);
 
 from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, networkinfo
-insert into networkinfo;
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, cpuusage
+insert into cpuusage;
 
 from laptop
-select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskioinfo
-insert into diskioinfo;
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, batterypercentage
+insert into batterypercentage;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, batterypluggedin
+insert into batterypluggedin;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, memoryusage
+insert into memoryusage;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskusage
+insert into diskusage;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskreads
+insert into diskreads;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskreads
+insert into diskreads;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, diskwrites
+insert into diskwrites;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, bytessent
+insert into bytessent;
+
+from laptop
+select meta_owner, meta_deviceType, meta_deviceId, time:timestampInMilliseconds() as meta_time, bytesrecv
+insert into bytesrecv;

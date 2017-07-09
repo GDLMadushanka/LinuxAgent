@@ -1,0 +1,20 @@
+{
+  "name": "iot.per.device.stream.laptop.bytesrecv",
+  "version": "1.0.0",
+  "nickName": "CPU usage percentage",
+  "description": "CPU info data received from laptop",
+  "metaData": [
+    {"name":"owner","type":"STRING"},     
+    {"name":"deviceType","type":"STRING"},
+    {"name":"deviceId","type":"STRING"},  
+    {"name":"time","type":"LONG"}
+  ],
+  "payloadData": [
+    {
+      "name": "bytesrecv","type": "DOUBLE"
+    }
+  ]
+}
+	
+
+				                                    		

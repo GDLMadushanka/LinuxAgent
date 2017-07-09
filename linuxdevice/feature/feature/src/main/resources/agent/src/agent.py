@@ -116,14 +116,21 @@ def connectAndPushData():
     # rPiTemperature = iotUtils.LAST_TEMP  # Push the last read temperature value
     # PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, rPiTemperature)
 
-    battery_info = iotUtils.BATTERY_INFO
-    cpu_info =iotUtils.CPU_INFO
-    memory_info = iotUtils.MEMORY_INFO
-    disk_info = iotUtils.DISK_INFO
-    network_info = iotUtils.NETWORK_INFO
-    disk_io_info = iotUtils.DISK_IO_INFO
+    cpuusage = float(iotUtils.cpuusage)
+    batterypercentage = float(iotUtils.batterypercentage)
+    batterypluggedin = 0
+    if(iotUtils.batterypluggedin):
+        batterypluggedin=1
+    memoryusage=float(iotUtils.memoryusage)
+    diskusage=float(iotUtils.diskusage)
+    diskreads=float(iotUtils.diskreads)
+    diskwrites=float(iotUtils.diskwrites)
+    diskreadcount=float(iotUtils.diskreadcount)
+    diskwritecount=float(iotUtils.diskwritecount)
+    bytessent=float(iotUtils.bytessent)
+    bytesrecv=float(iotUtils.bytesrecv)
 
-    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, battery_info,cpu_info,memory_info,disk_info, network_info,disk_io_info)
+    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, cpuusage,batterypercentage,batterypluggedin,memoryusage,diskusage,diskreads,diskwrites,diskreadcount,diskwritecount,bytessent,bytesrecv)
 
     print '~~~~~~~~~~~~~~~~~~~~~~~~ Publishing Device-Data ~~~~~~~~~~~~~~~~~~~~~~~~~'
     print ('PUBLISHED DATA: ' + PUSH_DATA)
@@ -132,19 +139,37 @@ def connectAndPushData():
     # error in publishing data
     mqttConnector.publish(PUSH_DATA)
 
+'''
+cpuusage
+batterypercentage
+batterypluggedin
+memoryusage
+diskusage
+diskreads
+diskwrites
+diskreadcount
+diskwritecount
+bytessent
+bytesrecv
+
+'''
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #           Collect Data
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def collectData():
 
-    iotUtils.BATTERY_INFO = getBatteryInfo()
-    iotUtils.CPU_INFO = getCpuUsage()
-    iotUtils.MEMORY_INFO = getMemoryInfo()
-    iotUtils.DISK_INFO = getDisksInfo()
-    iotUtils.NETWORK_INFO = getNetworkData()
-    iotUtils.DISK_IO_INFO = getDiskIO()
-    iotUtils.DISK_IO_INFO = getDiskIO()
+    iotUtils.cpuusage = getCpuUsage()
+    iotUtils.batterypercentage = getBatteryPercentage()
+    iotUtils.batterypluggedin = getBatteryPluggedin()
+    iotUtils.memoryusage = getMemoryUsage()
+    iotUtils.diskusage = getDisksUsage()
+    iotUtils.diskreads = getDiskReads()
+    iotUtils.diskwrites = getDiskWrites()
+    iotUtils.diskreadcount = getDiskReadCount()
+    iotUtils.diskwritecount = getDiskWriteCount()
+    iotUtils.bytessent = getBytesSent()
+    iotUtils.bytesrecv = getBytesRecv()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

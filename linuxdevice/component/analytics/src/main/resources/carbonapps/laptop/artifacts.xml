@@ -19,21 +19,29 @@
 
 <artifacts>
     <artifact name="laptop" version="1.0.0" type="carbon/application">
-        <dependency artifact="laptop_publisher" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="networkinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="networkinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="diskinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="diskinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="memoryinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="memoryinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="cpuinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="cpuinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="batteryinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="batteryinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="diskioinfo_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="diskioinfo_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
+        <dependency artifact="cpuusage_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="cpuusage_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="batterypercentage_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="batterypercentage_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="batterypluggedin_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="batterypluggedin_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="memoryusage_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="memoryusage_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskusage_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskusage_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskreads_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskreads_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskwrites_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="diskwrites_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="bytessent_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="bytessent_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="bytesrecv_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="bytesrecv_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+
         <dependency artifact="laptop_execution" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_receiver" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="laptop_publisher" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
     </artifact>
 </artifacts>
