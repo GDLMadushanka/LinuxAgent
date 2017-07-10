@@ -33,21 +33,32 @@ public class DeviceTypeConstants {
     public final static String STATE_OFF = "OFF";
 
     //sensor events summerized table name
-    public static final String SENSOR_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYINFO";
-    public static final String SENSOR_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_CPUINFO";
-    public static final String SENSOR_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_MEMORYINFO";
-    public static final String SENSOR_TYPE4_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKINFO";
-    public static final String SENSOR_TYPE5_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_NETWORKINFO";
-    public static final String SENSOR_TYPE6_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKIOINFO";
+    public static final String SENSOR_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_CPUUSAGE";
+    public static final String SENSOR_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYPERCENTAGE";
+    public static final String SENSOR_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BATTERYPLUGGEDIN";
+    public static final String SENSOR_TYPE4_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_MEMORYUSAGE";
+    public static final String SENSOR_TYPE5_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKUSAGE";
+    public static final String SENSOR_TYPE6_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKREADS";
+    public static final String SENSOR_TYPE7_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKWRITES";
+    public static final String SENSOR_TYPE8_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKREADCOUNT";
+    public static final String SENSOR_TYPE9_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_DISKWRITECOUNT";
+    public static final String SENSOR_TYPE10_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BYTESSENT";
+    public static final String SENSOR_TYPE11_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_BYTESRECV";
 
     public static final String DATA_SOURCE_NAME = "jdbc/linuxdeviceDM_DB";
     public final static String DEVICE_TYPE_PROVIDER_DOMAIN = "carbon.super";
-    public final static String SENSOR_TYPE1 = "batteryinfo";
-    public final static String SENSOR_TYPE2 = "cpuinfo";
-    public final static String SENSOR_TYPE3 = "memoryinfo";
-    public final static String SENSOR_TYPE4 = "diskinfo";
-    public final static String SENSOR_TYPE5 = "networkinfo";
-    public final static String SENSOR_TYPE6 = "diskioinfo";
+
+    public final static String SENSOR_TYPE1 = "cpuusage";
+    public final static String SENSOR_TYPE2 = "batterypercentage";
+    public final static String SENSOR_TYPE3 = "batterypluggedin";
+    public final static String SENSOR_TYPE4 = "memoryusage";
+    public final static String SENSOR_TYPE5 = "diskusage";
+    public final static String SENSOR_TYPE6 = "diskreads";
+    public final static String SENSOR_TYPE7 = "diskwrites";
+    public final static String SENSOR_TYPE8 = "diskreadcount";
+    public final static String SENSOR_TYPE9 = "diskwritecount";
+    public final static String SENSOR_TYPE10 = "bytessent";
+    public final static String SENSOR_TYPE11 = "bytesrecv";
 
     //mqtt tranport related constants
     public static final String MQTT_ADAPTER_NAME = "batterylevelsensor_mqtt";

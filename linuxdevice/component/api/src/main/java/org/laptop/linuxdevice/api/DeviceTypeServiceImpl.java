@@ -178,7 +178,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String toDate = String.valueOf(to);
         String from_date = fromDate + "000";
         String to_date = toDate + "000";
-        String query = "meta_deviceType:laptop"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
+        String query = "meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
 //        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:" +
 //                DeviceTypeConstants.DEVICE_TYPE + " AND meta_time : [" + from_date + " TO " + to_date + "]";
         String sensorTableName = null;
@@ -194,6 +194,16 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             sensorTableName = DeviceTypeConstants.SENSOR_TYPE5_EVENT_TABLE;
         }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE6)){
             sensorTableName = DeviceTypeConstants.SENSOR_TYPE6_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE7)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE7_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE8)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE8_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE9)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE9_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE10)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE10_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE11)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE11_EVENT_TABLE;
         }
         try {
 //            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
@@ -246,6 +256,16 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             sensorTableName = DeviceTypeConstants.SENSOR_TYPE5_EVENT_TABLE;
         }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE6)){
             sensorTableName = DeviceTypeConstants.SENSOR_TYPE6_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE7)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE7_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE8)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE8_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE9)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE9_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE10)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE10_EVENT_TABLE;
+        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE11)){
+            sensorTableName = DeviceTypeConstants.SENSOR_TYPE11_EVENT_TABLE;
         }
         try {
             if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,

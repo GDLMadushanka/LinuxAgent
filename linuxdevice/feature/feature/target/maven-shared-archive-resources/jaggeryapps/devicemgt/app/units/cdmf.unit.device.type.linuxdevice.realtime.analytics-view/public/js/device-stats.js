@@ -34,7 +34,9 @@ var diskIOChartData=[];
 diskIOChartData[0] = []; // write bytes
 diskIOChartData[1] = []; // read bytes
 var cpuChartData = [];
+cpuChartData[0] = [];
 var diskChartData = [];
+diskChartData[0]=[];
 var batteryChartData=[];
 batteryChartData[0]=[]  // battery level
 batteryChartData[1]=[]  // plugged in or not
@@ -71,67 +73,29 @@ function connect(target) {
     if (ws) {
         ws.onmessage = function (event) {
             var str = event.data;
-            var indices = [];
-            var indices2 = [];
-            for(var i=0; i<str.length;i++) {
-                if (str[i] === "{") indices.push(i);
-                if (str[i] === "}") indices2.push(i);
-            }
-
-            for (var i=0;i<indices.length;i++)
-            {
-                var k = indices[i];
-                if(k>1 && str.charAt(k-1)=='"')
-                {
-                    str = str.substr(0, k-1) +" "+ str.substr(k);
-                }
-            }
-
-            for (var i=0;i<indices2.length;i++)
-            {
-                var k = indices2[i];
-
-                if(k>1 && str.charAt(k+1)=='"')
-                {
-                    str = str.substr(0, k+1) +" "+ str.substr(k+2);
-                }
-            }
-
             var dataPoint = JSON.parse(str);
             var payloadData = dataPoint.event.payloadData;
             var metaData = dataPoint.event.metaData;
 
             if(!initialContextLoaded) {
-                numOfCpu = payloadData.cpuinfo.numOfCpu;
-                numOfDisks = payloadData.diskinfo.numOfDisks;
-                bytesRecv = payloadData.networkinfo.bytesRecv;
-                bytesSend = payloadData.networkinfo.bytesSent;
-                writeBytes = payloadData.diskioinfo.writeBytes;
-                readBytes = payloadData.diskioinfo.readBytes;
-
-                //creating array for each core
-                for(var i=0;i<numOfCpu;i++) {
-                    cpuChartData[i] = [];
-                }
-                //creating array for each disk
-                for(var i=0;i<numOfDisks;i++) {
-                    diskChartData[i] = [];
-                }
+                bytesRecv = payloadData.bytesrecv;
+                bytesSend = payloadData.bytessent;
+                writeBytes = payloadData.diskwrites;
+                readBytes = payloadData.diskreads;
                 processChartContext();
                 initialContextLoaded = true;
-
             } else {
                 //momory
                 memoryChartData[0].push({
                     x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.memoryinfo.percentage)
+                    y: parseFloat(payloadData.memoryusage)
                 });
                 memoryChartData[0].shift();
                 memoryGraph.graph.update();
 
                 //network
-                var currentBytesRecv = parseFloat(payloadData.networkinfo.bytesRecv);
-                var currentBytesSent = parseFloat(payloadData.networkinfo.bytesSent);
+                var currentBytesRecv = parseFloat(payloadData.bytesrecv);
+                var currentBytesSent = parseFloat(payloadData.bytessent);
                 networkChartData[0].push({
                     x: parseInt(metaData.time),
                     y: parseFloat(currentBytesRecv-bytesRecv)/8
@@ -147,8 +111,8 @@ function connect(target) {
                 networkGraph.graph.update();
 
                 //Disk IO
-                var currentWriteBytes = parseFloat(payloadData.diskioinfo.writeBytes);
-                var currentReadBytes = parseFloat(payloadData.diskioinfo.readBytes);
+                var currentWriteBytes = parseFloat(payloadData.diskwrites);
+                var currentReadBytes = parseFloat(payloadData.diskreads);
                 diskIOChartData[0].push({
                     x: parseInt(metaData.time),
                     y: parseFloat(currentWriteBytes-writeBytes)/8
@@ -165,12 +129,12 @@ function connect(target) {
 
                 //battery
                 var plugged=0;
-                if(payloadData.batteryinfo.isPlugged) {
+                if(payloadData.batterypluggedin) {
                     plugged = 100;
                 }
                 batteryChartData[0].push({
                     x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.batteryinfo.percentage)
+                    y: parseFloat(payloadData.batterypercentage)
                 });
                 batteryChartData[1].push({
                     x: parseInt(metaData.time),
@@ -181,23 +145,21 @@ function connect(target) {
                 battryGraph.graph.update();
 
                 //CPU
-                for(var i=0;i<numOfCpu;i++) {
-                    cpuChartData[i].push({
-                        x: parseInt(metaData.time),
-                        y: parseFloat(payloadData.cpuinfo.cpuPercentages[i])
-                    });
-                    cpuChartData[i].shift();
-                }
+
+                cpuChartData[0].push({
+                    x: parseInt(metaData.time),
+                    y: parseFloat(payloadData.cpuusage)
+                });
+                cpuChartData[0].shift();
                 cpuGraph.graph.update();
 
                 //disks
-                for(var i=0;i<numOfDisks;i++) {
-                    diskChartData[i].push({
-                        x: parseInt(metaData.time),
-                        y: parseFloat(payloadData.diskinfo.details[i].percentage)
-                    });
-                    diskChartData[i].shift();
-                }
+
+                diskChartData[0].push({
+                    x: parseInt(metaData.time),
+                    y: parseFloat(payloadData.diskusage)
+                })
+                diskChartData[0].shift();
                 diskGraph.graph.update();
             }
         };
@@ -213,16 +175,10 @@ function processChartContext(){
     processMultiChart("#div-chart-diskio","chart_diskio",diskIOChartData,diskioGraphNames,diskIOGraph,"y_axis_diskio","legend_diskio");
     var batteryGraphNames=["Percentage","Plugged status"];
     processMultiChart("#div-chart-battery","chart_battery",batteryChartData,batteryGraphNames,battryGraph,"y_axis_battery","legend_battery");
-    var cpuGraphNames=[];
-    for(var i=0;i<numOfCpu;i++) {
-        cpuGraphNames[i] = "Core "+i.toString();
-    }
-    processMultiChart("#div-chart-cpu","chart_cpu",cpuChartData,cpuGraphNames,cpuGraph,"y_axis_cpu","legend_cpu");
-    var diskGraphNames=[];
-    for(var i=0;i<numOfDisks;i++) {
-        diskGraphNames[i] = "Disk "+i.toString() +" usage (%)";
-    }
-    processMultiChart("#div-chart-disk","chart_disk",diskChartData,diskGraphNames,diskGraph,"y_axis_disk","legend_disk");
+    var cpuGraphName =["CPU Usage (%)"];
+    processMultiChart("#div-chart-cpu","chart_cpu",cpuChartData,cpuGraphName,cpuGraph,"y_axis_cpu","legend_cpu");
+    var diskGraphName = ["Disk usage (%)"];
+    processMultiChart("#div-chart-disk","chart_disk",diskChartData,diskGraphName,diskGraph,"y_axis_disk","legend_disk");
 }
 
 function processChart(outerDiv,chartDiv,chartData,name,graph,yAxis,legend) {

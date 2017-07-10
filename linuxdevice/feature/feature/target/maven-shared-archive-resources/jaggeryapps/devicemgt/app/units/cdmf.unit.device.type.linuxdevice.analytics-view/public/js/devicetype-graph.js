@@ -16,201 +16,135 @@
  * under the License.
  */
 var palette = new Rickshaw.Color.Palette({scheme: "classic9"});
-var sensorTypes = ["batteryinfo","memoryinfo","networkinfo"];
-var graphs=[];
-var graphConfigs=[];
-for (var i=0;i<sensorTypes.length;i++) {
-    graphs[i] = {graph:{}};
-    graphConfigs[i] = {graphConfig:{}};
-}
+var sensorTypes = ["cpuusage","batterypercentage","batterypluggedin"];
+/*,"memoryusage",
+    "diskusage","diskreads","diskwrites","diskreadcount","diskwritecount","bytessent","bytesrecv"];*/
+var tzOffset = new Date().getTimezoneOffset() * 60;
 
+function drawGraph_linuxdevice(from, to) {
 
-function drawGraph_linuxdevice(from, to)
-{
+    for (var i = 0; i < sensorTypes.length; i++) {
 
-    var devices = $("#devicetype-details").data("devices");
-    var tzOffset = new Date().getTimezoneOffset() * 60;
-    var chartWrapperElmId = "#chartDivSensorType1";
-    var graphWidth = $(chartWrapperElmId).width() - 50;
-    for(var i=0;i<sensorTypes.length;i++) {
-        graphConfigs[i].graphConfig = getGraphConfig("chartSensorType"+(i+1).toString());
-    }
-
-    function getGraphConfig(placeHolder) {
-        return {
-            element: document.getElementById(placeHolder),
+        var chartWrapperElmId = "#chartDivSensorType" + (i + 1).toString();
+        var graphWidth = $(chartWrapperElmId).width() - 50;
+        var graphConfig = {
+            element: document.getElementById("chartSensorType" + (i + 1).toString()),
             width: graphWidth,
             height: 400,
             strokeWidth: 2,
-            renderer: 'area',
+            renderer: 'line',
             interpolation: "linear",
             unstack: true,
             stack: false,
             xScale: d3.time.scale(),
             padding: {top: 0.2, left: 0.02, right: 0.02, bottom: 0.2},
             series: []
-        }
-    };
+        };
 
-    for(var i=0;i<sensorTypes.length;i++) {
-        graphConfigs[i].graphConfig['series'].push ({
-            'color': palette.color(),
-            'data': [{
-                x: parseInt(new Date().getTime() / 1000),
-                y: 0
-            }],
-            'name': sensorTypes[i]
-        });
-    }
+        graphConfig['series'].push(
+            {
+                'color': palette.color(),
+                'data': [{
+                    x: parseInt(new Date().getTime() / 1000),
+                    y: 0
+                }],
+                'name': sensorTypes[i]
+            });
 
-    for(var i=0;i<sensorTypes.length;i++) {
-        graphs[i].graph = new Rickshaw.Graph(graphConfigs[i].graphConfig);
-    }
+        var graph = new Rickshaw.Graph(graphConfig);
 
-    for(var i=0;i<sensorTypes.length;i++) {
-        drawGraph(graphs[i], "sensorType"+(i+1).toString()+"yAxis", "sensorType"+(i+1).toString()+"Slider", "sensorType"+(i+1).toString()+"Legend", sensorTypes[i]
-            , graphConfigs[i], "chartSensorType"+(i+1).toString());
-    }
+        graph.render();
 
-
-    function drawGraph(graph, yAxis, slider, legend, sensorType, graphConfig, chart) {
-        console.log(yAxis);
-        console.log(slider);
-        console.log(legend);
-        console.log(chart);
-        graph.graph.render();
         var xAxis = new Rickshaw.Graph.Axis.Time({
-            graph: graph.graph
+            graph: graph
         });
+
         xAxis.render();
+
         var yAxis = new Rickshaw.Graph.Axis.Y({
-            graph: graph.graph,
+            graph: graph,
             orientation: 'left',
-            element: document.getElementById(yAxis),
+            element: document.getElementById("sensorType" + (i + 1).toString() + "yAxis"),
             width: 40,
             height: 410
         });
+
         yAxis.render();
+
         var slider = new Rickshaw.Graph.RangeSlider.Preview({
-            graph: graph.graph,
-            element: document.getElementById(slider)
+            graph: graph,
+            element: document.getElementById("sensorType" + (i + 1).toString() + "Slider")
         });
+
         var legend = new Rickshaw.Graph.Legend({
-            graph: graph.graph,
-            element: document.getElementById(legend)
+            graph: graph,
+            element: document.getElementById("sensorType" + (i + 1).toString() + "Legend")
         });
+
         var hoverDetail = new Rickshaw.Graph.HoverDetail({
-            graph: graph.graph,
+            graph: graph,
             formatter: function (series, x, y) {
                 var date = '<span class="date">' +
-                    moment.unix(x + tzOffset).format('Do MMM YYYY h:mm:ss a') + '</span>';
+                    moment((x + tzOffset) * 1000).format('Do MMM YYYY h:mm:ss a') + '</span>';
                 var swatch = '<span class="detail_swatch" style="background-color: ' +
                     series.color + '"></span>';
                 return swatch + series.name + ": " + parseInt(y) + '<br>' + date;
             }
         });
-        var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
-            graph: graph.graph,
-            legend: legend
-        });
-        var order = new Rickshaw.Graph.Behavior.Series.Order({
-            graph: graph.graph,
-            legend: legend
-        });
-        var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
-            graph: graph.graph,
-            legend: legend
-        });
-        var deviceIndex = 0;
-        if (devices) {
-            getData(chat, deviceIndex, sensorType);
-        } else {
-            var backendApiUrl = $("#devicetype-details").data("backend-api-url") + "?from=" + from + "&to=" + to
-                + "&sensorType=" + sensorType;
-            var successCallback = function (data) {
-                if (data) {
-                    drawLineGraph(JSON.parse(data), sensorType, deviceIndex, graphConfig.graphConfig, graph.graph);
-                }
-            };
-            invokerUtil.get(backendApiUrl, successCallback, function (message) {
-                console.log(message);
-            });
-        }
-    }
 
-    function getData(placeHolder, deviceIndex, sensorType, graphConfig, graph) {
-        if (deviceIndex >= devices.length) {
-            return;
-        }
-        var backendApiUrl = $("#" + placeHolder + "").data("backend-api-url") + devices[deviceIndex].deviceIdentifier
-            + "?from=" + from + "&to=" + to + "&sensorType=" + sensorType;
+        var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
+            graph: graph,
+            legend: legend
+        });
+
+        var order = new Rickshaw.Graph.Behavior.Series.Order({
+            graph: graph,
+            legend: legend
+        });
+
+        var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+            graph: graph,
+            legend: legend
+        });
+
+        var backendApiUrl = $("#devicetype-details").data("backend-api-url")+ "?sensorType=" + sensorTypes[i] + "?from=" + from + "&to=" + to;
         console.log(backendApiUrl);
         var successCallback = function (data) {
             if (data) {
-                drawLineGraph(JSON.parse(data), sensorType, deviceIndex, graphConfig, graph);
+                drawLineGraph(JSON.parse(data), i);
             }
-            deviceIndex++;
-            getData(placeHolder, deviceIndex, sensorType);
         };
         invokerUtil.get(backendApiUrl, successCallback, function (message) {
-            console.log(message);
-            deviceIndex++;
-            getData(placeHolder, deviceIndex, sensorType);
         });
+
+
+        function drawLineGraph(data, i) {
+            if (data.length === 0 || data.length === undefined) {
+                return;
+            }
+
+            var chartData = [];
+            for (var i = 0; i < data.length; i++) {
+
+                var ydata = 0;
+                switch (i) {
+                    case 0: {ydata = data[i].values.cpuusage;break;}
+                    case 1: {ydata = data[i].values.batterypercentage;break;}
+                    case 2: {ydata = data[i].values.batterypluggedin;break;}
+                }
+                chartData.push(
+                    {
+                        x: parseInt(data[i].values.meta_time / 1000) - tzOffset, //converting time back to (s)
+                        y: parseInt(ydata)
+                    }
+                );
+            }
+
+            graphConfig.series[deviceIndex].data = chartData;
+            graph.update();
+        }
     }
 
-    function drawLineGraph(data, sensorType, deviceIndex, graphConfig, graph) {
-        if (data.length === 0 || data.length === undefined) {
-            return;
-        }
-        var chartData = [];
-        var chartData2=[];
-
-        if(sensorType=="batteryinfo"){
-            for (var i = 0; i < data.length; i++) {
-                var temp = JSON.parse(data[i].values.batteryinfo);
-                chartData.push(
-                    {
-                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
-                        y: parseInt(temp.percentage)
-                    }
-                );
-            }
-            graphConfig.series[deviceIndex].data = chartData;
-            graph.update();
-        }
-
-        else if(sensorType=="memoryinfo") {
-            for (var i = 0; i < data.length; i++) {
-                var temp = JSON.parse(data[i].values.memoryinfo);
-                chartData.push(
-                    {
-                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
-                        y: parseInt(temp.percentage)
-                    }
-                );
-            }
-            graphConfig.series[deviceIndex].data = chartData;
-            graph.update();
-        }
-
-        else if(sensorType=="networkinfo") {
-            var tempp = JSON.parse(data[0].values.networkinfo);
-            var initialvalue = tempp.bytesRecv;
-            for (var i = 0; i < data.length; i++) {
-                var temp = JSON.parse(data[i].values.networkinfo);
-                chartData.push(
-                    {
-                        x: parseInt(data[i].values.meta_time/1000) - tzOffset,
-                        y: parseInt(temp.bytesRecv)-initialvalue
-                    }
-                );
-                initialvalue = temp.bytesRecv;
-            }
-            graphConfig.series[deviceIndex].data = chartData;
-            graph.update();
-        }
-
-
-    }
 }
+
+
