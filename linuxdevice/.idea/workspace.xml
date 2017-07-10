@@ -19,12 +19,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="DeviceTypeServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="349" column="49" lean-forward="true" selection-start-line="349" selection-start-column="49" selection-end-line="349" selection-end-column="49" />
+            <state relative-caret-position="5540">
+              <caret line="349" column="49" lean-forward="false" selection-start-line="349" selection-start-column="49" selection-end-line="349" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -33,9 +33,11 @@
       <file leaf-file-name="type-view.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.type-view/type-view.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="680">
+              <caret line="58" column="45" lean-forward="true" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+              <folding>
+                <element signature="e#2741#2763#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,9 +194,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1161,12 +1161,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iot/wso2iot-3.1.0-SNAPSHOT_2/wso2iot-3.1.0-SNAPSHOT/repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.type-view" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iot/wso2iot-3.1.0-SNAPSHOT_2/wso2iot-3.1.0-SNAPSHOT/repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.realtime.analytics-view" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="h2.s&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;h2&#9;PSI&#9;JAVA://org.wso2.carbon.h2.osgi.H2ConsoleServiceActivator&#10;p2&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.inf&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.in&#9;FILE&#9;file:///home/lahiru/Documents/WSO2Laptop/linuxdevice/feature/feature/src/main/resources/p2.inf" />
   </component>
@@ -1782,11 +1784,12 @@
       <workItem from="1499608671905" duration="1009000" />
       <workItem from="1499610922953" duration="3623000" />
       <workItem from="1499616676864" duration="333000" />
+      <workItem from="1499641408212" duration="649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210928000" />
+    <option name="totallyTimeSpent" value="211577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="0" width="1869" height="1081" extended-state="6" />
@@ -2257,17 +2260,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="349" column="49" lean-forward="true" selection-start-line="349" selection-start-column="49" selection-end-line="349" selection-end-column="49" />
+        <state relative-caret-position="5540">
+          <caret line="349" column="49" lean-forward="false" selection-start-line="349" selection-start-column="49" selection-end-line="349" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.type-view/type-view.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="680">
+          <caret line="58" column="45" lean-forward="true" selection-start-line="58" selection-start-column="45" selection-end-line="58" selection-end-column="45" />
+          <folding>
+            <element signature="e#2741#2763#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
