@@ -1,0 +1,28 @@
+{
+  "name": "iot.per.device.stream.laptop.laptop4hrsummary",
+  "version": "1.0.0",
+  "nickName": "CPU usage percentage",
+  "description": "CPU info data received from laptop",
+  "metaData": [
+    {"name":"owner","type":"STRING"},     
+    {"name":"deviceType","type":"STRING"},
+    {"name":"deviceId","type":"STRING"},  
+    {"name":"time","type":"LONG"}
+  ],
+  "payloadData": [
+    {"name": "cpuusage","type": "DOUBLE"},
+    {"name": "batterypercentage","type": "DOUBLE"},
+    {"name": "batterypluggedin","type": "DOUBLE"},
+    {"name": "memoryusage","type": "DOUBLE"},
+    {"name": "diskusage","type": "DOUBLE"},
+    {"name": "diskreads","type": "DOUBLE"},
+    {"name": "diskwrites","type": "DOUBLE"},
+    {"name": "diskreadcount","type": "DOUBLE"},
+    {"name": "diskwritecount","type": "DOUBLE"},
+    {"name": "bytessent","type": "DOUBLE"},
+    {"name": "bytesrecv","type": "DOUBLE"}
+  ]
+}
+	
+
+				                                    		

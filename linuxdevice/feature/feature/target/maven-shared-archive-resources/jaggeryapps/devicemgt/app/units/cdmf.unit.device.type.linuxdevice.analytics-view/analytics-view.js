@@ -16,29 +16,32 @@
  * under the License.
  */
 
+
+
+
 function onRequest(context) {
-	var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
+    var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
 
-	var devices = context.unit.params.devices;
-	var deviceType = context.uriParams.deviceType;
-	var deviceId = request.getParameter("deviceId");
+    var devices = context.unit.params.devices;
+    var deviceType = context.uriParams.deviceType;
+    var deviceId = request.getParameter("deviceId");
 
-	if (devices) {
-		return {
-			"devices": stringify(devices),
-			"backendApiUri":  "/" + deviceType + "/device/stats/"
-		};
-	} else if (deviceType != null && deviceType != undefined && deviceId != null && deviceId != undefined) {
-		var deviceModule = require("/app/modules/business-controllers/device.js")["deviceModule"];
-		var device = deviceModule.viewDevice(deviceType, deviceId);
-		if (device && device.status != "error") {
-			return {
-				"device": device.content,
-				"backendApiUri":  "/" + deviceType +"/device/stats/" + deviceId
-			};
-		} else {
-			response.sendError(404, "Device Id " + deviceId + " of type " + deviceType + " cannot be found!");
-			exit();
-		}
-	}
+    if (devices) {
+        return {
+            "devices": stringify(devices),
+            "backendApiUri":  "/" + deviceType + "/device/stats/"
+        };
+    } else if (deviceType != null && deviceType != undefined && deviceId != null && deviceId != undefined) {
+        var deviceModule = require("/app/modules/business-controllers/device.js")["deviceModule"];
+        var device = deviceModule.viewDevice(deviceType, deviceId);
+        if (device && device.status != "error") {
+            return {
+                "device": device.content,
+                "backendApiUri":  "/" + deviceType +"/device/stats/" + deviceId
+            };
+        } else {
+            response.sendError(404, "Device Id " + deviceId + " of type " + deviceType + " cannot be found!");
+            exit();
+        }
+    }
 }

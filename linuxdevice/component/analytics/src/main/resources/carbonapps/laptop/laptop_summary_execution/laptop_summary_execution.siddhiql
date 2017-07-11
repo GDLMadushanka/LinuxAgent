@@ -1,0 +1,49 @@
+
+/* Enter a unique ExecutionPlan */
+@Plan:name('laptop_summary_execution')
+
+/* Enter a unique description for ExecutionPlan */
+-- @Plan:description('laptop_summary_execution')
+
+/* define streams/tables and write queries here ... */
+
+@Import('iot.per.device.stream.laptop:1.0.0')
+define stream laptop (meta_owner string, meta_deviceType string,meta_deviceId string, meta_time long,cpuusage double,
+batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
+diskwritecount double, bytessent double, bytesrecv double);
+
+@Export('iot.per.device.stream.laptop.laptop1hrsummary:1.0.0')
+define stream dataout (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, cpuusage double,
+batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
+diskwritecount double, bytessent double, bytesrecv double);
+
+@Export('iot.per.device.stream.laptop.laptop2hrsummary:1.0.0')
+define stream dataout2 (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, cpuusage double,
+batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
+diskwritecount double, bytessent double, bytesrecv double);
+
+@Export('iot.per.device.stream.laptop.laptop4hrsummary:1.0.0')
+define stream dataout4 (meta_owner string, meta_deviceType string, meta_deviceId string, meta_time long, cpuusage double,
+batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
+diskwritecount double, bytessent double, bytesrecv double);
+
+from laptop#window.time(30 sec)
+select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
+avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
+as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
+avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
+insert all events into dataout;
+
+from laptop#window.time(60 sec)
+select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
+avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
+as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
+avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
+insert all events into dataout2;
+
+from laptop#window.time(120 sec)
+select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
+avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
+as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
+avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
+insert all events into dataout4;

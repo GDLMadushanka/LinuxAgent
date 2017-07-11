@@ -15,31 +15,31 @@
       <file leaf-file-name="analytics-view.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analytics-view.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="40">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devicetype-graph.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="devicetype-graph.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/devicetype-graph.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="110" column="35" lean-forward="false" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+            <state relative-caret-position="360">
+              <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+                <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analytics-view.hbs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="analytics-view.hbs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analytics-view.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="38" />
+            <state relative-caret-position="700">
+              <caret line="35" column="52" lean-forward="false" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -67,8 +67,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/analytics-view.js" />
-        <option value="$PROJECT_DIR$/analytics-view.hbs" />
         <option value="$PROJECT_DIR$/public/js/devicetype-graph.js" />
+        <option value="$PROJECT_DIR$/analytics-view.hbs" />
       </list>
     </option>
   </component>
@@ -79,8 +79,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="235" />
-    <option name="y" value="93" />
+    <option name="x" value="361" />
+    <option name="y" value="60" />
     <option name="width" value="1625" />
     <option name="height" value="1020" />
   </component>
@@ -99,9 +99,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -134,6 +132,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -684,15 +684,15 @@
       <workItem from="1498950698621" duration="10000" />
       <workItem from="1498963399193" duration="5982000" />
       <workItem from="1499656399990" duration="7701000" />
+      <workItem from="1499668360549" duration="2871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28253000" />
+    <option name="totallyTimeSpent" value="31124000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="235" y="93" width="1625" height="1020" extended-state="0" />
-    <editor active="true" />
+    <frame x="361" y="60" width="1625" height="1020" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -708,7 +708,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23351818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23351818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -746,6 +746,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics-view.hbs">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/devicetype-graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1880">
+          <caret line="110" column="35" lean-forward="false" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics-view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics-view.hbs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="28" />
           <folding />
@@ -758,7 +785,7 @@
           <caret line="179" column="27" lean-forward="true" selection-start-line="179" selection-start-column="27" selection-end-line="179" selection-end-column="27" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -785,7 +812,7 @@
           <caret line="24" column="25" lean-forward="false" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -812,7 +839,7 @@
           <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -839,7 +866,7 @@
           <caret line="127" column="23" lean-forward="false" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -858,7 +885,7 @@
           <caret line="140" column="28" lean-forward="false" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -893,7 +920,7 @@
           <caret line="223" column="46" lean-forward="false" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
@@ -920,35 +947,35 @@
           <caret line="127" column="23" lean-forward="false" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics-view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics-view.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="27" column="38" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="38" />
+        <state relative-caret-position="40">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/devicetype-graph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="110" column="35" lean-forward="false" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+        <state relative-caret-position="360">
+          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1499663785222" expanded="true" signature="3145:3163" ph="..." />
+            <marker date="1499671123415" expanded="true" signature="4637:4655" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics-view.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="35" column="52" lean-forward="false" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
