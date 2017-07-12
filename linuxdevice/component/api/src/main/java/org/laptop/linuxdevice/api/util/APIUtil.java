@@ -32,9 +32,13 @@ import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.device.mgt.common.authorization.DeviceAccessAuthorizationService;
 import org.wso2.carbon.device.mgt.core.service.DeviceManagementProviderService;
+import org.wso2.carbon.device.mgt.core.service.GroupManagementProviderService;
 import org.wso2.carbon.identity.jwt.client.extension.service.JWTClientManagerService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.user.api.UserStoreException;
+import org.wso2.carbon.user.api.UserStoreManager;
+import org.wso2.carbon.user.core.service.RealmService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +60,33 @@ public class APIUtil {
             return username.substring(0, username.lastIndexOf("@"));
         }
         return username;
+    }
+
+    public static UserStoreManager getUserStoreManager() throws UserStoreException {
+        RealmService realmService;
+        UserStoreManager userStoreManager;
+        PrivilegedCarbonContext ctx = PrivilegedCarbonContext.getThreadLocalCarbonContext();
+        realmService = (RealmService) ctx.getOSGiService(RealmService.class, null);
+        if (realmService == null) {
+            String msg = "Realm service has not initialized.";
+            log.error(msg);
+            throw new IllegalStateException(msg);
+        }
+        int tenantId = ctx.getTenantId();
+        userStoreManager = realmService.getTenantUserRealm(tenantId).getUserStoreManager();
+        return userStoreManager;
+    }
+
+    public static GroupManagementProviderService getGroupManagementProviderService() {
+        PrivilegedCarbonContext ctx = PrivilegedCarbonContext.getThreadLocalCarbonContext();
+        GroupManagementProviderService groupManagementProviderService =
+                (GroupManagementProviderService) ctx.getOSGiService(GroupManagementProviderService.class, null);
+        if (groupManagementProviderService == null) {
+            String msg = "Device Management service has not initialized.";
+            log.error(msg);
+            throw new IllegalStateException(msg);
+        }
+        return groupManagementProviderService;
     }
 
     public static DeviceManagementProviderService getDeviceManagementService() {

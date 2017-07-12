@@ -6,13 +6,24 @@ import org.apache.commons.logging.LogFactory;
 import org.laptop.linuxdevice.api.constants.LaptopConstants;
 import org.laptop.linuxdevice.api.dto.deviceProfile;
 import org.laptop.linuxdevice.api.exception.DeviceTypeException;
+import org.wso2.carbon.CarbonConstants;
+import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.device.mgt.common.Device;
-
+import org.wso2.carbon.device.mgt.common.group.mgt.DeviceGroup;
+import org.wso2.carbon.device.mgt.common.group.mgt.GroupAlreadyExistException;
+import org.wso2.carbon.device.mgt.common.group.mgt.GroupManagementException;
+import org.wso2.carbon.device.mgt.common.group.mgt.RoleDoesNotExistException;
+import org.wso2.carbon.device.mgt.core.service.GroupManagementProviderService;
+import org.wso2.carbon.user.api.Permission;
+import org.wso2.carbon.user.api.UserStoreException;
+import org.wso2.carbon.user.api.UserStoreManager;
+import org.laptop.linuxdevice.api.util.APIUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -116,5 +127,39 @@ public class LaptopDAOImpl {
         return status;
     }
 
+    public List<String> getMatchingDevicesForProfile(List<String> deviceIds,String profileId) throws DeviceTypeException {
+        ArrayList<String> deviceIdArray = new ArrayList<>();
+        ArrayList<String> results = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = LaptopDAO.getConnection();
+            String selectDBQuery =
+                    "SELECT * FROM LINUXDEVICE_DEVICE where PROFILE_ID = ?";
 
+            stmt = conn.prepareStatement(selectDBQuery);
+            stmt.setString(1, profileId);
+            resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                deviceIdArray.add(resultSet.getString("LINUXDEVICE_DEVICE_ID"));
+            }
+
+            for(int i=0;i<deviceIds.size();i++) {
+                if (deviceIdArray.contains(deviceIds.get(i))) {
+                    results.add(deviceIds.get(i));
+                }
+            }
+
+        } catch (SQLException e) {
+            String msg = "Error occurred while fetching linuxdevice device";
+            log.error(msg, e);
+            throw new DeviceTypeException(msg, e);
+        } finally {
+            LaptopUtils.cleanupResources(stmt, resultSet);
+            LaptopDAO.closeConnection();
+        }
+        return results;
+    }
 }

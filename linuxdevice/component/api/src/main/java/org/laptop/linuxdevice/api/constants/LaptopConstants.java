@@ -85,7 +85,6 @@ public class LaptopConstants {
     public static final String CLEAR_SESSION_PROPERTY_KEY = "clearSession";
     public static final String TOPIC = "topic";
 
-
     public static final String MQTT_CONFIG_LOCATION = CarbonUtils.getEtcCarbonConfigDirPath() + File.separator
             + "mqtt.properties";
 }

@@ -65,16 +65,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import java.util.UUID;
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * This is the API which is used to control and manage device type functionality
@@ -390,6 +385,22 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             e.printStackTrace();
         }
         return Response.status(Response.Status.OK).entity(arr).build();
+    }
+
+    @Path("/device/match-profile")
+    @GET
+    @Produces("application/json")
+    public Response getMatchingDevicesForProfile(@QueryParam("deviceIds") String deviceIds,
+                                      @QueryParam("profileId") String profileId) {
+        ArrayList<String> temp=null;
+        List<String> deviceIdList = new ArrayList<String>(Arrays.asList(deviceIds.split(",")));
+
+        try {
+            temp = (ArrayList<String>) laptopDAOImpl.getMatchingDevicesForProfile(deviceIdList,profileId);
+        } catch (DeviceTypeException e) {
+            e.printStackTrace();
+        }
+        return Response.status(Response.Status.OK).entity(temp).build();
     }
 
     private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileName)

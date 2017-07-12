@@ -19,7 +19,7 @@
 
 <EventStoreConfiguration>
     <Source>
-        <StreamId>iot.per.device.stream.laptop.laptop1hrsummary:1.0.0</StreamId>
+        <StreamId>iot.per.device.stream.laptop.laptop4hrsummary:1.0.0</StreamId>
     </Source>
     <RecordStoreName>EVENT_STORE</RecordStoreName>
     <TableSchema>

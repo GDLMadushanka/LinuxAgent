@@ -168,4 +168,24 @@ public interface DeviceTypeService {
             }
     )
     Response getDeviceprofiles();
+
+    @Path("/device/match-profile")
+    @GET
+    @Produces("application/json")
+    @ApiOperation(
+            consumes = MediaType.APPLICATION_JSON,
+            httpMethod = "GET",
+            value = "given set of devices and a profile give devices that are in that profile",
+            notes = "",
+            response = Response.class,
+            tags = "linuxdevice",
+            extensions = {
+                    @Extension(properties = {
+                            @ExtensionProperty(name = SCOPE, value = "perm:linuxdevice:enroll")
+                    })
+            }
+    )
+    Response getMatchingDevicesForProfile(@QueryParam("deviceIds") String deviceIds,
+                                          @QueryParam("profileId") String profileId);
+
 }
