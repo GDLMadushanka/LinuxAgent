@@ -23,10 +23,9 @@
       <file leaf-file-name="LaptopDAOImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-70">
+            <state relative-caret-position="2100">
               <caret line="129" column="24" lean-forward="false" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <marker date="1499843279915" expanded="true" signature="1738:1772" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
                 <marker date="1499843279915" expanded="true" signature="3298:3355" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
                 <marker date="1499843279915" expanded="true" signature="4748:4825" ph="UPDATE LINUX... " />
@@ -39,7 +38,7 @@
       <file leaf-file-name="groupanalytics.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/pages/cdmf.page.device.groupanalytics/groupanalytics.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
+            <state relative-caret-position="1120">
               <caret line="56" column="15" lean-forward="false" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
               <folding />
             </state>
@@ -49,7 +48,7 @@
       <file leaf-file-name="groupanalytics.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/pages/cdmf.page.device.groupanalytics/groupanalytics.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="240">
               <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -71,7 +70,7 @@
       <file leaf-file-name="device-view.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.device-view/device-view.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-900">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -88,15 +87,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceTypeServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeviceTypeServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="390" column="8" lean-forward="false" selection-start-line="390" selection-start-column="8" selection-end-line="390" selection-end-column="8" />
-              <folding>
-                <element signature="e#19609#19624#0" expanded="true" />
-                <element signature="e#20195#20203#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="6540">
+              <caret line="394" column="0" lean-forward="false" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laptop_summary_execution.siddhiql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop_summary_execution/laptop_summary_execution.siddhiql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="20">
+              <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,24 +110,9 @@
       <file leaf-file-name="DeviceTypeService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
+            <state relative-caret-position="3000">
               <caret line="187" column="13" lean-forward="false" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LaptopUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#4722#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#2321#2322#0" expanded="false" />
-                <element signature="e#2369#2370#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -131,14 +122,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#4471#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#1457#1458#0" expanded="false" />
-                <element signature="e#1492#1493#0" expanded="false" />
-                <element signature="e#4426#4427#0" expanded="false" />
-                <element signature="e#4468#4469#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -250,7 +234,6 @@
         <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop4hrsummary_store/artifact.xml" />
         <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop4hrsummary_stream/artifact.xml" />
         <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop4hrsummary_stream/iot.per.device.stream.laptop.laptop4hrsummary_1.0.0.json" />
-        <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop_summary_execution/laptop_summary_execution.siddhiql" />
         <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/artifacts.xml" />
         <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop4hrsummary_store/iot_per_device_stream_laptop_laptop4hrsummary.xml" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/constants/LaptopConstants.java" />
@@ -258,6 +241,7 @@
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java" />
+        <option value="$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop_summary_execution/laptop_summary_execution.siddhiql" />
       </list>
     </option>
   </component>
@@ -273,9 +257,10 @@
     </layout>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="52" />
-    <option name="width" value="1869" />
-    <option name="height" value="1081" />
+    <option name="x" value="123" />
+    <option name="y" value="42" />
+    <option name="width" value="1867" />
+    <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -296,8 +281,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -439,136 +422,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="units" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdmf.unit.device.type.linuxdevice.realtime.analytics-view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="units" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdmf.unit.device.type.linuxdevice.device-view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdmf.page.device.groupanalytics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="linuxdevice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdmf.page.device.groupanalytics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -772,12 +625,14 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iot/wso2iot-3.1.0-SNAPSHOT_2/wso2iot-3.1.0-SNAPSHOT/repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.groupanalytics-view" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iot/jjj/wso2iot-3.1.0-SNAPSHOT/repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.groupanalytics-view" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="h2&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;h2.s&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;p2&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.inf&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.in&#9;FILE&#9;file:///home/lahiru/Documents/WSO2Laptop/linuxdevice/feature/feature/src/main/resources/p2.inf" />
   </component>
@@ -1396,15 +1251,19 @@
       <workItem from="1499641408212" duration="5706000" />
       <workItem from="1499666665652" duration="17277000" />
       <workItem from="1499740205831" duration="10983000" />
-      <workItem from="1499827971894" duration="14770000" />
+      <workItem from="1499827971894" duration="15347000" />
+      <workItem from="1499869725849" duration="1012000" />
+      <workItem from="1499912308095" duration="4714000" />
+      <workItem from="1499923601273" duration="71000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259664000" />
+    <option name="totallyTimeSpent" value="266038000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="0" width="1869" height="1081" extended-state="6" />
+    <frame x="123" y="42" width="1867" height="1045" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1428,8 +1287,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20146905" sideWeight="0.49812534" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28548473" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26717559" sideWeight="0.49812534" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2857909" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1518,12 +1377,6 @@
           <line>171</line>
           <properties />
           <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java</url>
-          <line>394</line>
-          <properties />
-          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1679,7 +1532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="21" column="46" lean-forward="false" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1795,21 +1647,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop_summary_execution/laptop_summary_execution.siddhiql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="48" column="31" lean-forward="false" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/constants/LaptopConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1340">
           <caret line="85" column="47" lean-forward="false" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#4899#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1817,12 +1658,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#4722#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2321#2322#0" expanded="false" />
-            <element signature="e#2369#2370#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1830,14 +1666,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#4471#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1457#1458#0" expanded="false" />
-            <element signature="e#1492#1493#0" expanded="false" />
-            <element signature="e#4426#4427#0" expanded="false" />
-            <element signature="e#4468#4469#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1845,13 +1674,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/pages/cdmf.page.device.groupanalytics/groupanalytics.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="1120">
           <caret line="56" column="15" lean-forward="false" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
           <folding />
         </state>
@@ -1859,7 +1687,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/pages/cdmf.page.device.groupanalytics/groupanalytics.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="240">
           <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1877,7 +1705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.device-view/device-view.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-900">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1893,10 +1721,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
+        <state relative-caret-position="2100">
           <caret line="129" column="24" lean-forward="false" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
             <marker date="1499843279915" expanded="true" signature="1738:1772" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
             <marker date="1499843279915" expanded="true" signature="3298:3355" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
             <marker date="1499843279915" expanded="true" signature="4748:4825" ph="UPDATE LINUX... " />
@@ -1909,7 +1736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1917,13 +1743,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
+        <state relative-caret-position="3000">
           <caret line="187" column="13" lean-forward="false" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
           <folding />
         </state>
@@ -1931,12 +1756,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="390" column="8" lean-forward="false" selection-start-line="390" selection-start-column="8" selection-end-line="390" selection-end-column="8" />
-          <folding>
-            <element signature="e#19609#19624#0" expanded="true" />
-            <element signature="e#20195#20203#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="6540">
+          <caret line="394" column="0" lean-forward="false" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/analytics/src/main/resources/carbonapps/laptop/laptop_summary_execution/laptop_summary_execution.siddhiql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -15,89 +15,148 @@
   specific language governing permissions and limitations
   under the License.
 }}
-<span id="devicetype-details" data-devices="{{devices}}" data-appcontext="{{@app.context}}"></span>
 
-<div id="chartDivSensorType1">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType1Title">batterylevel</span>
-        <div id="sensorType1yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType1Legend"></div>
-        </div>
-        <div id="chartSensorType1" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType1xAxis" class="custom_x_axis"></div>
-        <div id="sensorType1Slider" class="custom_slider"></div>
-    </div>
-</div>
-<div id="chartDivSensorType2">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType2Title">batterystatus</span>
-        <div id="sensorType2yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType2Legend"></div>
-        </div>
-        <div id="chartSensorType2" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType2xAxis" class="custom_x_axis"></div>
-        <div id="sensorType2Slider" class="custom_slider"></div>
-    </div>
-</div>
-{{!-- cpuusage --}}
-<div id="chartDivSensorType3">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType3Title">cpuusage</span>
-        <div id="sensorType3yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType3Legend"></div>
-        </div>
-        <div id="chartSensorType3" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType3xAxis" class="custom_x_axis"></div>
-        <div id="sensorType3Slider" class="custom_slider"></div>
-    </div>
-</div>
+{{#zone "topCss"}}
+    {{css "css/styles.css"}}
+    {{css "css/bootstrap.min.css"}}
+{{/zone}}
 
-<div id="chartDivSensorType4">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType4Title">memory space (MB)</span>
-        <div id="sensorType4yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType4Legend"></div>
+<div class="row">
+    <div class="col-lg-2 col-sm-offset-5">
+        <div class="form-group">
+            <label>Device Profile</label>
+            <select id="profileName" name="profileName">
+                {{#each profileTypes}}
+                    <option value="{{profileId}}">{{profileName}}</option>
+                {{/each}}
+            </select>
         </div>
-        <div id="chartSensorType4" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType4xAxis" class="custom_x_axis"></div>
-        <div id="sensorType4Slider" class="custom_slider"></div>
     </div>
 </div>
-<div id="chartDivSensorType5">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType5Title">disk space (MB)</span>
-        <div id="sensorType5yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType5Legend"></div>
+<br/>
+
+<div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 main">
+
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Avg RAM usage</h4>
+                    <div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="chartSensorType5" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType5xAxis" class="custom_x_axis"></div>
-        <div id="sensorType5Slider" class="custom_slider"></div>
-    </div>
-</div>
-<div id="chartDivSensorType6">
-    <div class="chartWrapper" id="chartWrapper">
-        <span id="sensorType6Title">load average</span>
-        <div id="sensorType6yAxis" class="custom_y_axis"></div>
-        <div class="legend_container">
-            <div id="smoother" title="Smoothing"></div>
-            <div id="sensorType6Legend"></div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Avg battery level</h4>
+                    <div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="chartSensorType6" class="custom_rickshaw_graph" data-backend-api-url = {{backendApiUri}}></div>
-        <div id="sensorType6xAxis" class="custom_x_axis"></div>
-        <div id="sensorType6Slider" class="custom_slider"></div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Avg disk usage</h4>
+                    <div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Avg CPU usage</h4>
+                    <div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="btn-group" style="margin: 0 auto;display:table">
+            <button type="button" class="btn btn-primary">Last 1hr</button>
+            <button type="button" class="btn btn-primary">Last 2hrs</button>
+            <button type="button" class="btn btn-primary">Last 4hrs</button>
+        </div>
     </div>
-</div>
+    <br/>
+
+
+
+    <div class="row">
+
+        <div class="col-xs-12 col-md-6 col-lg-3 col-lg-offset-3">
+            <div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">52 GB</div>
+                        <div class="text-muted">Uploads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked download"><use xlink:href="#stroked-download"></use></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">24 GB</div>
+                        <div class="text-muted">Downloads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!--/.row-->
+
+    <div class="row">
+        <button>RAM</button>
+        <button>MEMORY</button>
+        <button>CPU</button>
+
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Site Traffic Overview</div>
+                <div class="panel-body">
+                    <div class="canvas-wrapper">
+                        <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+
+
+
+</div><!--/.row-->
+
+
+
+
+
+
 
 {{#zone "bottomJs"}}
     {{js "js/linuxgroup-graph.js"}}
+    {{js "js/chart.min.js"}}
+    {{js "js/chart-data.js"}}
+    {{js "js/easypiechart.js"}}
+    {{js "js/easypiechart-data.js"}}
+    {{js "js/lumino.glyphs.js"}}
+
+
 {{/zone}}

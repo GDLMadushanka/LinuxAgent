@@ -32,18 +32,18 @@ select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() 
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
-insert all events into dataout;
+insert current events into dataout;
 
 from laptop#window.time(60 sec)
 select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
-insert all events into dataout2;
+insert current events into dataout2;
 
 from laptop#window.time(120 sec)
 select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
-insert all events into dataout4;
+insert current events into dataout4;
