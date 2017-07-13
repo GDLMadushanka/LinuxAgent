@@ -18,6 +18,7 @@
 
 function onRequest(context) {
     var log = new Log("stats.js");
+    var groupId =1;
     var carbonServer = require("carbon").server;
     var device = context.unit.params.device;
     var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
@@ -54,5 +55,5 @@ function onRequest(context) {
 				+ "deviceId=" + device.deviceIdentifier + "&deviceType=" + device.type + "&websocketToken=" + token;
 		}
     }
-    return {"device": device, "websocketEndpoint": websocketEndpoint};
+    return {"device": device, "websocketEndpoint": websocketEndpoint,"groupId":groupId};
 }

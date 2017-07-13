@@ -27,23 +27,24 @@ define stream dataout4 (meta_owner string, meta_deviceType string, meta_deviceId
 batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
 diskwritecount double, bytessent double, bytesrecv double);
 
-from laptop#window.time(30 sec)
+from laptop#window.timeBatch(30 sec)
 select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
 insert current events into dataout;
 
-from laptop#window.time(60 sec)
+from laptop#window.timeBatch(60 sec)
 select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
 insert current events into dataout2;
 
-from laptop#window.time(120 sec)
+from laptop#window.timeBatch(2 min)
 select meta_owner, meta_deviceType,meta_deviceId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
 avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_deviceId
 insert current events into dataout4;
+
