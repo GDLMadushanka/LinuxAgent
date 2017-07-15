@@ -424,6 +424,49 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     }
 
 
+    @Path("device/groupStats/")
+    @GET
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response getSummaryStats(@QueryParam("from") long from,
+                                   @QueryParam("to") long to,
+                                   @QueryParam("profileId") String profileId,
+                                   @QueryParam("groupId") String groupId,
+                                   @QueryParam("summaryType") String summaryType) {
+        String fromDate = String.valueOf(from);
+        String toDate = String.valueOf(to);
+        String from_date = fromDate + "000";
+        String to_date = toDate + "000";
+        String query = "meta_deviceType:linuxdevice AND meta_profileId:"+profileId+" AND meta_groupId:"+groupId +" AND meta_time : [" + from_date + " TO " + to_date + "]";
+
+        String sensorTableName = null;
+        if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE1)){
+            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE1_EVENT_TABLE;
+        }else if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE2)){
+            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE2_EVENT_TABLE;
+        }else if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE3)){
+            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE3_EVENT_TABLE;
+        }
+        try {
+//            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
+//                    DeviceTypeConstants.DEVICE_TYPE))) {
+//                return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
+//            }
+            if (sensorTableName != null) {
+                List<SortByField> sortByFields = new ArrayList<>();
+                SortByField sortByField = new SortByField("meta_time", SortType.ASC);
+                sortByFields.add(sortByField);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,120);
+                return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
+            }
+        } catch (AnalyticsException e) {
+            String errorMsg = "Error on retrieving stats on table " + sensorTableName + " with query " + query;
+            log.error(errorMsg);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()).entity(errorMsg).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
     private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,String groupId)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {

@@ -60,6 +60,15 @@ public class DeviceTypeConstants {
     public final static String SENSOR_TYPE10 = "bytessent";
     public final static String SENSOR_TYPE11 = "bytesrecv";
 
+    public final static String SUMMARY_TYPE1 = "1HR";
+    public final static String SUMMARY_TYPE2 = "2HR";
+    public final static String SUMMARY_TYPE3 = "4HR";
+
+    public static final String SUMMARY_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP1HRSUMMARY";
+    public static final String SUMMARY_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP2HRSUMMARY";
+    public static final String SUMMARY_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP4HRSUMMARY";
+
+
     //mqtt tranport related constants
     public static final String MQTT_ADAPTER_NAME = "batterylevelsensor_mqtt";
     public static final String MQTT_ADAPTER_TYPE = "oauth-mqtt";

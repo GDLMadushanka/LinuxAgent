@@ -206,4 +206,40 @@ public interface DeviceTypeService {
             }
     )
     Response getAllGroups();
+
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @param profileId
+     * @param groupId
+     * @param summaryType
+     * @return
+     */
+
+    @Path("/device/groupStats")
+    @GET
+    @ApiOperation(
+            consumes = MediaType.APPLICATION_JSON,
+            httpMethod = "GET",
+            value = "Get summary stats",
+            notes = "",
+            response = Response.class,
+            tags = "linuxdevice",
+            extensions = {
+                    @Extension(properties = {
+                            @ExtensionProperty(name = SCOPE, value = "perm:linuxdevice:enroll")
+                    })
+            }
+    )
+    @Consumes("application/json")
+    @Produces("application/json")
+    Response getSummaryStats(@QueryParam("from") long from,
+                             @QueryParam("to") long to,
+                             @QueryParam("profileId") String profileId,
+                             @QueryParam("groupId") String groupId,
+                             @QueryParam("summaryType") String summaryType);
+
+
 }
