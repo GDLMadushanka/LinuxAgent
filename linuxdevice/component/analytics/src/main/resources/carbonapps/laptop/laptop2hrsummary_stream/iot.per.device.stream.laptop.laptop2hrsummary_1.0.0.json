@@ -6,8 +6,11 @@
   "metaData": [
     {"name":"owner","type":"STRING"},     
     {"name":"deviceType","type":"STRING"},
-    {"name":"deviceId","type":"STRING"},  
+    {"name":"deviceId","type":"STRING"},
+    {"name":"profileId","type":"STRING"},
+    {"name":"groupId","type":"STRING"},
     {"name":"time","type":"LONG"}
+
   ],
   "payloadData": [
     {"name": "cpuusage","type": "DOUBLE"},

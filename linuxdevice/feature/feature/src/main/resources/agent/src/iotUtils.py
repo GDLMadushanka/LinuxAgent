@@ -62,7 +62,7 @@ global GPIO
 #       Read from a file "deviceConfig.properties" in the same folder level
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 configParser = ConfigParser.RawConfigParser()
-configFilePath = os.path.join(os.path.dirname(__file__), './deviceConfig.properties')
+configFilePath = os.path.join(os.path.dirname(__file__), '../deviceConfig.properties')
 configParser.read(configFilePath)
 
 SERVER_NAME = "carbon.super"
@@ -71,13 +71,16 @@ DEVICE_ID = configParser.get('Device-Configurations', 'deviceId')
 DEVICE_NAME = configParser.get('Device-Configurations', 'device-name')
 MQTT_EP = configParser.get('Device-Configurations', 'mqtt-ep')
 XMPP_EP = "http://204.232.188.215:5222"
+GROUP_ID = configParser.get('Device-Configurations', 'group-id')
+PROFILE_ID = configParser.get('Device-Configurations', 'profile-id')
 AUTH_TOKEN = configParser.get('Device-Configurations', 'auth-token')
 CONTROLLER_CONTEXT = configParser.get('Device-Configurations', 'controller-context')
 # MQTT_SUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-sub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
 # MQTT_PUB_TOPIC = configParser.get('Device-Configurations', 'mqtt-pub-topic').format(owner = DEVICE_OWNER, deviceId = DEVICE_ID)
-DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","deviceType":"linuxdevice","deviceId":"' + DEVICE_ID + '","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"cpuusage":{:.2f},' \
-                                                                                                                                                           ' "batterypercentage":{:.2f}, "batterypluggedin":{:f}, "memoryusage":{:.2f}, "diskusage":{:.2f}, "diskreads":{:.2f}, "diskwrites":{:.2f},"diskreadcount":{:.2f} ,' \
-                                                                                                                                                           '"diskwritecount":{:.2f}, "bytessent":{:.2f},"bytesrecv":{:.2f},  }}}}}}'
+DEVICE_INFO = '{{"event":{{"metaData":{{"owner":"' + DEVICE_OWNER + '","deviceType":"linuxdevice","deviceId":"' + DEVICE_ID + '","groupId":"'+GROUP_ID+'","profileId":"'+PROFILE_ID+'","deviceName":"' + DEVICE_NAME + '","time":{}}},"payloadData":{{"cpuusage":{:.2f},' \
+                                                                                                                                                                                                                       ' "batterypercentage":{:.2f}, "batterypluggedin":{:f}, "memoryusage":{:.2f}, "diskusage":{:.2f}, "diskreads":{:.2f}, "diskwrites":{:.2f},"diskreadcount":{:.2f} ,' \
+                                                                                                                                                                                                                       '"diskwritecount":{:.2f}, "bytessent":{:.2f},"bytesrecv":{:.2f}}}}}}}'
+
 
 
 '''

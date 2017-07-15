@@ -32,6 +32,13 @@ import mqttConnector
 import running_mode
 from dataCollector import *
 
+
+firstDataNotPushed=True
+currentDiskRead=0
+currentDiskWrite=0
+currentBytesSent=0
+currentBytesRecv =0
+
 PUSH_INTERVAL = 5000  # time interval between successive data pushes in seconds
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,6 +136,32 @@ def connectAndPushData():
     diskwritecount=float(iotUtils.diskwritecount)
     bytessent=float(iotUtils.bytessent)
     bytesrecv=float(iotUtils.bytesrecv)
+
+    global firstDataNotPushed
+    global currentBytesRecv
+    global currentBytesSent
+    global currentDiskRead
+    global currentDiskWrite
+
+    if(firstDataNotPushed):
+        currentBytesSent = bytessent
+        bytessent=0
+        currentBytesRecv = bytesrecv
+        bytesrecv=0
+        currentDiskWrite = diskwrites
+        diskwrites=0
+        currentDiskRead = diskreads
+        diskreads  =0
+        firstDataNotPushed = False
+    else :
+        bytessent = bytessent - currentBytesSent
+        currentBytesSent = currentBytesSent + bytessent
+        bytesrecv = bytesrecv - currentBytesRecv
+        currentBytesRecv = currentBytesRecv + bytesrecv
+        diskreads = diskreads - currentDiskRead
+        currentDiskRead = currentDiskRead - diskreads
+        diskwrites = diskwrites -  currentDiskWrite
+        currentDiskWrite = currentDiskWrite + diskwrites
 
     PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, cpuusage,batterypercentage,batterypluggedin,memoryusage,diskusage,diskreads,diskwrites,diskreadcount,diskwritecount,bytessent,bytesrecv)
 

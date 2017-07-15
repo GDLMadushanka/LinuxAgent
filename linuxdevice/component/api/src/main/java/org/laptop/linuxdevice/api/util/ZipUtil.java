@@ -61,7 +61,8 @@ public class ZipUtil {
 
     public ZipArchive createZipFile(String owner, String tenantDomain, String deviceType,
                                     String deviceId, String deviceName, String token,
-                                    String refreshToken, String apiApplicationKey) throws DeviceManagementException {
+                                    String refreshToken, String apiApplicationKey,String groupId,
+                                    String profileId) throws DeviceManagementException {
 
         String sketchFolder = "repository" + File.separator + "resources" + File.separator + "sketches";
         String archivesPath = CarbonUtils.getCarbonHome() + File.separator + sketchFolder + File.separator + "archives" +
@@ -93,6 +94,8 @@ public class ZipUtil {
             contextParams.put("DEVICE_TOKEN", token);
             contextParams.put("DEVICE_REFRESH_TOKEN", refreshToken);
             contextParams.put("API_APPLICATION_KEY", base64EncodedApplicationKey);
+            contextParams.put("GROUP_ID",groupId);
+            contextParams.put("PROFILE_ID",profileId);
 
             ZipArchive zipFile;
             zipFile = getSketchArchive(archivesPath, templateSketchPath, contextParams, deviceName);

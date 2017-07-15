@@ -8,7 +8,7 @@
 /* define streams/tables and write queries here ... */
 
 @Import('iot.per.device.stream.laptop:1.0.0')
-define stream laptop (meta_owner string, meta_deviceType string,meta_deviceId string, meta_time long,cpuusage double,
+define stream laptop (meta_owner string, meta_deviceType string,meta_deviceId string, meta_time long,meta_profileId string,meta_groupId string,cpuusage double,
 batterypercentage double,batterypluggedin double, memoryusage double, diskusage double, diskreads double,diskwrites double,diskreadcount double,
 diskwritecount double, bytessent double, bytesrecv double);
 

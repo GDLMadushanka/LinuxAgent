@@ -145,7 +145,7 @@ public interface DeviceTypeService {
                     })
             }
     )
-    Response downloadSketch(@QueryParam("deviceName") String deviceName, @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName);
+    Response downloadSketch(@QueryParam("deviceName") String deviceName, @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName,@QueryParam("name") String GroupName);
 
     /**
      * To download device type agent source code as zip file
@@ -188,4 +188,22 @@ public interface DeviceTypeService {
     Response getMatchingDevicesForProfile(@QueryParam("deviceIds") String deviceIds,
                                           @QueryParam("profileId") String profileId);
 
+
+    @Path("/groups/getAllGroups")
+    @GET
+    @Produces("application/json")
+    @ApiOperation(
+            consumes = MediaType.APPLICATION_JSON,
+            httpMethod = "GET",
+            value = "Get all profiles",
+            notes = "",
+            response = Response.class,
+            tags = "linuxdevice",
+            extensions = {
+                    @Extension(properties = {
+                            @ExtensionProperty(name = SCOPE, value = "perm:linuxdevice:enroll")
+                    })
+            }
+    )
+    Response getAllGroups();
 }

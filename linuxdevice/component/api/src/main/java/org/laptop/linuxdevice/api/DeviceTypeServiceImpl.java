@@ -18,6 +18,7 @@
 
 package org.laptop.linuxdevice.api;
 
+import io.swagger.annotations.Api;
 import org.laptop.linuxdevice.api.dao.LaptopDAO;
 import org.laptop.linuxdevice.api.dao.LaptopDAOImpl;
 import org.laptop.linuxdevice.api.dto.DeviceJSON;
@@ -44,6 +45,8 @@ import org.wso2.carbon.device.mgt.common.DeviceIdentifier;
 import org.wso2.carbon.device.mgt.common.DeviceManagementException;
 import org.wso2.carbon.device.mgt.common.EnrolmentInfo;
 import org.wso2.carbon.device.mgt.common.authorization.DeviceAccessAuthorizationException;
+import org.wso2.carbon.device.mgt.common.group.mgt.DeviceGroup;
+import org.wso2.carbon.device.mgt.common.group.mgt.GroupManagementException;
 import org.wso2.carbon.identity.jwt.client.extension.JWTClient;
 import org.wso2.carbon.identity.jwt.client.extension.dto.AccessTokenInfo;
 import org.wso2.carbon.identity.jwt.client.extension.exception.JWTClientException;
@@ -295,9 +298,11 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @GET
     @Produces("application/zip")
     public Response downloadSketch(@QueryParam("deviceName") String deviceName,
-                                   @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName) {
+                                   @QueryParam("sketchType") String sketchType,
+                                   @QueryParam("profileId") String profileId,
+                                   @QueryParam("groupId") String groupId) {
         try {
-            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileName);
+            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,groupId);
             Response.ResponseBuilder response = Response.ok(FileUtils.readFileToByteArray(zipFile.getZipFile()));
             response.status(Response.Status.OK);
             response.type("application/zip");
@@ -331,8 +336,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
      * @param name  name for the device type instance
      * @return check whether device is installed into cdmf
      */
-    private boolean register(String deviceId, String name,String profileName) {
+    private boolean register(String deviceId, String name,String profileid,String groupId) {
         try {
+            List<DeviceIdentifier> identifiersList = new ArrayList<>();
             DeviceIdentifier deviceIdentifier = new DeviceIdentifier();
             deviceIdentifier.setId(deviceId);
             deviceIdentifier.setType(DeviceTypeConstants.DEVICE_TYPE);
@@ -350,18 +356,19 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             device.setType(DeviceTypeConstants.DEVICE_TYPE);
             enrolmentInfo.setOwner(APIUtil.getAuthenticatedUser());
             device.setEnrolmentInfo(enrolmentInfo);
-            deviceProfile pro;
-            try {
-                pro = laptopDAOImpl.getProfileByName(profileName);
-            } catch (DeviceTypeException e) {
-                e.printStackTrace();
-            }
+            identifiersList.add(deviceIdentifier);
             boolean added = APIUtil.getDeviceManagementService().enrollDevice(device);
-            deviceProfile profile;
             if(added){
                 try {
-                    profile = laptopDAOImpl.getProfileByName(profileName);
-                    added = laptopDAOImpl.updateDevice(deviceId,profile.getProfileId());
+                    APIUtil.getGroupManagementProviderService().addDevices(Integer.parseInt(groupId),identifiersList);
+                } catch (GroupManagementException e) {
+                    e.printStackTrace();
+                } catch (DeviceNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    added = laptopDAOImpl.updateDevice(deviceId,profileid);
                 } catch (DeviceTypeException e) {
                     added = false;
                     e.printStackTrace();
@@ -403,7 +410,21 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.OK).entity(temp).build();
     }
 
-    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileName)
+    @Path("/groups/getAllGroups")
+    @GET
+    @Produces("application/json")
+    public Response getAllGroups() {
+        List<DeviceGroup> result = new ArrayList<>();
+        try {
+            result = APIUtil.getGroupManagementProviderService().getGroups();
+        } catch (GroupManagementException e) {
+            e.printStackTrace();
+        }
+        return Response.status(Response.Status.OK).entity(result).build();
+    }
+
+
+    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,String groupId)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {
         //create new device id
@@ -426,7 +447,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         //create token
         String accessToken = accessTokenInfo.getAccessToken();
         String refreshToken = accessTokenInfo.getRefreshToken();
-        boolean status = register(deviceId, deviceName,profileName);
+        boolean status = register(deviceId, deviceName,profileId,groupId);
 
 
         if (!status) {
@@ -435,7 +456,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         }
         ZipUtil ziputil = new ZipUtil();
         ZipArchive zipFile = ziputil.createZipFile(owner, APIUtil.getTenantDomainOftheUser(), sketchType,
-                deviceId, deviceName, accessToken, refreshToken, apiApplicationKey.toString());
+                deviceId, deviceName, accessToken, refreshToken, apiApplicationKey.toString(),groupId,profileId);
         return zipFile;
     }
 }
