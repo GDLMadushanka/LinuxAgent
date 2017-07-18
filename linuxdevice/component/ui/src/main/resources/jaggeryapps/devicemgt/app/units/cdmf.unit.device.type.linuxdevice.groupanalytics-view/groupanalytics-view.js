@@ -20,6 +20,7 @@ function onRequest(context) {
     var viewModel = {};
 	var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
     var profilesUrl = devicemgtProps["httpsURL"] + "/linuxdevice/1.0.0/device/profiles";
+    var groupsUrl =devicemgtProps["httpsURL"] + "/linuxdevice/1.0.0/groups/getAllGroups";
     var serviceInvokers = require("/app/modules/oauth/token-protected-service-invokers.js")["invokers"];
     var log = new Log("stats.js");
 
@@ -28,13 +29,8 @@ function onRequest(context) {
 	var groupId = request.getParameter("groupId");
     var deviceName = request.getParameter("deviceName");
 
-	log.info("-----------------");
-	log.info(deviceType);
-    log.info(deviceId);
-    log.info(groupId);
-    log.info(deviceName);
-
     viewModel["profileTypes"] = [];
+    viewModel["groupNames"]=[]
     serviceInvokers.XMLHttp.get(
         profilesUrl, function (responsePayload) {
             //new Log().info(responsePayload.responseText);
@@ -44,6 +40,22 @@ function onRequest(context) {
             new Log().error(responsePayload);
         }
     );
+    serviceInvokers.XMLHttp.get(
+        groupsUrl, function (responsePayload) {
+            //new Log().info(responsePayload.responseText);
+            viewModel["groupNames"] = JSON.parse(responsePayload.responseText);
+        },
+        function (responsePayload) {
+            new Log().error(responsePayload);
+        }
+    );
+
+    var carbonServer = require("carbon").server;
+    var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
+    var constants = require("/app/modules/constants.js");
+    var websocketEndpoint = devicemgtProps["wssURL"].replace("https", "wss");
+    // This need to be changed properly (with authentication)
+    viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
     return viewModel;
 
 }

@@ -44,6 +44,7 @@
         <dependency artifact="laptop2hrsummary_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop4hrsummary_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop4hrsummary_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
+        <dependency artifact="laptop1hrsummary_publisher" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
 
         <dependency artifact="laptop_summary_execution" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>

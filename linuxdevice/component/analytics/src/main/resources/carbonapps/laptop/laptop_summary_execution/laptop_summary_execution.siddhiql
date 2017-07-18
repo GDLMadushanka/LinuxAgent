@@ -31,20 +31,20 @@ from laptop#window.timeBatch(30 sec)
 select meta_owner, meta_deviceType,meta_deviceId,meta_profileId,meta_groupId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
-avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
+avg(diskwritecount) as diskwritecount,sum(bytessent) as bytessent,sum(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
 insert current events into dataout;
 
 from laptop#window.timeBatch(60 sec)
 select meta_owner, meta_deviceType,meta_deviceId,meta_profileId,meta_groupId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
-avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
+avg(diskwritecount) as diskwritecount,sum(bytessent) as bytessent,sum(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
 insert current events into dataout2;
 
 from laptop#window.timeBatch(2 min)
 select meta_owner, meta_deviceType,meta_deviceId,meta_profileId,meta_groupId,time:timestampInMilliseconds() as meta_time,
 avg(cpuusage) as cpuusage, avg(batterypercentage) as batterypercentage, avg(batterypluggedin) as batterypluggedin, avg(memoryusage)
 as memoryusage, avg(diskusage) as diskusage, avg(diskreads) as diskreads, avg(diskwrites) as diskwrites,avg(diskreadcount) as diskreadcount,
-avg(diskwritecount) as diskwritecount,avg(bytessent) as bytessent,avg(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
+avg(diskwritecount) as diskwritecount,sum(bytessent) as bytessent,sum(bytesrecv) as bytesrecv group by meta_groupId,meta_profileId
 insert current events into dataout4;
 
