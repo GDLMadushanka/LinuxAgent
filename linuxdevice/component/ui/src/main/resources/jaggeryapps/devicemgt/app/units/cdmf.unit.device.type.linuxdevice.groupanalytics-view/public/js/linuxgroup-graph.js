@@ -17,7 +17,7 @@
  * under the License.
  */
 var groupId =1;
-var profileId ="profileId1";
+var profileId ="profileid1";
 var currentSummaryTime = "1HR";
 var currentSensorName ="memoryusage";
 var timeFormat = 'hh:mm';
@@ -39,6 +39,7 @@ var persist_diskusage = []
      var websocketUrl = $("#laptop-details").data("websocketurl");
      console.log(websocketUrl);
      connect(websocketUrl);
+     reloadData();
  });
 
 
@@ -82,7 +83,7 @@ var persist_diskusage = []
         var summaryfactor =1;
         if(numOfValues>60) {summaryfactor=2;}
         for(var i=0;i<numOfValues;i+=summaryfactor) {
-            if(jsonpayload[i] != null) {
+            if(jsonpayload[i] != null && (i+summaryfactor-1)<numOfValues) {
                 persist_cpuusage.push(((jsonpayload[i].values.cpuusage+jsonpayload[i+summaryfactor-1].values.cpuusage)/2).toFixed(2));
                 persist_diskusage.push(((jsonpayload[i].values.diskusage+jsonpayload[i+summaryfactor-1].values.diskusage)/2).toFixed(2));
                 persist_memoryusage.push(((jsonpayload[i].values.memoryusage+jsonpayload[i+summaryfactor-1].values.memoryusage)/2).toFixed(2));
@@ -100,6 +101,7 @@ var persist_diskusage = []
             if(jsonpayload[i] != null) {
                 persist_bytessent += jsonpayload[i].values.bytessent;
                 persist_bytesrecv += jsonpayload[i].values.bytesrecv;
+                updateUploadDownload();
             }
         }
 
@@ -115,6 +117,37 @@ var persist_diskusage = []
         persist_bytesrecv = 0
         persist_time = []
 
+    }
+
+    function updateUploadDownload() {
+
+        if(persist_bytessent>1000) {
+            var kblvl = persist_bytessent/1024;
+            if(kblvl>1000){
+                var mblvl = kblvl/1024;
+                if(mblvl>1000) {
+                    var gblvl = mblvl/1024;
+                    document.getElementById("uploads").innerHTML = gblvl.toFixed(2) +" GB";
+                }
+                else {document.getElementById("uploads").innerHTML = mblvl.toFixed(2) +" MB";}
+            }
+            else {document.getElementById("uploads").innerHTML = kblvl.toFixed(2)+" KB";}
+        }
+        else {document.getElementById("uploads").innerHTML = persist_bytessent.toFixed(2) +" B";}
+
+        if(persist_bytesrecv>1000) {
+            var kblvl2 = persist_bytesrecv/1024;
+            if(kblvl2>1000){
+                var mblvl2 = kblvl2/1024;
+                if(mblvl2>1000) {
+                    var gblvl2 = mblvl2/1024;
+                    document.getElementById("downloads").innerHTML = gblvl2.toFixed(2) +" GB";
+                }
+                else {document.getElementById("downloads").innerHTML = mblvl2.toFixed(2) +" MB";}
+            }
+            else {document.getElementById("downloads").innerHTML = kblvl2.toFixed(2) +" KB";}
+        }
+        else {document.getElementById("downloads").innerHTML = persist_bytesrecv.toFixed(2) +" B";}
     }
 
     function updateCharts() {
@@ -135,7 +168,7 @@ var persist_diskusage = []
             datasets : [
                 {
                     label: datasetlabel,
-                    fillColor : "rgba(220,100,100,0.5)",
+                    fillColor : "rgba(50,50,200,0.5)",
                     strokeColor : "rgba(220,220,220,1)",
                     pointColor : "rgba(220,220,220,1)",
                     pointStrokeColor : "#fff",

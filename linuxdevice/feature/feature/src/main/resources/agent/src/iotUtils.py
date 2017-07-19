@@ -23,7 +23,6 @@
 import time
 import ConfigParser, os
 import random
-import running_mode
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #           HOST_NAME(IP) of the Device
@@ -37,17 +36,7 @@ HTTP_SERVER_PORT = 5678 # http server port which is listening on
 # LAST_TEMP = 25  # The Last read temperature value from the DHT sensor. Kept globally
 
 # laptop statistics
-global cpuusage
-global batterypercentage
-global batterypluggedin
-global memoryusage
-global diskusage
-global diskreads
-global diskwrites
-global diskreadcount
-global diskwritecount
-global bytessent
-global bytesrecv
+
 
 
 # Linux Agent
@@ -113,12 +102,6 @@ def generateRandomTemperatureAndHumidityValues():
     return [random.randint(15, 40),random.randint(15, 40)]
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-#      If an agent runs on a real setup GPIO needs to be imported
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def initGPIOModule():
-    if running_mode.RUNNING_MODE == 'N':
-        import RPi.GPIO as GPIO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 

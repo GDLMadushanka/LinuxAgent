@@ -18,7 +18,7 @@
 * under the License.
 **/
 """
-import random
+
 import time, threading, datetime, calendar
 from uuid import uuid4
 
@@ -29,15 +29,16 @@ import time
 
 import iotUtils
 import mqttConnector
-import running_mode
+import agentSettings
+
+import importer
+importer.installMissingPackages()
+
+
 from dataCollector import *
+agentSettings.init()
 
 
-firstDataNotPushed=True
-currentDiskRead=0
-currentDiskWrite=0
-currentBytesSent=0
-currentBytesRecv =0
 
 PUSH_INTERVAL = 5000  # time interval between successive data pushes in seconds
 
@@ -123,47 +124,41 @@ def connectAndPushData():
     # rPiTemperature = iotUtils.LAST_TEMP  # Push the last read temperature value
     # PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, rPiTemperature)
 
-    cpuusage = float(iotUtils.cpuusage)
-    batterypercentage = float(iotUtils.batterypercentage)
-    batterypluggedin = 0
-    if(iotUtils.batterypluggedin):
-        batterypluggedin=1
-    memoryusage=float(iotUtils.memoryusage)
-    diskusage=float(iotUtils.diskusage)
-    diskreads=float(iotUtils.diskreads)
-    diskwrites=float(iotUtils.diskwrites)
-    diskreadcount=float(iotUtils.diskreadcount)
-    diskwritecount=float(iotUtils.diskwritecount)
-    bytessent=float(iotUtils.bytessent)
-    bytesrecv=float(iotUtils.bytesrecv)
+    agentSettings.cpuusage = float(agentSettings.cpuusage)
+    agentSettings.batterypercentage = float(agentSettings.batterypercentage)
+    agentSettings.batterypluggedin = 0
+    if(agentSettings.batterypluggedin):
+        agentSettings.batterypluggedin=1
+    agentSettings.memoryusage=float(agentSettings.memoryusage)
+    agentSettings.diskusage=float(agentSettings.diskusage)
+    agentSettings.diskreads=float(agentSettings.diskreads)
+    agentSettings.diskwrites=float(agentSettings.diskwrites)
+    agentSettings.diskreadcount=float(agentSettings.diskreadcount)
+    agentSettings.diskwritecount=float(agentSettings.diskwritecount)
+    agentSettings.bytessent=float(agentSettings.bytessent)
+    agentSettings.bytesrecv=float(agentSettings.bytesrecv)
 
-    global firstDataNotPushed
-    global currentBytesRecv
-    global currentBytesSent
-    global currentDiskRead
-    global currentDiskWrite
-
-    if(firstDataNotPushed):
-        currentBytesSent = bytessent
-        bytessent=0
-        currentBytesRecv = bytesrecv
-        bytesrecv=0
-        currentDiskWrite = diskwrites
-        diskwrites=0
-        currentDiskRead = diskreads
-        diskreads  =0
-        firstDataNotPushed = False
+    if(agentSettings.firstDataNotPushed):
+        agentSettings.currentBytesSent = agentSettings.bytessent
+        agentSettings.bytessent=0
+        agentSettings.currentBytesRecv = agentSettings.bytesrecv
+        agentSettings.bytesrecv=0
+        agentSettings.currentDiskWrite = agentSettings.diskwrites
+        agentSettings.diskwrites=0
+        agentSettings.currentDiskRead = agentSettings.diskreads
+        agentSettings.diskreads  =0
+        agentSettings.firstDataNotPushed = False
     else :
-        bytessent = bytessent - currentBytesSent
-        currentBytesSent = currentBytesSent + bytessent
-        bytesrecv = bytesrecv - currentBytesRecv
-        currentBytesRecv = currentBytesRecv + bytesrecv
-        diskreads = diskreads - currentDiskRead
-        currentDiskRead = currentDiskRead - diskreads
-        diskwrites = diskwrites -  currentDiskWrite
-        currentDiskWrite = currentDiskWrite + diskwrites
+        agentSettings.bytessent = agentSettings.bytessent - agentSettings.currentBytesSent
+        agentSettings.currentBytesSent = agentSettings.currentBytesSent + agentSettings.bytessent
+        agentSettings.bytesrecv = agentSettings.bytesrecv - agentSettings.currentBytesRecv
+        agentSettings.currentBytesRecv = agentSettings.currentBytesRecv + agentSettings.bytesrecv
+        agentSettings.diskreads = agentSettings.diskreads - agentSettings.currentDiskRead
+        agentSettings.currentDiskRead = agentSettings.currentDiskRead - agentSettings.diskreads
+        agentSettings.diskwrites = agentSettings.diskwrites -  agentSettings.currentDiskWrite
+        agentSettings.currentDiskWrite = agentSettings.currentDiskWrite + agentSettings.diskwrites
 
-    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, cpuusage,batterypercentage,batterypluggedin,memoryusage,diskusage,diskreads,diskwrites,diskreadcount,diskwritecount,bytessent,bytesrecv)
+    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, agentSettings.cpuusage,agentSettings.batterypercentage,agentSettings.batterypluggedin,agentSettings.memoryusage,agentSettings.diskusage,agentSettings.diskreads,agentSettings.diskwrites,agentSettings.diskreadcount,agentSettings.diskwritecount,agentSettings.bytessent,agentSettings.bytesrecv)
 
     print '~~~~~~~~~~~~~~~~~~~~~~~~ Publishing Device-Data ~~~~~~~~~~~~~~~~~~~~~~~~~'
     print ('PUBLISHED DATA: ' + PUSH_DATA)
@@ -172,53 +167,25 @@ def connectAndPushData():
     # error in publishing data
     mqttConnector.publish(PUSH_DATA)
 
-'''
-cpuusage
-batterypercentage
-batterypluggedin
-memoryusage
-diskusage
-diskreads
-diskwrites
-diskreadcount
-diskwritecount
-bytessent
-bytesrecv
-
-'''
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #           Collect Data
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def collectData():
 
-    iotUtils.cpuusage = getCpuUsage()
-    iotUtils.batterypercentage = getBatteryPercentage()
-    iotUtils.batterypluggedin = getBatteryPluggedin()
-    iotUtils.memoryusage = getMemoryUsage()
-    iotUtils.diskusage = getDisksUsage()
-    iotUtils.diskreads = getDiskReads()
-    iotUtils.diskwrites = getDiskWrites()
-    iotUtils.diskreadcount = getDiskReadCount()
-    iotUtils.diskwritecount = getDiskWriteCount()
-    iotUtils.bytessent = getBytesSent()
-    iotUtils.bytesrecv = getBytesRecv()
+    agentSettings.cpuusage = getCpuUsage()
+    agentSettings.batterypercentage = getBatteryPercentage()
+    agentSettings.batterypluggedin = getBatteryPluggedin()
+    agentSettings.memoryusage = getMemoryUsage()
+    agentSettings.diskusage = getDisksUsage()
+    agentSettings.diskreads = getDiskReads()
+    agentSettings.diskwrites = getDiskWrites()
+    agentSettings.diskreadcount = getDiskReadCount()
+    agentSettings.diskwritecount = getDiskWriteCount()
+    agentSettings.bytessent = getBytesSent()
+    agentSettings.bytesrecv = getBytesRecv()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#           Generate Random Values
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def generateRandoms():
-    iotUtils.BATTERY_STATUS = random.randrange(-1, 2)
-    iotUtils.BATTERY_LEVEL = random.randrange(20, 100)
-    iotUtils.CPU_USAGE = random.randrange(20, 100)
-    iotUtils.MEMORY_SPACE = random.randrange(10, 70)
-    iotUtils.DISK_SPACE = random.randrange(10, 70)
-    iotUtils.LOAD_AVERAGE = random.randrange(0, 1)
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -254,68 +221,18 @@ def replaceToken():
     fr.write(line.replace(existing_line, 'auth-token=' + str(rand_token) + '\n'))
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#       This is a Thread object for reading data continuously
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class DataReaderThread(object):
-    def __init__(self):
-        if running_mode.RUNNING_MODE == 'N':
-            self.interval = iotUtils.DATA_READING_INTERVAL_REAL_MODE
-        else:
-            self.interval = iotUtils.DATA_READING_INTERVAL_VIRTUAL_MODE
-        thread = threading.Thread(target=self.run, args=())
-        thread.daemon = True  # Daemonize thread
-        thread.start()  # Start the execution
-
-    def run(self):
-
-        # Try to grab a sensor reading.  Use the read_retry method which will retry up
-        # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-        while True:
-            try:
-
-                if running_mode.RUNNING_MODE == 'N':
-                    # time.sleep(PUSH_INTERVAL)
-                    collectData()
-                    time.sleep(15)
-                else:
-                    # generate random values
-                    generateRandoms()
-
-                #print "############ DATA READINGS ###############"
-                #print 'BATTERY LEVEL : ' + str(iotUtils.BATTERY_LEVEL)
-                #print 'BATTERY STATUS : ' + str(iotUtils.BATTERY_STATUS)
-                #print 'CPU USAGE : ' + str(iotUtils.CPU_USAGE)
-                #print 'MEMORY SPACE : ' + str(iotUtils.MEMORY_SPACE)
-                #print 'DISK SPACE : ' + str(iotUtils.DISK_SPACE)
-                #print 'LOAD AVERAGE:' + str(iotUtils.LOAD_AVERAGE)
-                #print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-                print " "
-
-            except Exception, e:
-                print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-                print "LINUX LAPTOP STATUS : Exception in TempReaderThread: Could not successfully read Data"
-                print ("LINUX_LAPTOP_STATS: " + str(e))
-                pass
-                time.sleep(self.interval)
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#       The Main method of the RPi Agent
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 def main():
     configureLogger("WSO2IOT_RPiStats")
     UtilsThread()
     # registerDeviceIP()  # Call the register endpoint and register Device IP
     # ListenHTTPServerThread()  # starts an HTTP Server that listens for operational commands to switch ON/OFF Led
     SubscribeToMQTTQueue()  # connects and subscribes to an MQTT Queue that receives MQTT commands from the server
-    DataReaderThread()  # initiates and runs the thread to continuously read temperature from DHT Sensor
 
     # test
 
     time.sleep(10)
     while True:
+        collectData()
         connectAndPushData()  # Push Sensor (Temperature) data to WSO2 BAM
         time.sleep(15)
 

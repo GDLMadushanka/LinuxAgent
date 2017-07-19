@@ -18,18 +18,24 @@
 * under the License.
 **/
 """
-
 import psutil
-import json
 
 def getCpuUsage():
     return psutil.cpu_percent(interval=1, percpu=False)
 
 def getBatteryPercentage():
-    return round(psutil.sensors_battery().percent,2)
+    batt = psutil.sensors_battery()
+    if(batt!=None):
+        return round(batt.percent,2)
+    else:
+        return 50;
 
 def getBatteryPluggedin():
-    return psutil.sensors_battery().power_plugged
+    batt = psutil.sensors_battery()
+    if (batt != None):
+        return batt.power_plugged
+    else:
+        return False;
 
 def getMemoryUsage():
     return psutil.virtual_memory().percent
