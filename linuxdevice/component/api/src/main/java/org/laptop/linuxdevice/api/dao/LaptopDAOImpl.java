@@ -102,8 +102,36 @@ public class LaptopDAOImpl {
         return profile;
     }
 
-    public boolean updateDevice(String deviceId,String profileId) throws DeviceTypeException {
+    public boolean addDeviceProfile(deviceProfile profile) throws DeviceTypeException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        boolean status = false;
+        try {
+            conn = LaptopDAO.getConnection();
+            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_PROFILES (linuxdevice_PROFILE_ID,PROFILE_NAME,VENDER,CPU,MEMORY,OS,DISK,OTHER) VALUES (?,?,?,?,?,?,?,?)";
+            stmt = conn.prepareStatement(updateDeviceQuery);
+            stmt.setString(1,profile.getProfileId());
+            stmt.setString(2,profile.getProfileName());
+            stmt.setString(3,profile.getVender());
+            stmt.setString(4,profile.getCpu());
+            stmt.setString(5,profile.getMemory());
+            stmt.setString(6,profile.getOs());
+            stmt.setString(7,profile.getDisk());
+            stmt.setString(8,profile.getOther());
+            stmt.executeUpdate();
+            conn.commit();
 
+            status = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            LaptopUtils.cleanupResources(stmt,null);
+            LaptopDAO.closeConnection();
+        }
+        return status;
+    }
+
+    public boolean updateDevice(String deviceId,String profileId) throws DeviceTypeException {
         Connection conn = null;
         PreparedStatement stmt = null;
         boolean status = false;

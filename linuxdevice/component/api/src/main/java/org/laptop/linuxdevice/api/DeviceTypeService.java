@@ -242,4 +242,31 @@ public interface DeviceTypeService {
                              @QueryParam("summaryType") String summaryType);
 
 
+    @Path("/device/addprofile")
+    @POST
+    @ApiOperation(
+            consumes = MediaType.APPLICATION_JSON,
+            httpMethod = "POST",
+            value = "Add new device profile",
+            notes = "",
+            response = Response.class,
+            tags = "linuxdevice",
+            extensions = {
+                    @Extension(properties = {
+                            @ExtensionProperty(name = SCOPE, value = "perm:linuxdevice:enroll")
+                    })
+            }
+    )
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces("application/json")
+    Response addNewDeviceProfile(@QueryParam("profileid") String profileId,
+                                 @QueryParam("profilename") String profileName,
+                                 @QueryParam("vender") String vender,
+                                 @QueryParam("cpu") String cpu,
+                                 @QueryParam("memory") String memory,
+                                 @QueryParam("os") String os,
+                                 @QueryParam("disk") String disk,
+                                 @QueryParam("other") String other);
+
+
 }

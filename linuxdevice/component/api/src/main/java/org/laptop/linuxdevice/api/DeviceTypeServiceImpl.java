@@ -57,13 +57,7 @@ import org.wso2.carbon.device.mgt.common.operation.mgt.OperationManagementExcept
 import org.wso2.carbon.device.mgt.core.operation.mgt.CommandOperation;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Path;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Produces;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -410,6 +404,35 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.OK).entity(temp).build();
     }
 
+    //profileid=n&profilename=n&vender=n&cpu=n&memory=n&os=n&disk=n&other=n
+    @Path("/device/addprofile")
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces("application/json")
+    public Response addNewDeviceProfile(@FormParam("profileid") String profileId, @FormParam("profilename") String profileName,
+                                        @FormParam("vender") String vender, @FormParam("cpu") String cpu,
+                                        @FormParam("memory") String memory, @FormParam("os") String os,
+                                        @FormParam("disk") String disk, @FormParam("other") String other) {
+
+        boolean status = false;
+        if(profileId!=null) {
+            deviceProfile deviceProfile = new deviceProfile();
+            deviceProfile.setProfileId(profileId);
+            deviceProfile.setProfileName(profileName);
+            deviceProfile.setVender(vender);
+            deviceProfile.setCpu(cpu);
+            deviceProfile.setMemory(memory);
+            deviceProfile.setOs(os);
+            deviceProfile.setDisk(disk);
+            deviceProfile.setOther(other);
+        try {
+            status = laptopDAOImpl.addDeviceProfile(deviceProfile);
+        } catch (DeviceTypeException e) {
+            e.printStackTrace();
+        }}
+        return Response.status(Response.Status.OK).entity(status).build();
+    }
+
     @Path("/groups/getAllGroups")
     @GET
     @Produces("application/json")
@@ -424,7 +447,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     }
 
 
-    @Path("device/groupStats/")
+    @Path("/device/groupStats/")
     @GET
     @Consumes("application/json")
     @Produces("application/json")
