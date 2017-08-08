@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/metatype">
-    <OCD id="org.laptop.linuxdevice.plugin.internal.ServiceComponent" name="%org.laptop.linuxdevice.plugin.internal.ServiceComponent.name" description="%org.laptop.linuxdevice.plugin.internal.ServiceComponent.description"/>
-    <Designate pid="org.laptop.linuxdevice.plugin.internal.ServiceComponent">
-        <Object ocdref="org.laptop.linuxdevice.plugin.internal.ServiceComponent"/>
-    </Designate>
-</metatype:MetaData>

@@ -19,6 +19,7 @@
 package org.laptop.linuxdevice.api;
 
 import io.swagger.annotations.Api;
+import org.laptop.linuxdevice.api.constants.LaptopConstants;
 import org.laptop.linuxdevice.api.dao.LaptopDAO;
 import org.laptop.linuxdevice.api.dao.LaptopDAOImpl;
 import org.laptop.linuxdevice.api.dto.DeviceJSON;
@@ -28,7 +29,6 @@ import org.laptop.linuxdevice.api.exception.DeviceTypeException;
 import org.laptop.linuxdevice.api.util.APIUtil;
 import org.laptop.linuxdevice.api.util.ZipUtil;
 import org.laptop.linuxdevice.api.util.ZipArchive;
-import org.laptop.linuxdevice.plugin.constants.DeviceTypeConstants;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
@@ -111,19 +111,19 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                                  @Context HttpServletResponse response) {
         try {
             if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-                    DeviceTypeConstants.DEVICE_TYPE))) {
+                    LaptopConstants.DEVICE_TYPE))) {
                 return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
             }
             String sensorState = state.toUpperCase();
-            if (!sensorState.equals(DeviceTypeConstants.STATE_ON) && !sensorState.equals(
-                    DeviceTypeConstants.STATE_OFF)) {
+            if (!sensorState.equals(LaptopConstants.STATE_ON) && !sensorState.equals(
+                    LaptopConstants.STATE_OFF)) {
                 log.error("The requested state change should be either - 'ON' or 'OFF'");
                 return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
             }
             Map<String, String> dynamicProperties = new HashMap<>();
             String publishTopic = APIUtil.getAuthenticatedUserTenantDomain()
-                    + "/" + DeviceTypeConstants.DEVICE_TYPE + "/" + deviceId + "/command";
-            dynamicProperties.put(DeviceTypeConstants.ADAPTER_TOPIC_PROPERTY, publishTopic);
+                    + "/" + LaptopConstants.DEVICE_TYPE + "/" + deviceId + "/command";
+            dynamicProperties.put(LaptopConstants.ADAPTER_TOPIC_PROPERTY, publishTopic);
             Operation commandOp = new CommandOperation();
             commandOp.setCode("change-status");
             commandOp.setType(Operation.Type.COMMAND);
@@ -172,34 +172,34 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String to_date = toDate + "000";
         String query = "meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
 //        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:" +
-//                DeviceTypeConstants.DEVICE_TYPE + " AND meta_time : [" + from_date + " TO " + to_date + "]";
+//                LaptopConstants.DEVICE_TYPE + " AND meta_time : [" + from_date + " TO " + to_date + "]";
         String sensorTableName = null;
-        if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE1)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE1_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE2)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE2_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE3)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE3_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE4)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE4_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE5)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE5_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE6)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE6_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE7)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE7_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE8)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE8_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE9)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE9_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE10)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE10_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE11)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE11_EVENT_TABLE;
+        if(sensorType.equals(LaptopConstants.SENSOR_TYPE1)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE1_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE2)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE2_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE3)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE3_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE4)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE4_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE5)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE5_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE6)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE6_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE7)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE7_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE8)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE8_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE9)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE9_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE10)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE10_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE11)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE11_EVENT_TABLE;
         }
         try {
 //            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-//                    DeviceTypeConstants.DEVICE_TYPE))) {
+//                    LaptopConstants.DEVICE_TYPE))) {
 //                return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
 //            }
             if (sensorTableName != null) {
@@ -236,32 +236,32 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String to_date = toDate + "000";
         String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
         String sensorTableName = null;
-        if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE1)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE1_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE2)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE2_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE3)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE3_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE4)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE4_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE5)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE5_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE6)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE6_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE7)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE7_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE8)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE8_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE9)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE9_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE10)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE10_EVENT_TABLE;
-        }else if(sensorType.equals(DeviceTypeConstants.SENSOR_TYPE11)){
-            sensorTableName = DeviceTypeConstants.SENSOR_TYPE11_EVENT_TABLE;
+        if(sensorType.equals(LaptopConstants.SENSOR_TYPE1)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE1_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE2)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE2_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE3)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE3_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE4)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE4_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE5)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE5_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE6)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE6_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE7)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE7_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE8)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE8_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE9)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE9_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE10)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE10_EVENT_TABLE;
+        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE11)){
+            sensorTableName = LaptopConstants.SENSOR_TYPE11_EVENT_TABLE;
         }
         try {
             if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-                    DeviceTypeConstants.DEVICE_TYPE))) {
+                    LaptopConstants.DEVICE_TYPE))) {
                 return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
             }
             if (sensorTableName != null) {
@@ -282,6 +282,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+
     /**
      * To download device type agent source code as zip file
      * @param deviceName   name for the device type instance
@@ -294,9 +295,10 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     public Response downloadSketch(@QueryParam("deviceName") String deviceName,
                                    @QueryParam("sketchType") String sketchType,
                                    @QueryParam("profileId") String profileId,
-                                   @QueryParam("groupId") String groupId) {
+                                   @QueryParam("groupId") String groupId,
+                                   @QueryParam("tenantId") String tenantId) {
         try {
-            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,groupId);
+            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,groupId,tenantId);
             Response.ResponseBuilder response = Response.ok(FileUtils.readFileToByteArray(zipFile.getZipFile()));
             response.status(Response.Status.OK);
             response.type("application/zip");
@@ -330,12 +332,12 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
      * @param name  name for the device type instance
      * @return check whether device is installed into cdmf
      */
-    private boolean register(String deviceId, String name,String profileid,String groupId) {
+    private boolean register(String deviceId, String name,String profileid,String groupId,String tenantId) {
         try {
             List<DeviceIdentifier> identifiersList = new ArrayList<>();
             DeviceIdentifier deviceIdentifier = new DeviceIdentifier();
             deviceIdentifier.setId(deviceId);
-            deviceIdentifier.setType(DeviceTypeConstants.DEVICE_TYPE);
+            deviceIdentifier.setType(LaptopConstants.DEVICE_TYPE);
             if (APIUtil.getDeviceManagementService().isEnrolled(deviceIdentifier)) {
                 return false;
             }
@@ -347,7 +349,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             enrolmentInfo.setStatus(EnrolmentInfo.Status.ACTIVE);
             enrolmentInfo.setOwnership(EnrolmentInfo.OwnerShip.BYOD);
             device.setName(name);
-            device.setType(DeviceTypeConstants.DEVICE_TYPE);
+            device.setType(LaptopConstants.DEVICE_TYPE);
             enrolmentInfo.setOwner(APIUtil.getAuthenticatedUser());
             device.setEnrolmentInfo(enrolmentInfo);
             identifiersList.add(deviceIdentifier);
@@ -362,7 +364,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 }
 
                 try {
-                    added = laptopDAOImpl.updateDevice(deviceId,profileid);
+                    added = laptopDAOImpl.updateDevice(deviceId,profileid,tenantId);
                 } catch (DeviceTypeException e) {
                     added = false;
                     e.printStackTrace();
@@ -409,15 +411,15 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces("application/json")
-    public Response addNewDeviceProfile(@FormParam("profileid") String profileId, @FormParam("profilename") String profileName,
+    public Response addNewDeviceProfile(@FormParam("tenantid") String tenantId, @FormParam("profilename") String profileName,
                                         @FormParam("vender") String vender, @FormParam("cpu") String cpu,
                                         @FormParam("memory") String memory, @FormParam("os") String os,
                                         @FormParam("disk") String disk, @FormParam("other") String other) {
 
         boolean status = false;
-        if(profileId!=null) {
+        if(tenantId!=null) {
             deviceProfile deviceProfile = new deviceProfile();
-            deviceProfile.setProfileId(profileId);
+            deviceProfile.setTenantId(tenantId);
             deviceProfile.setProfileName(profileName);
             deviceProfile.setVender(vender);
             deviceProfile.setCpu(cpu);
@@ -463,16 +465,16 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String query = "meta_deviceType:linuxdevice AND meta_profileId:"+profileId+" AND meta_groupId:"+groupId +" AND meta_time : [" + from_date + " TO " + to_date + "]";
 
         String sensorTableName = null;
-        if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE1)){
-            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE1_EVENT_TABLE;
-        }else if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE2)){
-            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE2_EVENT_TABLE;
-        }else if(summaryType.equals(DeviceTypeConstants.SUMMARY_TYPE3)){
-            sensorTableName = DeviceTypeConstants.SUMMARY_TYPE3_EVENT_TABLE;
+        if(summaryType.equals(LaptopConstants.SUMMARY_TYPE1)){
+            sensorTableName = LaptopConstants.SUMMARY_TYPE1_EVENT_TABLE;
+        }else if(summaryType.equals(LaptopConstants.SUMMARY_TYPE2)){
+            sensorTableName = LaptopConstants.SUMMARY_TYPE2_EVENT_TABLE;
+        }else if(summaryType.equals(LaptopConstants.SUMMARY_TYPE3)){
+            sensorTableName = LaptopConstants.SUMMARY_TYPE3_EVENT_TABLE;
         }
         try {
 //            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-//                    DeviceTypeConstants.DEVICE_TYPE))) {
+//                    LaptopConstants.DEVICE_TYPE))) {
 //                return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
 //            }
             if (sensorTableName != null) {
@@ -490,7 +492,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
-    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,String groupId)
+    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,String groupId,String tenantId)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {
         //create new device id
@@ -500,20 +502,20 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                     .getRealmConfiguration().getAdminUserName();
             applicationUsername = applicationUsername + "@" + APIUtil.getAuthenticatedUserTenantDomain();
             APIManagementProviderService apiManagementProviderService = APIUtil.getAPIManagementProviderService();
-            String[] tags = {DeviceTypeConstants.DEVICE_TYPE};
+            String[] tags = {LaptopConstants.DEVICE_TYPE};
             apiApplicationKey = apiManagementProviderService.generateAndRetrieveApplicationKeys(
-                    DeviceTypeConstants.DEVICE_TYPE, tags, KEY_TYPE, applicationUsername, true,
+                    LaptopConstants.DEVICE_TYPE, tags, KEY_TYPE, applicationUsername, true,
                     "3600");
         }
         JWTClient jwtClient = APIUtil.getJWTClientManagerService().getJWTClient();
-        String scopes = "device_type_" + DeviceTypeConstants.DEVICE_TYPE + " device_" + deviceId;
+        String scopes = "device_type_" + LaptopConstants.DEVICE_TYPE + " device_" + deviceId;
         AccessTokenInfo accessTokenInfo = jwtClient.getAccessToken(apiApplicationKey.getConsumerKey(),
                 apiApplicationKey.getConsumerSecret(), owner + "@" + APIUtil.getAuthenticatedUserTenantDomain(), scopes);
 
         //create token
         String accessToken = accessTokenInfo.getAccessToken();
         String refreshToken = accessTokenInfo.getRefreshToken();
-        boolean status = register(deviceId, deviceName,profileId,groupId);
+        boolean status = register(deviceId, deviceName,profileId,groupId,tenantId);
 
 
         if (!status) {

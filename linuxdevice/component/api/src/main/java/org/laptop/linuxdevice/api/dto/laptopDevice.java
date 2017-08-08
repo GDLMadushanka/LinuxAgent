@@ -5,6 +5,7 @@ package org.laptop.linuxdevice.api.dto;
  */
 public class laptopDevice {
     private String deviceId;
+    private String tenantId;
     private String deviceName;
     private String profileId;
 
@@ -32,6 +33,11 @@ public class laptopDevice {
         this.profileId = profileId;
     }
 
+    public String getTenantId() {
+        return tenantId;
+    }
 
-
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
 }

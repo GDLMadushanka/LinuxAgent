@@ -145,7 +145,7 @@ public interface DeviceTypeService {
                     })
             }
     )
-    Response downloadSketch(@QueryParam("deviceName") String deviceName, @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName,@QueryParam("name") String GroupName);
+    Response downloadSketch(@QueryParam("deviceName") String deviceName, @QueryParam("sketchType") String sketchType,@QueryParam("profileName") String profileName,@QueryParam("name") String GroupName,@QueryParam("name") String profileId);
 
     /**
      * To download device type agent source code as zip file

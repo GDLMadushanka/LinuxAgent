@@ -85,6 +85,15 @@ public class LaptopConstants {
     public static final String CLEAR_SESSION_PROPERTY_KEY = "clearSession";
     public static final String TOPIC = "topic";
 
+    public final static String SUMMARY_TYPE1 = "1HR";
+    public final static String SUMMARY_TYPE2 = "2HR";
+    public final static String SUMMARY_TYPE3 = "4HR";
+
+    public static final String SUMMARY_TYPE1_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP1HRSUMMARY";
+    public static final String SUMMARY_TYPE2_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP2HRSUMMARY";
+    public static final String SUMMARY_TYPE3_EVENT_TABLE = "IOT_PER_DEVICE_STREAM_LAPTOP_LAPTOP4HRSUMMARY";
+
+
     public static final String MQTT_CONFIG_LOCATION = CarbonUtils.getEtcCarbonConfigDirPath() + File.separator
             + "mqtt.properties";
 }

@@ -4,7 +4,7 @@ package org.laptop.linuxdevice.api.dto;
  * Created by lahiru on 7/6/17.
  */
 public class deviceProfile {
-    private String profileId;
+    private String tenantId;
     private String profileName;
     private String vender;
     private String cpu;
@@ -13,12 +13,10 @@ public class deviceProfile {
     private String os;
     private String other;
 
-    public String getProfileId() {
-        return profileId;
-    }
+    public String getTenantId() {return tenantId;}
 
-    public void setProfileId(String profileId) {
-        this.profileId = profileId;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     public String getProfileName() {

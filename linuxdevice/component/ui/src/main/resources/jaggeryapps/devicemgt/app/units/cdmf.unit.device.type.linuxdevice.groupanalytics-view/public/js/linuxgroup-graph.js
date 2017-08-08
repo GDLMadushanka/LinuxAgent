@@ -187,8 +187,8 @@ var persist_diskusage = []
         window.myLine = new Chart(mainChart).Line(lineChartData, {
             responsive: true,
             scaleOverride : true,
-            scaleSteps : 20,
-            scaleStepWidth : 5,
+            scaleSteps : 10,
+            scaleStepWidth : 10,
             scaleStartValue : 0,
             options: {
                 scales: {

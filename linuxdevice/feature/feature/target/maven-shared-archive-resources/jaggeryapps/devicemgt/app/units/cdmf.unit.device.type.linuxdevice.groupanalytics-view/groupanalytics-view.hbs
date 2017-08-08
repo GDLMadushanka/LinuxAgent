@@ -18,133 +18,176 @@
 
 {{#zone "topCss"}}
     {{css "css/styles.css"}}
-    {{css "css/bootstrap.min.css"}}
+
 {{/zone}}
 
+<span id="laptop-details" data-websocketurl="{{socketEndpoint}}"></span>
+
 <div class="row">
-    <div class="col-lg-2 col-sm-offset-5">
-        <div class="form-group">
-            <label>Device Profile</label>
-            <select id="profileName" name="profileName">
-                {{#each profileTypes}}
-                    <option value="{{profileId}}">{{profileName}}</option>
-                {{/each}}
-            </select>
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1">
+                <label>Device Groups</label>
+                <select id="groupName" name="groupName" class="form-control">
+                    {{#each groupNames}}
+                        <option value="{{groupId}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-lg-5">
+                <label>Device Profile</label>
+                <select id="profileName" name="profileName" class="form-control">
+                    {{#each profileTypes}}
+                        <option value="{{profileId}}">{{profileName}}</option>
+                    {{/each}}
+                </select>
+            </div>
         </div>
     </div>
 </div>
 <br/>
 
-<div class="col-sm-11 col-sm-offset-1 col-lg-11 col-lg-offset-1 main">
+<div class="col-lg-12 main">
 
-    <div class="row">
-        <div class="col-xs-6 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body easypiechart-panel">
-                    <h4>Avg RAM usage</h4>
-                    <div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body easypiechart-panel">
-                    <h4>Avg battery level</h4>
-                    <div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body easypiechart-panel">
-                    <h4>Avg disk usage</h4>
-                    <div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body easypiechart-panel">
-                    <h4>Avg CPU usage</h4>
-                    <div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
-                    </div>
-                </div>
+    <div class="col-lg-3"><!--realtime analytics-->
+
+        <div class="row">
+
+            <div class="alert alert-success">
+                <strong>Realtime results</strong> <span id="showSearchTerm"></span>
             </div>
         </div>
 
-    </div><!--/.row-->
 
-    <div class="row">
-        <div class="btn-group" style="margin: 0 auto;display:table">
-            <button type="button" class="btn btn-primary">Last 1hr</button>
-            <button type="button" class="btn btn-primary">Last 2hrs</button>
-            <button type="button" class="btn btn-primary">Last 4hrs</button>
+        <div class="row">
+            <div class="col-lg-6" style="background-color:#D8DCE8">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Avg RAM usage</h4>
+                        <div class="easypiechart" id="easypiechart-blue" data-percent="50" ><span class="percent">50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" style="background-color:#D3D5DB">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Avg battery level</h4>
+                        <div class="easypiechart" id="easypiechart-orange" data-percent="50" ><span class="percent">50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-6" style="background-color:#D3D5DB">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Avg disk usage</h4>
+                        <div class="easypiechart" id="easypiechart-teal" data-percent="50" ><span class="percent">50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" style="background-color:#D8DCE8">
+                <div class="panel panel-default">
+                    <div class="panel-body easypiechart-panel">
+                        <h4>Avg CPU usage</h4>
+                        <div class="easypiechart" id="easypiechart-red" data-percent="50" ><span class="percent">50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <br/>
+    <div class="col-lg-7"><!--batch analytics graphs-->
 
+        <div class="row">
 
+            <div class="alert alert-info">
+                <strong>Historical results</strong> <span id="showSearchTerm"></span>
+            </div>
+        </div>
 
-    <div class="row">
+        <div class="row">
+            <div class="btn-group" style="margin: 0 auto;display:table">
+                <button type="button" class="btn btn-primary" onclick="setCurrentTimeSlot('1HR')">Last 1hr</button>
+                <button type="button" class="btn btn-primary" onclick="setCurrentTimeSlot('2HR')">Last 2hrs</button>
+                <button type="button" class="btn btn-primary" onclick="setCurrentTimeSlot('4HR')">Last 4hrs</button>
+            </div>
+        </div>
+        <br/>
 
-        <div class="col-xs-12 col-md-6 col-lg-3 col-lg-offset-3">
+        <div class="row text-center" >
+
+            <a href="#" class="btn btn-success btn-lg" onclick="setCurrentSensor('memoryusage')">
+                <span class="glyphicon glyphicon-cog"></span> RAM
+            </a>
+            <a href="#" class="btn btn-success btn-lg" onclick="setCurrentSensor('diskusage')">
+                <span class="glyphicon glyphicon-hdd"></span> Disk
+            </a>
+            <a href="#" class="btn btn-success btn-lg" onclick="setCurrentSensor('cpuusage')">
+                <span class="glyphicon glyphicon-dashboard"></span> CPU
+            </a>
+            <a href="#" class="btn btn-success btn-lg" onclick="setCurrentSensor('batterypercentage')">
+                <span class="glyphicon glyphicon-signal"></span> Battery %
+            </a>
+            <a href="#" class="btn btn-success btn-lg" onclick="setCurrentSensor('batterypluggedin')">
+                <span class="glyphicon glyphicon-flash"></span> Battery power
+            </a>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="canvas-wrapper" id="graphContainer">
+                            <canvas class="main-chart" id="line-chart" height="190" width="600" border="1px solid black"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="row">
+
+            <div class="alert alert-success">
+                <strong>Accumulative results</strong> <span id="showSearchTerm"></span>
+            </div>
+        </div>
             <div class="panel panel-orange panel-widget">
                 <div class="row no-padding">
-                    <div class="col-sm-3 col-lg-5 widget-left">
+                    <div class="col-lg-8 col-lg-offset-2 widget-left">
                         <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
                     </div>
-                    <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">52 GB</div>
+                    <br/>
+                    <div class="col-lg-12 widget-right">
+                        <div class="large"><p id="uploads">52GB</p></div>
                         <div class="text-muted">Uploads</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-6 col-lg-3">
+            <br/>
             <div class="panel panel-teal panel-widget">
                 <div class="row no-padding">
-                    <div class="col-sm-3 col-lg-5 widget-left">
+                    <div class="col-lg-8 col-lg-offset-2 widget-left">
                         <svg class="glyph stroked download"><use xlink:href="#stroked-download"></use></svg>
                     </div>
-                    <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">24 GB</div>
+                    <br/>
+                    <div class="col-lg-12 widget-right">
+                        <div class="large"><p id="downloads">20GB</p></div>
                         <div class="text-muted">Downloads</div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div><!--/.row-->
-
-    <div class="row">
-        <button>RAM</button>
-        <button>MEMORY</button>
-        <button>CPU</button>
-
-    </div><!--/.row-->
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Site Traffic Overview</div>
-                <div class="panel-body">
-                    <div class="canvas-wrapper">
-                        <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/.row-->
 
 
+    </div>
 
-
-</div><!--/.row-->
-
-
+</div>
 
 
 

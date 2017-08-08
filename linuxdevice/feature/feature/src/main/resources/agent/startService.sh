@@ -43,29 +43,10 @@ for f in ./deviceConfig.properties; do
     break
 done
 
-#install mqtt dependency
-git clone git://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.python.git
-cd org.eclipse.paho.mqtt.python
-sudo python setup.py install
-
-sudo apt install python-pip
-sudo pip install paho-mqtt
-
 cd $currentDir
-
-#while true; do
-read -p "Whats the time-interval (in seconds) between successive Data-Pushes to the WSO2-DC (ex: '60' indicates 1 minute) > " input
-if [ $input -eq $input 2>/dev/null ]
-then
-   echo "Setting data-push interval to $input seconds."
-else
-   echo "Input needs to be an integer indicating the number seconds between successive data-pushes. 15 will be taken as default value"
-   $input=15
-fi
-#done
 cp deviceConfig.properties ./src
 chmod +x ./src/agent.py
-./src/agent.py -i $input
+./src/agent.py
 
 if [ $? -ne 0 ]; then
 	echo "Could not start the service..."

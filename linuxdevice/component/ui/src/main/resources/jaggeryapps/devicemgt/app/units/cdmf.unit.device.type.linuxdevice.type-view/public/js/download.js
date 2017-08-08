@@ -58,6 +58,7 @@ function hideAgentDownloadPopup() {
  */
 $(document).ready(function () {
 	attachEvents();
+
 });
 
 function attachEvents() {

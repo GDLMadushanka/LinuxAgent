@@ -2,28 +2,13 @@ package org.laptop.linuxdevice.api.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import org.laptop.linuxdevice.api.constants.LaptopConstants;
 import org.laptop.linuxdevice.api.dto.deviceProfile;
 import org.laptop.linuxdevice.api.exception.DeviceTypeException;
-import org.wso2.carbon.CarbonConstants;
-import org.wso2.carbon.context.PrivilegedCarbonContext;
-import org.wso2.carbon.device.mgt.common.Device;
-import org.wso2.carbon.device.mgt.common.group.mgt.DeviceGroup;
-import org.wso2.carbon.device.mgt.common.group.mgt.GroupAlreadyExistException;
-import org.wso2.carbon.device.mgt.common.group.mgt.GroupManagementException;
-import org.wso2.carbon.device.mgt.common.group.mgt.RoleDoesNotExistException;
-import org.wso2.carbon.device.mgt.core.service.GroupManagementProviderService;
-import org.wso2.carbon.user.api.Permission;
-import org.wso2.carbon.user.api.UserStoreException;
-import org.wso2.carbon.user.api.UserStoreManager;
-import org.laptop.linuxdevice.api.util.APIUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,7 +23,7 @@ public class LaptopDAOImpl {
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
         try {
-            conn = LaptopDAO.getConnection();
+            conn = org.laptop.linuxdevice.api.dao.LaptopDAO.getConnection();
             String selectDBQuery =
                     "SELECT * FROM LINUXDEVICE_PROFILES";
             stmt = conn.prepareStatement(selectDBQuery);
@@ -46,7 +31,7 @@ public class LaptopDAOImpl {
 
             while (resultSet.next()) {
                 deviceProfile profile = new deviceProfile();
-                profile.setProfileId(resultSet.getString("LINUXDEVICE_PROFILE_ID"));
+                profile.setTenantId(resultSet.getString("TENANT_ID"));
                 profile.setCpu(resultSet.getString("CPU"));
                 profile.setDisk(resultSet.getString("DISK"));
                 profile.setMemory(resultSet.getString("MEMORY"));
@@ -82,7 +67,7 @@ public class LaptopDAOImpl {
             resultSet = stmt.executeQuery();
 
             if (resultSet.next()) {
-                profile.setProfileId(resultSet.getString("LINUXDEVICE_PROFILE_ID"));
+                profile.setTenantId(resultSet.getString("TENANT_ID"));
                 profile.setCpu(resultSet.getString("CPU"));
                 profile.setDisk(resultSet.getString("DISK"));
                 profile.setMemory(resultSet.getString("MEMORY"));
@@ -108,9 +93,9 @@ public class LaptopDAOImpl {
         boolean status = false;
         try {
             conn = LaptopDAO.getConnection();
-            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_PROFILES (linuxdevice_PROFILE_ID,PROFILE_NAME,VENDER,CPU,MEMORY,OS,DISK,OTHER) VALUES (?,?,?,?,?,?,?,?)";
+            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_PROFILES (TENANT_ID,PROFILE_NAME,VENDER,CPU,MEMORY,OS,DISK,OTHER) VALUES (?,?,?,?,?,?,?,?)";
             stmt = conn.prepareStatement(updateDeviceQuery);
-            stmt.setString(1,profile.getProfileId());
+            stmt.setString(1,profile.getTenantId());
             stmt.setString(2,profile.getProfileName());
             stmt.setString(3,profile.getVender());
             stmt.setString(4,profile.getCpu());
@@ -131,16 +116,17 @@ public class LaptopDAOImpl {
         return status;
     }
 
-    public boolean updateDevice(String deviceId,String profileId) throws DeviceTypeException {
+    public boolean updateDevice(String deviceId,String profileId,String tenantId) throws DeviceTypeException {
         Connection conn = null;
         PreparedStatement stmt = null;
         boolean status = false;
         try {
             conn = LaptopDAO.getConnection();
-            String updateDeviceQuery = "UPDATE LINUXDEVICE_DEVICE SET PROFILE_ID = ? WHERE LINUXDEVICE_DEVICE_ID  = ?";
+            String updateDeviceQuery = "UPDATE LINUXDEVICE_DEVICE SET PROFILE_ID = ? TENANT_ID = ? WHERE LINUXDEVICE_DEVICE_ID  = ?";
             stmt = conn.prepareStatement(updateDeviceQuery);
             stmt.setString(1,profileId);
-            stmt.setString(2,deviceId);
+            stmt.setString(2,tenantId);
+            stmt.setString(3,deviceId);
             stmt.executeUpdate();
             if(!conn.getAutoCommit()) {
                 conn.commit();

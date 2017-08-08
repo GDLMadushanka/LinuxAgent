@@ -38,7 +38,8 @@
     <div id="download-device-modal-content" class="hide">
         <div class="modal-content">
             <div class="row">
-                <div class="col-md-7  center-container">
+                <div class="col-md-1"></div>
+                <div class="col-md-8  center-container">
                     <h3>Name your device and download the agent from following link.</h3>
                     <br/>
                     <form id="downloadForm" method="GET"
@@ -53,17 +54,23 @@
                                        type="text"
                                        placeholder="Ex. Lobby_Device"
                                        name="deviceName" size="60" required>
-                                <select id="profileId" name="profileId">
-                                    {{#each profileTypes}}
-                                        <option value="{{profileId}}">{{profileName}}</option>
-                                    {{/each}}
-                                </select>
-                                </br>
-                                <select id="groupId" name="groupId">
-                                    {{#each deviceGroups}}
-                                        <option value="{{groupId}}">{{name}}</option>
-                                    {{/each}}
-                                </select>
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select id="profileId" name="profileId" class="form-control">
+                                        {{#each profileTypes}}
+                                            <option value="{{profileId}}">{{profileName}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="groupId" name="groupId" class="form-control">
+                                        {{#each deviceGroups}}
+                                            <option value="{{groupId}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
                             </div>
 
 
@@ -81,6 +88,8 @@
                             </a>
 
                         </div>
+                        <br/>
+                        <br/>
                     </form>
                 </div>
             </div>
