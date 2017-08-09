@@ -17,7 +17,7 @@
  * under the License.
  */
 var groupId =1;
-var profileId ="profileid1";
+var profileId ="Lenovo16GB";
 var currentSummaryTime = "1HR";
 var currentSensorName ="memoryusage";
 var timeFormat = 'hh:mm';

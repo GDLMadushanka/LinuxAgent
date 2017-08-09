@@ -116,17 +116,18 @@ public class LaptopDAOImpl {
         return status;
     }
 
-    public boolean updateDevice(String deviceId,String profileId,String tenantId) throws DeviceTypeException {
+    public boolean updateDevice(String deviceId,String name,String profileId,String tenantId) throws DeviceTypeException {
         Connection conn = null;
         PreparedStatement stmt = null;
         boolean status = false;
         try {
             conn = LaptopDAO.getConnection();
-            String updateDeviceQuery = "UPDATE LINUXDEVICE_DEVICE SET PROFILE_ID = ? TENANT_ID = ? WHERE LINUXDEVICE_DEVICE_ID  = ?";
+            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_DEVICE (LINUXDEVICE_DEVICE_ID,DEVICE_NAME,PROFILE_ID,TENANT_ID) VALUES (?,?,?,?)";
             stmt = conn.prepareStatement(updateDeviceQuery);
-            stmt.setString(1,profileId);
-            stmt.setString(2,tenantId);
-            stmt.setString(3,deviceId);
+            stmt.setString(1,deviceId);
+            stmt.setString(2,name);
+            stmt.setString(3,profileId);
+            stmt.setString(4,tenantId);
             stmt.executeUpdate();
             if(!conn.getAutoCommit()) {
                 conn.commit();

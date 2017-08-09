@@ -20,7 +20,7 @@ var modalPopup = ".modal";
 var modalPopupContainer = modalPopup + " .modal-content";
 var modalPopupContent = modalPopup + " .modal-content";
 var body = "body";
-
+var tenantid =0;
 /*
  * Set popup maximum height function.
  */

@@ -1,3 +1,4 @@
+
 <div class="col-lg-12  margin-top-double">
     <h1 class="grey "></h1>
     <hr>
@@ -59,7 +60,7 @@
                                 <div class="col-md-6">
                                     <select id="profileId" name="profileId" class="form-control">
                                         {{#each profileTypes}}
-                                            <option value="{{profileId}}">{{profileName}}</option>
+                                            <option value="{{profileName}}">{{profileName}}</option>
                                         {{/each}}
                                     </select>
                                 </div>
@@ -72,13 +73,12 @@
                                 </div>
                             </div>
                             </div>
-
-
                                 <br/>
                                 <input type="hidden" class="deviceType" name="deviceType"
                                        value="linuxdevice"/>
                                 <input type="hidden" class="sketchType" name="sketchType"
                                        value="linuxdevice"/>
+
                         </div>
                         <div class="buttons" style="padding-bottom: 0px">
                             <a class="btn btn-operations" onclick="downloadAgent()">Download Now</a>

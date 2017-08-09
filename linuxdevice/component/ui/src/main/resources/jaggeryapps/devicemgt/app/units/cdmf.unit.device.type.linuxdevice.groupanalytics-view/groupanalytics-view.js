@@ -29,12 +29,17 @@ function onRequest(context) {
 	var groupId = request.getParameter("groupId");
     var deviceName = request.getParameter("deviceName");
 
+    var user = userModule.getCarbonUser();
+    var tenantId = user.tenantId;
+
     viewModel["profileTypes"] = [];
     viewModel["groupNames"]=[]
     serviceInvokers.XMLHttp.get(
         profilesUrl, function (responsePayload) {
             //new Log().info(responsePayload.responseText);
-            viewModel["profileTypes"] = JSON.parse(responsePayload.responseText);
+            var profileTypes = JSON.parse(responsePayload.responseText);
+            var tenantProfiles = profileTypes.filter( function(item){return (item.tenantId==tenantId);} );
+            viewModel["profileTypes"] = tenantProfiles;
         },
         function (responsePayload) {
             new Log().error(responsePayload);
@@ -56,6 +61,8 @@ function onRequest(context) {
     var websocketEndpoint = devicemgtProps["wssURL"].replace("https", "wss");
     // This need to be changed properly (with authentication)
     viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
+    log.info(viewModel);
     return viewModel;
+
 
 }

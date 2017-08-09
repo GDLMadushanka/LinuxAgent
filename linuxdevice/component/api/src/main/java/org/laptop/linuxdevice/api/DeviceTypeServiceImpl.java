@@ -295,9 +295,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     public Response downloadSketch(@QueryParam("deviceName") String deviceName,
                                    @QueryParam("sketchType") String sketchType,
                                    @QueryParam("profileId") String profileId,
-                                   @QueryParam("groupId") String groupId,
-                                   @QueryParam("tenantId") String tenantId) {
+                                   @QueryParam("groupId") String groupId) {
         try {
+            String tenantId = Integer.toString(PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId(true));
             ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,groupId,tenantId);
             Response.ResponseBuilder response = Response.ok(FileUtils.readFileToByteArray(zipFile.getZipFile()));
             response.status(Response.Status.OK);
@@ -364,7 +364,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 }
 
                 try {
-                    added = laptopDAOImpl.updateDevice(deviceId,profileid,tenantId);
+                    added = laptopDAOImpl.updateDevice(deviceId,name,profileid,tenantId);
                 } catch (DeviceTypeException e) {
                     added = false;
                     e.printStackTrace();

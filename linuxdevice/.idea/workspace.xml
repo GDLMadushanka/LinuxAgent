@@ -20,35 +20,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DeviceTypeServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeviceTypeServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="298" column="77" lean-forward="true" selection-start-line="298" selection-start-column="77" selection-end-line="298" selection-end-column="77" />
+            <state relative-caret-position="466">
+              <caret line="301" column="113" lean-forward="false" selection-start-line="301" selection-start-column="113" selection-end-line="301" selection-end-column="113" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#19765#19780#0" expanded="true" />
-                <element signature="e#20351#20359#0" expanded="true" />
+                <element signature="e#19815#19830#0" expanded="true" />
+                <element signature="e#20401#20409#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="h2.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql">
+      <file leaf-file-name="DeviceManagementProviderServiceImpl.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.device.mgt.core/3.0.60-SNAPSHOT/org.wso2.carbon.device.mgt.core-3.0.60-SNAPSHOT.jar!/org/wso2/carbon/device/mgt/core/service/DeviceManagementProviderServiceImpl.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="p2.inf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/p2.inf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="26" column="94" lean-forward="false" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
+            <state relative-caret-position="189">
+              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,7 +47,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3038">
+            <state relative-caret-position="7580">
               <caret line="379" column="57" lean-forward="false" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
               <folding />
             </state>
@@ -67,18 +57,18 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
+            <state relative-caret-position="940">
               <caret line="47" column="11" lean-forward="false" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceTypeService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DeviceTypeService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="147" column="236" lean-forward="false" selection-start-line="147" selection-start-column="236" selection-end-line="147" selection-end-column="236" />
+            <state relative-caret-position="196">
+              <caret line="147" column="199" lean-forward="false" selection-start-line="147" selection-start-column="199" selection-end-line="147" selection-end-column="199" />
               <folding />
             </state>
           </provider>
@@ -87,16 +77,35 @@
       <file leaf-file-name="LaptopDAOImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+            <state relative-caret-position="66">
+              <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1502183525715" expanded="true" signature="966:1000" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
-                <marker date="1502183525715" expanded="true" signature="2512:2569" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
-                <marker date="1502183525715" expanded="true" signature="3940:4055" ph="INSERT INTO LINUXDEVICE_PROFILES" />
-                <marker date="1502183525715" expanded="true" signature="5149:5240" ph="UPDATE LINUX... " />
-                <marker date="1502183525715" expanded="true" signature="6255:6308" ph="SELECT * FRO... LINUXDEVICE_DEVICE" />
+                <marker date="1502250035267" expanded="true" signature="966:1000" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
+                <marker date="1502250035267" expanded="true" signature="2512:2569" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
+                <marker date="1502250035267" expanded="true" signature="3940:4055" ph="INSERT INTO LINUXDEVICE_PROFILES" />
+                <marker date="1502250035267" expanded="true" signature="5161:5266" ph="INSERT INTO LINUXDEVICE_D" />
+                <marker date="1502250035267" expanded="true" signature="6317:6370" ph="SELECT * FRO... LINUXDEVICE_DEVICE" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LaptopDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="h2.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,36 +122,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>share w</find>
-      <find>share wit</find>
-      <find>share wi</find>
-      <find>o</find>
-      <find>otherr</find>
-      <find>other</find>
-      <find>othert</find>
-      <find>otherte</find>
-      <find>other tea</find>
-      <find>other te</find>
-      <find>invokerutil</find>
-      <find>profileId</find>
-      <find>$('#downloadForm').submit();</find>
-      <find>de</find>
-      <find>device</find>
-      <find>devicem</find>
-      <find>devicemgt</find>
-      <find>devicemgt/</find>
-      <find>devicemgt/de</find>
-      <find>devicemgt/devi</find>
-      <find>devicemgt/devic</find>
       <find>devicemgt/device</find>
       <find>devicemgt/devices</find>
       <find>linuxdevice_DEVICE</find>
-      <find>plugin</find>
-      <find>update</find>
       <find>DeviceTypeConstants</find>
-      <find>LINUXDEVICE_DEVICE</find>
-      <find>downloadSketch</find>
       <find>downloadsk</find>
+      <find>plugin</find>
+      <find>downloadSketch</find>
+      <find>g</find>
+      <find>gert</find>
+      <find>ger</find>
+      <find>get</find>
+      <find>geta</find>
+      <find>getallg</find>
+      <find>getallgro</find>
+      <find>getallgrou</find>
+      <find>getallgroup</find>
+      <find>getallgroups</find>
+      <find>u</find>
+      <find>update</find>
+      <find>update i</find>
+      <find>update</find>
+      <find>update li</find>
+      <find>update lin</find>
+      <find>update linu</find>
+      <find>update linux</find>
+      <find>LINUXDEVICE_DEVICE</find>
+      <find>re</find>
+      <find>regi</find>
+      <find>regist</find>
+      <find>register</find>
     </findStrings>
     <replaceStrings>
       <replace>sensor1</replace>
@@ -208,13 +217,13 @@
         <option value="$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.groupanalytics-view/public/js/linuxgroup-graph.js" />
         <option value="$PROJECT_DIR$/component/ui/src/main/resources/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.type-view/public/js/download.js" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dto/laptopDevice.java" />
         <option value="$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/dao/impl/DeviceTypeDAOImpl.java" />
         <option value="$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/DeviceTypeManager.java" />
         <option value="$PROJECT_DIR$/component/pom.xml" />
-        <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/constants/LaptopConstants.java" />
+        <option value="$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql" />
+        <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java" />
         <option value="$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java" />
       </list>
@@ -235,10 +244,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="53" />
-    <option name="y" value="70" />
-    <option name="width" value="1867" />
-    <option name="height" value="998" />
+    <option name="x" value="52" />
+    <option name="width" value="1869" />
+    <option name="height" value="1081" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -258,9 +266,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -315,7 +320,141 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="units" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="linuxdevice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -419,14 +558,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../iot/RC4/wso2iot-3.1.0-SNAPSHOT/repository/deployment/server/jaggeryapps/devicemgt" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="p2.inf&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;h2&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;h2.s&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;p2&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.in&#9;FILE&#9;file:///home/lahiru/Documents/WSO2Laptop/linuxdevice/feature/feature/src/main/resources/p2.inf" />
+    <property name="SearchEverywhereHistoryKey" value="h2&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;p2.inf&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;h2.s&#9;FILE&#9;file:///home/lahiru/Documents/LaptopDeviceType/linuxdevice/feature/feature/src/main/resources/dbscripts/h2.sql&#10;p2&#9;FILE&#9;file:///home/lahiru/Documents/laptopPack/wso2iot-3.1.0-SNAPSHOT/samples/linuxdevice/feature/feature/src/main/resources/p2.inf&#10;p2.in&#9;FILE&#9;file:///home/lahiru/Documents/WSO2Laptop/linuxdevice/feature/feature/src/main/resources/p2.inf" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -1110,16 +1252,18 @@
       <workItem from="1501219120588" duration="3478000" />
       <workItem from="1501482515997" duration="653000" />
       <workItem from="1502161473012" duration="4018000" />
-      <workItem from="1502175912752" duration="7911000" />
+      <workItem from="1502175912752" duration="9777000" />
+      <workItem from="1502196816126" duration="605000" />
+      <workItem from="1502232053825" duration="657000" />
+      <workItem from="1502245356770" duration="8544000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="395097000" />
+    <option name="totallyTimeSpent" value="406769000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="70" width="1867" height="998" extended-state="0" />
-    <editor active="true" />
+    <frame x="52" y="0" width="1869" height="1081" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1135,8 +1279,8 @@
       <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27177334" sideWeight="0.49598286" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25445026" sideWeight="0.49598286" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1144,11 +1288,11 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27637616" sideWeight="0.49812534" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21330401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2670157" sideWeight="0.49812534" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23119165" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24655963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24553572" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1158,44 +1302,6 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24763903" sideWeight="0.5040171" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2553542" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27177334" sideWeight="0.49598286" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27637616" sideWeight="0.49812534" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21330401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24655963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1236,11 +1342,35 @@
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java</url>
+          <line>120</line>
+          <properties />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java</url>
+          <line>336</line>
+          <properties />
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java</url>
+          <line>366</line>
+          <properties />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java</url>
+          <line>300</line>
+          <properties />
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="71" />
+      <option name="time" value="76" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
@@ -1392,7 +1522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-400">
           <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1442,7 +1571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1450,7 +1578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="60" column="16" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1458,7 +1585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1466,15 +1592,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-22">
           <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1482,31 +1599,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/dao/DeviceTypeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-900">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/dao/DeviceTypeDAO.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.device.mgt.common/3.0.60-SNAPSHOT/org.wso2.carbon.device.mgt.common-3.0.60-SNAPSHOT.jar!/org/wso2/carbon/device/mgt/common/Device.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="76" column="11" lean-forward="false" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.device.mgt.core/3.0.60-SNAPSHOT/org.wso2.carbon.device.mgt.core-3.0.60-SNAPSHOT.jar!/org/wso2/carbon/device/mgt/core/service/DeviceManagementProviderServiceImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="140" column="19" lean-forward="false" selection-start-line="140" selection-start-column="19" selection-end-line="140" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1514,53 +1614,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="125" column="12" lean-forward="false" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/dao/impl/DeviceTypeDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="78" column="24" lean-forward="false" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/DeviceTypeManagerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/DeviceTypeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-440">
-          <caret line="83" column="21" lean-forward="false" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/internal/ServiceComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="45" column="35" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/feature/DeviceTypeFeatureManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/dao/impl/DeviceTypeDAOImpl.java" />
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/DeviceTypeManagerService.java" />
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/DeviceTypeManager.java" />
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/internal/ServiceComponent.java" />
+    <entry file="file://$PROJECT_DIR$/component/plugin/src/main/java/org/laptop/linuxdevice/plugin/impl/feature/DeviceTypeFeatureManager.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3038">
+        <state relative-caret-position="7580">
           <caret line="379" column="57" lean-forward="false" selection-start-line="379" selection-start-column="57" selection-end-line="379" selection-end-column="57" />
           <folding />
         </state>
@@ -1568,40 +1632,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
+        <state relative-caret-position="940">
           <caret line="47" column="11" lean-forward="false" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/p2.inf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" column="94" lean-forward="false" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="25" column="33" lean-forward="false" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1502183525715" expanded="true" signature="966:1000" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
-            <marker date="1502183525715" expanded="true" signature="2512:2569" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
-            <marker date="1502183525715" expanded="true" signature="3940:4055" ph="INSERT INTO LINUXDEVICE_PROFILES" />
-            <marker date="1502183525715" expanded="true" signature="5149:5240" ph="UPDATE LINUX... " />
-            <marker date="1502183525715" expanded="true" signature="6255:6308" ph="SELECT * FRO... LINUXDEVICE_DEVICE" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1609,7 +1642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1617,27 +1649,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/p2.inf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="26" column="94" lean-forward="false" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/feature/src/main/resources/dbscripts/h2.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="7" lean-forward="false" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java">
+    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="147" column="236" lean-forward="false" selection-start-line="147" selection-start-column="236" selection-end-line="147" selection-end-column="236" />
+        <state relative-caret-position="540">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/devicemgt/org.wso2.carbon.device.mgt.core/3.0.60-SNAPSHOT/org.wso2.carbon.device.mgt.core-3.0.60-SNAPSHOT.jar!/org/wso2/carbon/device/mgt/core/service/DeviceManagementProviderServiceImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/dao/LaptopDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding>
+            <marker date="1502250035267" expanded="true" signature="966:1000" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
+            <marker date="1502250035267" expanded="true" signature="2512:2569" ph="SELECT * FRO... LINUXDEVICE_PROFILES" />
+            <marker date="1502250035267" expanded="true" signature="3940:4055" ph="INSERT INTO LINUXDEVICE_PROFILES" />
+            <marker date="1502250035267" expanded="true" signature="5161:5266" ph="INSERT INTO LINUXDEVICE_D" />
+            <marker date="1502250035267" expanded="true" signature="6317:6370" ph="SELECT * FRO... LINUXDEVICE_DEVICE" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="298" column="77" lean-forward="true" selection-start-line="298" selection-start-column="77" selection-end-line="298" selection-end-column="77" />
+        <state relative-caret-position="466">
+          <caret line="301" column="113" lean-forward="false" selection-start-line="301" selection-start-column="113" selection-end-line="301" selection-end-column="113" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#19765#19780#0" expanded="true" />
-            <element signature="e#20351#20359#0" expanded="true" />
+            <element signature="e#19815#19830#0" expanded="true" />
+            <element signature="e#20401#20409#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/api/src/main/java/org/laptop/linuxdevice/api/DeviceTypeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="147" column="199" lean-forward="false" selection-start-line="147" selection-start-column="199" selection-end-line="147" selection-end-column="199" />
+          <folding />
         </state>
       </provider>
     </entry>
