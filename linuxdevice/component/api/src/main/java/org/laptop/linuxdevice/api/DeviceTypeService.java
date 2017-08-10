@@ -259,8 +259,7 @@ public interface DeviceTypeService {
     )
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces("application/json")
-    Response addNewDeviceProfile(@QueryParam("profileid") String profileId,
-                                 @QueryParam("profilename") String profileName,
+    Response addNewDeviceProfile(@QueryParam("profilename") String profileName,
                                  @QueryParam("vender") String vender,
                                  @QueryParam("cpu") String cpu,
                                  @QueryParam("memory") String memory,

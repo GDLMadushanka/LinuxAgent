@@ -411,11 +411,12 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces("application/json")
-    public Response addNewDeviceProfile(@FormParam("tenantid") String tenantId, @FormParam("profilename") String profileName,
+    public Response addNewDeviceProfile(@FormParam("profilename") String profileName,
                                         @FormParam("vender") String vender, @FormParam("cpu") String cpu,
                                         @FormParam("memory") String memory, @FormParam("os") String os,
                                         @FormParam("disk") String disk, @FormParam("other") String other) {
 
+        String tenantId = Integer.toString(PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId(true));
         boolean status = false;
         if(tenantId!=null) {
             deviceProfile deviceProfile = new deviceProfile();
