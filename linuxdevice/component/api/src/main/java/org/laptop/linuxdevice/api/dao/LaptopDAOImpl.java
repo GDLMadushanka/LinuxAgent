@@ -117,6 +117,7 @@ public class LaptopDAOImpl {
     }
 
     public boolean updateDevice(String deviceId,String name,String profileId,String tenantId) throws DeviceTypeException {
+        /*
         Connection conn = null;
         PreparedStatement stmt = null;
         boolean status = false;
@@ -139,7 +140,8 @@ public class LaptopDAOImpl {
             LaptopUtils.cleanupResources(stmt,null);
             LaptopDAO.closeConnection();
         }
-        return status;
+        return status;*/
+        return true;
     }
 
     public List<String> getMatchingDevicesForProfile(List<String> deviceIds,String profileId) throws DeviceTypeException {

@@ -20,117 +20,128 @@ var modalPopup = ".modal";
 var modalPopupContainer = modalPopup + " .modal-content";
 var modalPopupContent = modalPopup + " .modal-content";
 var body = "body";
-var tenantid =0;
+var tenantid = 0;
 /*
  * Set popup maximum height function.
  */
 function setPopupMaxHeight() {
-	$(modalPopupContent).css('max-height', ($(body).height() - ($(body).height() / 100 * 30)));
-	$(modalPopupContainer).css('margin-top', (-($(modalPopupContainer).height() / 2)));
+    $(modalPopupContent).css('max-height', ($(body).height() - ($(body).height() / 100 * 30)));
+    $(modalPopupContainer).css('margin-top', (-($(modalPopupContainer).height() / 2)));
 }
 
 /*
  * Shows agent download popup.
  */
 function showAgentDownloadPopup() {
-	$(modalPopup).modal('show');
-	setPopupMaxHeight();
-	var deviceType = "";
-	$('.deviceType').each(function () {
-		if (this.value != "") {
-			deviceType = this.value;
-		}
-	});
+    $(modalPopup).modal('show');
+    setPopupMaxHeight();
+    var deviceType = "";
+    $('.deviceType').each(function () {
+        if (this.value != "") {
+            deviceType = this.value;
+        }
+    });
 }
 
 /*
  * Hides agent download popup.
  */
 function hideAgentDownloadPopup() {
-	$('label[for=deviceName]').remove();
-	$('.control-group').removeClass('success').removeClass('error');
-	$(modalPopupContent).html('');
-	$(modalPopup).modal('hide');
+    $('label[for=deviceName]').remove();
+    $('.control-group').removeClass('success').removeClass('error');
+    $(modalPopupContent).html('');
+    $(modalPopup).modal('hide');
 }
 
 /*
  * DOM ready functions.
  */
 $(document).ready(function () {
-	attachEvents();
+    attachEvents();
 
 });
 
 function attachEvents() {
-	/**
-	 * Following click function would execute
-	 * when a user clicks on "Download" link
-	 * on Device Management page in WSO2 DC Console.
-	 */
-	$("a.download-link").click(function () {
-		var sketchType = $(this).data("sketchtype");
-		var deviceType = $(this).data("devicetype");
-		var downloadDeviceAPI = "/devicemgt/api/devices/sketch/generate_link";
-		var payload = {"sketchType": sketchType, "deviceType": deviceType};
-		$(modalPopupContent).html($('#download-device-modal-content').html());
-		showAgentDownloadPopup();
-	});
+    /**
+     * Following click function would execute
+     * when a user clicks on "Download" link
+     * on Device Management page in WSO2 DC Console.
+     */
+    $("a.download-link").click(function () {
+        var sketchType = $(this).data("sketchtype");
+        var deviceType = $(this).data("devicetype");
+        var downloadDeviceAPI = "/devicemgt/api/devices/sketch/generate_link";
+        var payload = {"sketchType": sketchType, "deviceType": deviceType};
+        $(modalPopupContent).html($('#download-device-modal-content').html());
+        showAgentDownloadPopup();
+    });
 }
 
 function downloadAgent() {
-	var deviceName;
-	$('.new-device-name').each(function () {
-		if (this.value != "") {
-			deviceName = this.value;
-		}
-	});
-	var deviceNameFormat = /^[^~?!#$:;%^*`+={}\[\]\\()|<>,'"]{1,30}$/;
-	if (deviceName && deviceName.length < 4) {
-		$("#invalid-username-error-msg span").text("Device name should be more than 3 letters!");
-		$("#invalid-username-error-msg").removeClass("hidden");
-	} else if (deviceName && deviceNameFormat.test(deviceName)) {
-		$('#downloadForm').submit();
-		hidePopup();
-		$(modalPopupContent).html($('#device-agent-downloading-content').html());
-		showPopup();
-		setTimeout(function () {
-			hidePopup();
-		}, 1000);
-	}else {
-		$("#invalid-username-error-msg span").text("Invalid device name");
-		$("#invalid-username-error-msg").removeClass("hidden");
-	}
+    var numGroups = $("#laptop-details").data("groupcount");
+    var numProfiles = $("#laptop-details").data("profilecount");
+    console.log(numGroups);
+    console.log(numProfiles);
+    console.log("sadfasdfdsafsafdsaf");
+    var deviceName;
+    $('.new-device-name').each(function () {
+        if (this.value != "") {
+            deviceName = this.value;
+        }
+    });
+    var deviceNameFormat = /^[^~?!#$:;%^*`+={}\[\]\\()|<>,'"]{1,30}$/;
+    if (deviceName && deviceName.length < 4) {
+        $("#invalid-username-error-msg span").text("Device name should be more than 3 letters!");
+        $("#invalid-username-error-msg").removeClass("hidden");
+    } else if (numProfiles==0) {
+        $("#invalid-username-error-msg span").text("Please add at-least one profile");
+        $("#invalid-username-error-msg").removeClass("hidden");
+    } else if (numGroups==0) {
+        $("#invalid-username-error-msg span").text("Please add at-least one group");
+        $("#invalid-username-error-msg").removeClass("hidden");
+    } else if (deviceName && deviceNameFormat.test(deviceName)) {
+        $('#downloadForm').submit();
+        hidePopup();
+        $(modalPopupContent).html($('#device-agent-downloading-content').html());
+        showPopup();
+        setTimeout(function () {
+            hidePopup();
+        }, 1000);
+    } else {
+        $("#invalid-username-error-msg span").text("Invalid device name");
+        $("#invalid-username-error-msg").removeClass("hidden");
+    }
 }
 
 function doAction(data) {
-	//if it is saml redirection response
-	if (data.status == null) {
-		document.write(data);
-	}
+    //if it is saml redirection response
+    if (data.status == null) {
+        document.write(data);
+    }
 
-	if (data.status == "200") {
-		$(modalPopupContent).html($('#download-device-modal-content-links').html());
-		$("input#download-device-url").val(data.responseText);
-		$("input#download-device-url").focus(function () {
-			$(this).select();
-		});
-		showAgentDownloadPopup();
-	} else if (data.status == "401") {
-		$(modalPopupContent).html($('#device-401-content').html());
-		$("#device-401-link").click(function () {
-			window.location = "/devicemgt/login";
-		});
-		showAgentDownloadPopup();
-	} else if (data == "403") {
-		$(modalPopupContent).html($('#device-403-content').html());
-		$("#device-403-link").click(function () {
-			window.location = "/devicemgt/login";
-		});
-		showAgentDownloadPopup();
-	} else {
-		$(modalPopupContent).html($('#device-unexpected-error-content').html());
-		$("a#device-unexpected-error-link").click(function () {
-			hideAgentDownloadPopup();
-		});
-	}
+    if (data.status == "200") {
+        $(modalPopupContent).html($('#download-device-modal-content-links').html());
+        $("input#download-device-url").val(data.responseText);
+        $("input#download-device-url").focus(function () {
+            $(this).select();
+        });
+        showAgentDownloadPopup();
+    } else if (data.status == "401") {
+        $(modalPopupContent).html($('#device-401-content').html());
+        $("#device-401-link").click(function () {
+            window.location = "/devicemgt/login";
+        });
+        showAgentDownloadPopup();
+    } else if (data == "403") {
+        $(modalPopupContent).html($('#device-403-content').html());
+        $("#device-403-link").click(function () {
+            window.location = "/devicemgt/login";
+        });
+        showAgentDownloadPopup();
+    } else {
+        $(modalPopupContent).html($('#device-unexpected-error-content').html());
+        $("a#device-unexpected-error-link").click(function () {
+            hideAgentDownloadPopup();
+        });
+    }
 }

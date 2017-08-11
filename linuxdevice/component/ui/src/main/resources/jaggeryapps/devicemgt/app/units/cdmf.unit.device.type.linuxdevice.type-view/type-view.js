@@ -20,7 +20,7 @@ function onRequest(context){
             var profileTypes = JSON.parse(responsePayload.responseText);
             var tenantProfiles = profileTypes.filter( function(item){return (item.tenantId==tenantId);} );
             viewModel["profileTypes"] = tenantProfiles;
-            //log.info(tenantProfiles);
+            viewModel["profileCount"] = tenantProfiles.length;
         },
         function (responsePayload) {
             new Log().error(responsePayload);
@@ -28,9 +28,9 @@ function onRequest(context){
     );
     serviceInvokers.XMLHttp.get(
         url2, function (responsePayload) {
-            //new Log().info(responsePayload.responseText);
-            viewModel["deviceGroups"] = JSON.parse(responsePayload.responseText);
-            //log.info(viewModel["deviceGroups"]);
+            var groups=JSON.parse(responsePayload.responseText);
+            viewModel["deviceGroups"] = groups;
+            viewModel["groupCount"] = groups.length;
         },
         function (responsePayload) {
             new Log().error(responsePayload);

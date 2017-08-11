@@ -22,7 +22,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.laptop.linuxdevice.api.constants.LaptopConstants;
 import org.laptop.linuxdevice.api.exception.DeviceTypeException;
-import org.laptop.linuxdevice.plugin.constants.DeviceTypeConstants;
 import org.wso2.carbon.base.ServerConfiguration;
 import org.wso2.carbon.core.util.Utils;
 
@@ -89,32 +88,32 @@ public class LaptopUtils {
     public static String replaceMqttProperty(String urlWithPlaceholders) {
         String MQTT_BROKER_HOST = null;
         String MQTT_PORT = null;
-        if(!DeviceTypeConstants.MQTT_BROKER_HOST.startsWith("$")){
-            MQTT_BROKER_HOST = "\\$".concat(DeviceTypeConstants.MQTT_BROKER_HOST);
+        if(!LaptopConstants.MQTT_BROKER_HOST.startsWith("$")){
+            MQTT_BROKER_HOST = "\\$".concat(LaptopConstants.MQTT_BROKER_HOST);
         }
-        if(!DeviceTypeConstants.MQTT_PORT.startsWith("$")){
-            MQTT_PORT = "\\$".concat(DeviceTypeConstants.MQTT_PORT);
+        if(!LaptopConstants.MQTT_PORT.startsWith("$")){
+            MQTT_PORT = "\\$".concat(LaptopConstants.MQTT_PORT);
         }
         urlWithPlaceholders = Utils.replaceSystemProperty(urlWithPlaceholders);
         urlWithPlaceholders = urlWithPlaceholders.replaceAll(MQTT_PORT, "" +
-                (DeviceTypeConstants.DEFAULT_MQTT_PORT + getPortOffset()));
+                (LaptopConstants.DEFAULT_MQTT_PORT + getPortOffset()));
         urlWithPlaceholders = urlWithPlaceholders.replaceAll(MQTT_BROKER_HOST,
-                System.getProperty(DeviceTypeConstants.DEFAULT_CARBON_LOCAL_IP_PROPERTY, "localhost"));
+                System.getProperty(LaptopConstants.DEFAULT_CARBON_LOCAL_IP_PROPERTY, "localhost"));
         return urlWithPlaceholders;
     }
 
     private static int getPortOffset() {
         ServerConfiguration carbonConfig = ServerConfiguration.getInstance();
         String portOffset = System.getProperty("portOffset", carbonConfig.getFirstProperty(
-                DeviceTypeConstants.CARBON_CONFIG_PORT_OFFSET));
+                LaptopConstants.CARBON_CONFIG_PORT_OFFSET));
         try {
             if ((portOffset != null)) {
                 return Integer.parseInt(portOffset.trim());
             } else {
-                return DeviceTypeConstants.CARBON_DEFAULT_PORT_OFFSET;
+                return LaptopConstants.CARBON_DEFAULT_PORT_OFFSET;
             }
         } catch (NumberFormatException e) {
-            return DeviceTypeConstants.CARBON_DEFAULT_PORT_OFFSET;
+            return LaptopConstants.CARBON_DEFAULT_PORT_OFFSET;
         }
     }
 

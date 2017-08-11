@@ -14,6 +14,8 @@ org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../r
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/database/,target:${installFolder}/../../../repository/database/,overwrite:true);\
 org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../repository/deployment/server/carbonapps/);\
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/carbonapps/,target:${installFolder}/../../../repository/deployment/server/carbonapps/,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/carbonapps/,target:${installFolder}/../../../repository/deployment/server/carbonapps/,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/devicetypes/,target:${installFolder}/../../../repository/deployment/server/devicetypes/,overwrite:true);\
 
 instructions.unconfigure = \
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/webapps/linuxdevice.war);\
@@ -25,3 +27,4 @@ org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.type-view);\
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.realtime.analytics-view);\
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/jaggeryapps/devicemgt/app/units/cdmf.unit.device.type.linuxdevice.analytics-view);\
+org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/devicetypes/linuxdevice.xml);\

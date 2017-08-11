@@ -350,6 +350,23 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             enrolmentInfo.setOwnership(EnrolmentInfo.OwnerShip.BYOD);
             device.setName(name);
             device.setType(LaptopConstants.DEVICE_TYPE);
+            List<Device.Property> propertiesList = new ArrayList<>();
+            Device.Property propTenantId = new Device.Property();
+            propTenantId.setName("TENANT_ID");
+            propTenantId.setValue(tenantId);
+
+            Device.Property propDeviceName = new Device.Property();
+            propDeviceName.setName("DEVICE_NAME");
+            propDeviceName.setValue(name);
+
+            Device.Property propProfileId = new Device.Property();
+            propProfileId.setName("PROFILE_ID");
+            propProfileId.setValue(profileid);
+            propertiesList.add(propTenantId);
+            propertiesList.add(propDeviceName);
+            propertiesList.add(propProfileId);
+            device.setProperties(propertiesList);
+
             enrolmentInfo.setOwner(APIUtil.getAuthenticatedUser());
             device.setEnrolmentInfo(enrolmentInfo);
             identifiersList.add(deviceIdentifier);
@@ -360,13 +377,6 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 } catch (GroupManagementException e) {
                     e.printStackTrace();
                 } catch (DeviceNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    added = laptopDAOImpl.updateDevice(deviceId,name,profileid,tenantId);
-                } catch (DeviceTypeException e) {
-                    added = false;
                     e.printStackTrace();
                 }
             }
