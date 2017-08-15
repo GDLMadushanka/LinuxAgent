@@ -60,7 +60,12 @@ function onRequest(context) {
     var constants = require("/app/modules/constants.js");
     var websocketEndpoint = devicemgtProps["wssURL"].replace("https", "wss");
     // This need to be changed properly (with authentication)
-    viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
+    if(user.domain=="carbon.super") {
+        viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
+    } else {
+        viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/"+"t/"+user.domain+"/laptop1hrsummary_publisher";
+    }
+
     log.info(viewModel);
     return viewModel;
 

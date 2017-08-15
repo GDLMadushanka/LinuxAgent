@@ -54,7 +54,7 @@
         <div class="row">
 
             <div class="alert alert-success">
-                <strong>Realtime results</strong> <span id="showSearchTerm"></span>
+                <strong style="font-size: larger">Realtime Results</strong> <span id="showSearchTerm"></span>
             </div>
         </div>
 
@@ -106,7 +106,7 @@
         <div class="row">
 
             <div class="alert alert-info">
-                <strong>Historical results</strong> <span id="showSearchTerm"></span>
+                <strong style="font-size: larger">Historical Results</strong> <span id="showSearchTerm"></span>
             </div>
         </div>
 
@@ -153,45 +153,43 @@
     </div>
     <div class="col-lg-2">
         <div class="row">
-
             <div class="alert alert-success">
-                <strong>Accumulative results</strong> <span id="showSearchTerm"></span>
+                <strong style="font-size: larger">Cumulative Results</strong> <span id="showSearchTerm"></span>
             </div>
         </div>
-            <div class="panel panel-orange panel-widget">
-                <div class="row no-padding">
-                    <div class="col-lg-8 col-lg-offset-2 widget-left">
-                        <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
+        <div class="panel panel-orange panel-widget">
+            <div class="row no-padding">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="widget-left">
+                            <svg class="glyph stroked upload"><use xlink:href="#stroked-upload"/></svg>
+                        </div>
                     </div>
-                    <br/>
-                    <div class="col-lg-12 widget-right">
-                        <div class="large"><p id="uploads">52GB</p></div>
+                    <div class="col-lg-7">
                         <div class="text-muted">Uploads</div>
+                        <div class="large"><p id="uploads">00GB</p></div>
                     </div>
                 </div>
             </div>
-            <br/>
-            <div class="panel panel-teal panel-widget">
-                <div class="row no-padding">
-                    <div class="col-lg-8 col-lg-offset-2 widget-left">
-                        <svg class="glyph stroked download"><use xlink:href="#stroked-download"></use></svg>
+        </div>
+        <br/>
+        <div class="panel panel-teal panel-widget">
+            <div class="row no-padding">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="widget-left">
+                            <svg class="glyph stroked upload"><use xlink:href="#stroked-download"/></svg>
+                        </div>
                     </div>
-                    <br/>
-                    <div class="col-lg-12 widget-right">
-                        <div class="large"><p id="downloads">20GB</p></div>
+                    <div class="col-lg-7">
                         <div class="text-muted">Downloads</div>
+                        <div class="large"><p id="downloads">00GB</p></div>
                     </div>
                 </div>
             </div>
-
-
+        </div>
     </div>
-
 </div>
-
-
-
-
 
 {{#zone "bottomJs"}}
     {{js "js/linuxgroup-graph.js"}}

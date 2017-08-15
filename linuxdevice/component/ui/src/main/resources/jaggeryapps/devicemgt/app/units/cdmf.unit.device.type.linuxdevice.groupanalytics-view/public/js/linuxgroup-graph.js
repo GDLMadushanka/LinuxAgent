@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var groupId =1;
-var profileId ="Lenovo16GB";
+var groupId =null;
+var profileId =null;
 var currentSummaryTime = "1HR";
 var currentSensorName ="memoryusage";
 var timeFormat = 'hh:mm';
@@ -36,7 +36,10 @@ var persist_diskusage = []
  var avgCpuUsage=0;
 
  $(document).ready(function () {
+     groupId = $("#groupName").find("option:first-child").val();
+     profileId=$("#profileName").find("option:first-child").val();
      var websocketUrl = $("#laptop-details").data("websocketurl");
+    // var websocketUrl = "wss://localhost:9445/outputwebsocket/t/gdsoft.com/laptop1hrsummary_publisher";
      console.log(websocketUrl);
      connect(websocketUrl);
      reloadData();
@@ -62,7 +65,7 @@ var persist_diskusage = []
             case "2HR" : { multiplier=2;break;}
             case "4HR" : { multiplier=4;break;}
         }
-        console.log('sadf');
+
         var d = new Date();
         var from = d.getTime()/1000;
         var to = from - multiplier*60*60;
