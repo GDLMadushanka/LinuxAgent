@@ -16,7 +16,10 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-
-<artifact name="laptop_receiver" version="1.0.0" type="event/receiver" serverRole="DataAnalyticsServer">
-    <file>laptop_receiver-carbon.super.xml</file>
-</artifact>
+<eventReceiver name="laptop_receiver-${tenant-domain}" statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventreceiver">
+    <from eventAdapterType="oauth-mqtt">
+        <property name="topic">${tenant-domain}/linuxdevice/+/data</property>
+    </from>
+    <mapping customMapping="disable" type="json"/>
+    <to streamName="iot.per.device.stream.laptop" version="1.0.0"/>
+</eventReceiver>

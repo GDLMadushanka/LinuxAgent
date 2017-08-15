@@ -14,8 +14,12 @@ org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../r
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/database/,target:${installFolder}/../../../repository/database/,overwrite:true);\
 org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../repository/deployment/server/carbonapps/);\
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/carbonapps/,target:${installFolder}/../../../repository/deployment/server/carbonapps/,overwrite:true);\
-org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/carbonapps/,target:${installFolder}/../../../repository/deployment/server/carbonapps/,overwrite:true);\
 org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/devicetypes/,target:${installFolder}/../../../repository/deployment/server/devicetypes/,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../repository/resources/devicetypes/linuxdevice/);\
+org.eclipse.equinox.p2.touchpoint.natives.mkdir(path:${installFolder}/../../../repository/resources/devicetypes/linuxdevice/receiver);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/carbonapps/,target:${installFolder}/../../../repository/resources/devicetypes/linuxdevice/,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/laptop_receiver/,target:${installFolder}/../../../repository/resources/devicetypes/linuxdevice/receiver/,overwrite:true);\
+org.eclipse.equinox.p2.touchpoint.natives.copy(source:${installFolder}/../features/org.laptop.linuxdevice_${feature.version}/laptop_receiver_super/,target:${installFolder}/../../../wso2/analytics/repository/deployment/server/eventreceivers/,overwrite:true);\
 
 instructions.unconfigure = \
 org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/../../../repository/deployment/server/webapps/linuxdevice.war);\

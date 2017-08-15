@@ -54,7 +54,7 @@ configParser = ConfigParser.RawConfigParser()
 configFilePath = os.path.join(os.path.dirname(__file__), '../deviceConfig.properties')
 configParser.read(configFilePath)
 
-SERVER_NAME = "carbon.super"
+SERVER_NAME = configParser.get('Device-Configurations', 'server-name')
 DEVICE_OWNER = configParser.get('Device-Configurations', 'owner')
 DEVICE_ID = configParser.get('Device-Configurations', 'deviceId')
 DEVICE_NAME = configParser.get('Device-Configurations', 'device-name')

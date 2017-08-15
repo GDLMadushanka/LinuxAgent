@@ -49,7 +49,6 @@
         <dependency artifact="laptop_summary_execution" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_store" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_execution" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
-        <dependency artifact="laptop_receiver" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_stream" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
         <dependency artifact="laptop_publisher" version="1.0.0" include="true" serverRole="DataAnalyticsServer"/>
     </artifact>
