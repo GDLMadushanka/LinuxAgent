@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -80,9 +80,15 @@ function attachEvents() {
 function downloadAgent() {
     var numGroups = $("#laptop-details").data("groupcount");
     var numProfiles = $("#laptop-details").data("profilecount");
-    console.log(numGroups);
-    console.log(numProfiles);
-    console.log("sadfasdfdsafsafdsaf");
+    var selectCtrl = document.getElementById("groupId");
+    var selectedItem = selectCtrl.options[selectCtrl.selectedIndex];
+    if(selectedItem.text=="DefaultGroup") { numGroups++;}
+    selectCtrl = document.getElementById("profileId");
+    selectedItem = selectCtrl.options[selectCtrl.selectedIndex];
+    if(selectedItem.text=="DefaultProfile") { numProfiles++;}
+    var selectCtrl = document.getElementById("groupId");
+    var selectedItem = selectCtrl.options[selectCtrl.selectedIndex];
+    if(selectedItem.text=="DefaultGroup") { numGroups++;}
     var deviceName;
     $('.new-device-name').each(function () {
         if (this.value != "") {

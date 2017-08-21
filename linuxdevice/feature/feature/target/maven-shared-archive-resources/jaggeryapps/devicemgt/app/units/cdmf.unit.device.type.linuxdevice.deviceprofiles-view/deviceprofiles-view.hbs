@@ -1,0 +1,126 @@
+{{!
+  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+  WSO2 Inc. licenses this file to you under the Apache License,
+  Version 2.0 (the "License"); you may not use this file except
+  in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied. See the License for the
+  specific language governing permissions and limitations
+  under the License.
+}}
+
+{{#zone "topCss"}}
+    {{css "css/styles.css"}}
+
+{{/zone}}
+
+<div class="row">
+    <div class="col-lg-5 col-lg-offset-1">
+        <div class="row">
+            <div class="alert alert-info">
+                <strong>Add new device profile</strong>
+            </div>
+        </div>
+        <div class="row" id="warningMessage" style="display: none">
+            <div class="alert alert-warning">
+                <strong>Profile with similar info already exists!</strong>
+            </div>
+        </div>
+        <form class="form-horizontal" role="form" method="POST"
+              action="{{@app.context}}/api/laptop" id="createProfileForm">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">Profile Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="profilename" id="profilename" value="X1Carbon16GB">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">Vendor</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="vender" value="Lenovo">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">CPU</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="cpu" value="Core i7">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">Memory</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="memory" value="16 GB">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">OS</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="os" value="Linux">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">Disk</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="disk" value="500 GB">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label">Other info</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="other" value="additional details">
+                </div>
+            </div>
+            <div class="buttonholder" style="text-align: center">
+                <input class="btn btn-primary btn-md" value="Submit" onclick="createDeviceProfile()">
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-5">
+        <div class="row">
+            <div class="alert alert-success">
+                <strong>Existing profiles</strong>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-striped table-hover ">
+                <thead style="color: #FFF; font-weight:bolder; background-color: #000">
+                <tr>
+                    <th>Profile Name</th>
+                    <th>Vendor</th>
+                    <th>CPU</th>
+                    <th>Memory</th>
+                    <th>Disk</th>
+                    <th>OS</th>
+                    <th>Other</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each profileTypes}}
+                    <tr>
+                        <td>{{this.profileName}}</td>
+                        <td>{{this.vender}}</td>
+                        <td>{{this.cpu}}</td>
+                        <td>{{this.memory}}</td>
+                        <td>{{this.disk}}</td>
+                        <td>{{this.os}}</td>
+                        <td>{{this.other}}</td>
+                    </tr>
+                {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br/>
+
+{{#zone "bottomJs"}}
+    {{js "js/deviceProfileView.js"}}
+{{/zone}}

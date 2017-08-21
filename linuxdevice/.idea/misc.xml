@@ -75,7 +75,9 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/component/core/pom.xml" />
         <option value="$PROJECT_DIR$/component/plugin/pom.xml" />
+        <option value="$PROJECT_DIR$/component/pom.xml" />
       </set>
     </option>
   </component>

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+* Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 * WSO2 Inc. licenses this file to you under the Apache License,
 * Version 2.0 (the "License"); you may not use this file except
@@ -18,7 +18,6 @@
 
 package org.laptop.linuxdevice.api;
 
-import io.swagger.annotations.Api;
 import org.laptop.linuxdevice.api.constants.LaptopConstants;
 import org.laptop.linuxdevice.api.dao.LaptopDAO;
 import org.laptop.linuxdevice.api.dao.LaptopDAOImpl;
@@ -46,6 +45,7 @@ import org.wso2.carbon.device.mgt.common.DeviceManagementException;
 import org.wso2.carbon.device.mgt.common.EnrolmentInfo;
 import org.wso2.carbon.device.mgt.common.authorization.DeviceAccessAuthorizationException;
 import org.wso2.carbon.device.mgt.common.group.mgt.DeviceGroup;
+import org.wso2.carbon.device.mgt.common.group.mgt.DeviceGroupConstants;
 import org.wso2.carbon.device.mgt.common.group.mgt.GroupManagementException;
 import org.wso2.carbon.identity.jwt.client.extension.JWTClient;
 import org.wso2.carbon.identity.jwt.client.extension.dto.AccessTokenInfo;
@@ -62,7 +62,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
@@ -77,7 +76,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     private static Log log = LogFactory.getLog(DeviceTypeService.class);
     private static ApiApplicationKey apiApplicationKey;
     LaptopDAO laptopDAO = new LaptopDAO();
-    LaptopDAOImpl laptopDAOImpl= new LaptopDAOImpl();
+    private LaptopDAOImpl laptopDAOImpl= new LaptopDAOImpl();
 
     private static String shortUUID() {
         UUID uuid = UUID.randomUUID();
@@ -93,7 +92,6 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response registerDevice(final DeviceJSON agentInfo) {
-        String deviceId = agentInfo.deviceId;
         if ((agentInfo.deviceId != null) && (agentInfo.owner != null)) {
             return Response.status(Response.Status.OK).build();
         }
@@ -137,7 +135,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             List<DeviceIdentifier> deviceIdentifiers = new ArrayList<>();
             deviceIdentifiers.add(new DeviceIdentifier(deviceId, "linuxdevice"));
             APIUtil.getDeviceManagementService().addOperation("linuxdevice", commandOp,
-                                                              deviceIdentifiers);
+                    deviceIdentifiers);
             return Response.ok().build();
         } catch (DeviceAccessAuthorizationException e) {
             log.error(e.getErrorMessage(), e);
@@ -165,48 +163,20 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @Produces("application/json")
     public Response getSensorStats(@QueryParam("from") long from,
                                    @QueryParam("to") long to, @QueryParam("sensorType") String sensorType) {
-        //String deviceId = null;
         String fromDate = String.valueOf(from);
         String toDate = String.valueOf(to);
         String from_date = fromDate + "000";
         String to_date = toDate + "000";
         String query = "meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
-//        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:" +
-//                LaptopConstants.DEVICE_TYPE + " AND meta_time : [" + from_date + " TO " + to_date + "]";
-        String sensorTableName = null;
-        if(sensorType.equals(LaptopConstants.SENSOR_TYPE1)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE1_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE2)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE2_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE3)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE3_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE4)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE4_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE5)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE5_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE6)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE6_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE7)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE7_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE8)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE8_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE9)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE9_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE10)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE10_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE11)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE11_EVENT_TABLE;
-        }
+        String sensorTableName = getTableBySensorType(sensorType);
+
         try {
-//            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-//                    LaptopConstants.DEVICE_TYPE))) {
-//                return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
-//            }
             if (sensorTableName != null) {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
-                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,20);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query,
+                        sortByFields,20);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -234,31 +204,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String toDate = String.valueOf(to);
         String from_date = fromDate + "000";
         String to_date = toDate + "000";
-        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
-        String sensorTableName = null;
-        if(sensorType.equals(LaptopConstants.SENSOR_TYPE1)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE1_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE2)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE2_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE3)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE3_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE4)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE4_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE5)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE5_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE6)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE6_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE7)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE7_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE8)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE8_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE9)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE9_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE10)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE10_EVENT_TABLE;
-        }else if(sensorType.equals(LaptopConstants.SENSOR_TYPE11)){
-            sensorTableName = LaptopConstants.SENSOR_TYPE11_EVENT_TABLE;
-        }
+        String query = "meta_deviceId:" + deviceId + " AND meta_deviceType:linuxdevice"+ " AND meta_time : ["
+                + from_date + " TO " + to_date + "]";
+        String sensorTableName = getTableBySensorType(sensorType);
         try {
             if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
                     LaptopConstants.DEVICE_TYPE))) {
@@ -268,7 +216,8 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
-                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,100);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query,
+                        sortByFields,100);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -282,6 +231,22 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+    private String getTableBySensorType(String sensorType) {
+        switch(sensorType) {
+            case LaptopConstants.SENSOR_TYPE1 : return LaptopConstants.SENSOR_TYPE1_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE2 : return LaptopConstants.SENSOR_TYPE2_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE3 : return LaptopConstants.SENSOR_TYPE3_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE4 : return LaptopConstants.SENSOR_TYPE4_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE5 : return LaptopConstants.SENSOR_TYPE5_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE6 : return LaptopConstants.SENSOR_TYPE6_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE7 : return LaptopConstants.SENSOR_TYPE7_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE8 : return LaptopConstants.SENSOR_TYPE8_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE9 : return LaptopConstants.SENSOR_TYPE9_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE10 : return LaptopConstants.SENSOR_TYPE10_EVENT_TABLE;
+            case LaptopConstants.SENSOR_TYPE11 : return LaptopConstants.SENSOR_TYPE11_EVENT_TABLE;
+        }
+        return null;
+    }
 
     /**
      * To download device type agent source code as zip file
@@ -296,9 +261,17 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                                    @QueryParam("sketchType") String sketchType,
                                    @QueryParam("profileId") String profileId,
                                    @QueryParam("groupId") String groupId) {
+        String tenantId = Integer.toString(PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId(true));
+        //catering for default profile and group
+        if(profileId.equals("DefaultProfile")) {
+            createDefaultProfileIfNotExists(tenantId);
+        }
+        if(groupId.equals("-1")) {
+            groupId = createGroupIfNotExists();
+        }
         try {
-            String tenantId = Integer.toString(PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId(true));
-            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,groupId,tenantId);
+            ZipArchive zipFile = createDownloadFile(APIUtil.getAuthenticatedUser(), deviceName, sketchType,profileId,
+                    groupId,tenantId);
             Response.ResponseBuilder response = Response.ok(FileUtils.readFileToByteArray(zipFile.getZipFile()));
             response.status(Response.Status.OK);
             response.type("application/zip");
@@ -308,24 +281,67 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             return resp;
         } catch (IllegalArgumentException ex) {
             return Response.status(400).entity(ex.getMessage()).build();//bad request
-        } catch (DeviceManagementException ex) {
-            log.error(ex.getMessage(), ex);
-            return Response.status(500).entity(ex.getMessage()).build();
-        } catch (JWTClientException ex) {
-            log.error(ex.getMessage(), ex);
-            return Response.status(500).entity(ex.getMessage()).build();
-        } catch (APIManagerException ex) {
-            log.error(ex.getMessage(), ex);
-            return Response.status(500).entity(ex.getMessage()).build();
-        } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
-            return Response.status(500).entity(ex.getMessage()).build();
-        } catch (UserStoreException ex) {
+        } catch (DeviceManagementException | JWTClientException | APIManagerException | UserStoreException | IOException ex) {
             log.error(ex.getMessage(), ex);
             return Response.status(500).entity(ex.getMessage()).build();
         }
     }
 
+    // Creating the default group for new tenants
+    private void createDefaultProfileIfNotExists(String tenantId) {
+        List<deviceProfile> arr =new ArrayList<>();
+        deviceProfile temp = new deviceProfile();
+        temp.setTenantId(tenantId);
+        temp.setProfileName("DefaultProfile");
+        temp.setOther("");
+        temp.setDisk("");
+        temp.setOs("");
+        temp.setMemory("");
+        temp.setCpu("");
+        temp.setVender("");
+        try {
+            arr = laptopDAOImpl.getAllProfiles();
+            for (int i=0;i<arr.size();i++) {
+                if(arr.get(i).getTenantId().equals(tenantId) && arr.get(i).getProfileName().equals("DefaultProfile")) {
+                    return;
+                }
+            }
+            laptopDAOImpl.addDeviceProfile(temp);
+        } catch (DeviceTypeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Creating default group for new tenants
+    private String createGroupIfNotExists() {
+        List<DeviceGroup> result= new ArrayList<>();
+        int groupId=0;
+        try {
+            result = APIUtil.getGroupManagementProviderService().getGroups();
+            for (DeviceGroup temp : result ) {
+                if(temp.getName().equals("DefaultGroup")) {
+                    groupId = temp.getGroupId();
+                    return Integer.toString(groupId);
+                }
+            }
+            DeviceGroup group= new DeviceGroup();
+            group.setName("DefaultGroup");
+            group.setOwner(APIUtil.getAuthenticatedUser());
+            group.setDescription("Default Group for Laptop devices");
+            APIUtil.getGroupManagementProviderService().createGroup(group,APIUtil.getAuthenticatedUser(),
+                    DeviceGroupConstants.Permissions.DEFAULT_ADMIN_PERMISSIONS);
+            result = APIUtil.getGroupManagementProviderService().getGroups();
+            for (DeviceGroup temp : result ) {
+                if(temp.getName().equals("DefaultGroup")) {
+                    groupId = temp.getGroupId();
+                }
+            }
+            return Integer.toString(groupId);
+            } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * Register device into device management service
      * @param deviceId unique identifier for given device type instance
@@ -351,6 +367,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             device.setName(name);
             device.setType(LaptopConstants.DEVICE_TYPE);
             List<Device.Property> propertiesList = new ArrayList<>();
+
             Device.Property propTenantId = new Device.Property();
             propTenantId.setName("TENANT_ID");
             propTenantId.setValue(tenantId);
@@ -362,6 +379,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             Device.Property propProfileId = new Device.Property();
             propProfileId.setName("PROFILE_ID");
             propProfileId.setValue(profileid);
+
             propertiesList.add(propTenantId);
             propertiesList.add(propDeviceName);
             propertiesList.add(propProfileId);
@@ -374,9 +392,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             if(added){
                 try {
                     APIUtil.getGroupManagementProviderService().addDevices(Integer.parseInt(groupId),identifiersList);
-                } catch (GroupManagementException e) {
-                    e.printStackTrace();
-                } catch (DeviceNotFoundException e) {
+                } catch (GroupManagementException | DeviceNotFoundException e) {
                     e.printStackTrace();
                 }
             }
@@ -404,9 +420,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @GET
     @Produces("application/json")
     public Response getMatchingDevicesForProfile(@QueryParam("deviceIds") String deviceIds,
-                                      @QueryParam("profileId") String profileId) {
+                                                 @QueryParam("profileId") String profileId) {
         ArrayList<String> temp=null;
-        List<String> deviceIdList = new ArrayList<String>(Arrays.asList(deviceIds.split(",")));
+        List<String> deviceIdList = new ArrayList<>(Arrays.asList(deviceIds.split(",")));
 
         try {
             temp = (ArrayList<String>) laptopDAOImpl.getMatchingDevicesForProfile(deviceIdList,profileId);
@@ -416,7 +432,6 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.OK).entity(temp).build();
     }
 
-    //profileid=n&profilename=n&vender=n&cpu=n&memory=n&os=n&disk=n&other=n
     @Path("/device/addprofile")
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -438,11 +453,12 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
             deviceProfile.setOs(os);
             deviceProfile.setDisk(disk);
             deviceProfile.setOther(other);
-        try {
-            status = laptopDAOImpl.addDeviceProfile(deviceProfile);
-        } catch (DeviceTypeException e) {
-            e.printStackTrace();
-        }}
+            try {
+                status = laptopDAOImpl.addDeviceProfile(deviceProfile);
+            } catch (DeviceTypeException e) {
+                e.printStackTrace();
+            }
+        }
         return Response.status(Response.Status.OK).entity(status).build();
     }
 
@@ -465,34 +481,30 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @Consumes("application/json")
     @Produces("application/json")
     public Response getSummaryStats(@QueryParam("from") long from,
-                                   @QueryParam("to") long to,
-                                   @QueryParam("profileId") String profileId,
-                                   @QueryParam("groupId") String groupId,
-                                   @QueryParam("summaryType") String summaryType) {
+                                    @QueryParam("to") long to,
+                                    @QueryParam("profileId") String profileId,
+                                    @QueryParam("groupId") String groupId,
+                                    @QueryParam("summaryType") String summaryType) {
         String fromDate = String.valueOf(from);
         String toDate = String.valueOf(to);
         String from_date = fromDate + "000";
         String to_date = toDate + "000";
-        String query = "meta_deviceType:linuxdevice AND meta_profileId:"+profileId+" AND meta_groupId:"+groupId +" AND meta_time : [" + from_date + " TO " + to_date + "]";
+        String query = "meta_deviceType:linuxdevice AND meta_profileId:"+profileId+" AND meta_groupId:"+groupId
+                +" AND meta_time : [" + from_date + " TO " + to_date + "]";
 
         String sensorTableName = null;
-        if(summaryType.equals(LaptopConstants.SUMMARY_TYPE1)){
-            sensorTableName = LaptopConstants.SUMMARY_TYPE1_EVENT_TABLE;
-        }else if(summaryType.equals(LaptopConstants.SUMMARY_TYPE2)){
-            sensorTableName = LaptopConstants.SUMMARY_TYPE2_EVENT_TABLE;
-        }else if(summaryType.equals(LaptopConstants.SUMMARY_TYPE3)){
-            sensorTableName = LaptopConstants.SUMMARY_TYPE3_EVENT_TABLE;
+        switch (summaryType) {
+            case LaptopConstants.SUMMARY_TYPE1 : sensorTableName = LaptopConstants.SUMMARY_TYPE1_EVENT_TABLE; break;
+            case LaptopConstants.SUMMARY_TYPE2 : sensorTableName = LaptopConstants.SUMMARY_TYPE2_EVENT_TABLE; break;
+            case LaptopConstants.SUMMARY_TYPE3 : sensorTableName = LaptopConstants.SUMMARY_TYPE3_EVENT_TABLE; break;
         }
         try {
-//            if (!APIUtil.getDeviceAccessAuthorizationService().isUserAuthorized(new DeviceIdentifier(deviceId,
-//                    LaptopConstants.DEVICE_TYPE))) {
-//                return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
-//            }
             if (sensorTableName != null) {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
-                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query, sortByFields,120);
+                List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query,
+                        sortByFields,120);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -503,7 +515,8 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
-    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,String groupId,String tenantId)
+    private ZipArchive createDownloadFile(String owner, String deviceName, String sketchType,String profileId,
+                                          String groupId,String tenantId)
             throws DeviceManagementException, JWTClientException, APIManagerException,
             UserStoreException {
         //create new device id
@@ -521,7 +534,8 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         JWTClient jwtClient = APIUtil.getJWTClientManagerService().getJWTClient();
         String scopes = "device_type_" + LaptopConstants.DEVICE_TYPE + " device_" + deviceId;
         AccessTokenInfo accessTokenInfo = jwtClient.getAccessToken(apiApplicationKey.getConsumerKey(),
-                apiApplicationKey.getConsumerSecret(), owner + "@" + APIUtil.getAuthenticatedUserTenantDomain(), scopes);
+                apiApplicationKey.getConsumerSecret(),
+                owner + "@" + APIUtil.getAuthenticatedUserTenantDomain(), scopes);
 
         //create token
         String accessToken = accessTokenInfo.getAccessToken();

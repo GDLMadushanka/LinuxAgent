@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -22,9 +22,6 @@ function onRequest(context) {
     var profilesUrl = devicemgtProps["httpsURL"] + "/linuxdevice/1.0.0/device/profiles";
     var groupsUrl =devicemgtProps["httpsURL"] + "/linuxdevice/1.0.0/groups/getAllGroups";
     var serviceInvokers = require("/app/modules/oauth/token-protected-service-invokers.js")["invokers"];
-    var log = new Log("stats.js");
-
-	var deviceType = context.uriParams.deviceType;
 	var deviceId = request.getParameter("deviceId");
 	var groupId = request.getParameter("groupId");
     var deviceName = request.getParameter("deviceName");
@@ -33,10 +30,9 @@ function onRequest(context) {
     var tenantId = user.tenantId;
 
     viewModel["profileTypes"] = [];
-    viewModel["groupNames"]=[]
+    viewModel["groupNames"]=[];
     serviceInvokers.XMLHttp.get(
         profilesUrl, function (responsePayload) {
-            //new Log().info(responsePayload.responseText);
             var profileTypes = JSON.parse(responsePayload.responseText);
             var tenantProfiles = profileTypes.filter( function(item){return (item.tenantId==tenantId);} );
             viewModel["profileTypes"] = tenantProfiles;
@@ -47,7 +43,6 @@ function onRequest(context) {
     );
     serviceInvokers.XMLHttp.get(
         groupsUrl, function (responsePayload) {
-            //new Log().info(responsePayload.responseText);
             viewModel["groupNames"] = JSON.parse(responsePayload.responseText);
         },
         function (responsePayload) {
@@ -55,14 +50,14 @@ function onRequest(context) {
         }
     );
 
-    var carbonServer = require("carbon").server;
     var devicemgtProps = require("/app/modules/conf-reader/main.js")["conf"];
     var constants = require("/app/modules/constants.js");
     var websocketEndpoint = devicemgtProps["wssURL"].replace("https", "wss");
     // This need to be changed properly (with authentication)
-    viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
-    log.info(viewModel);
+    if(user.domain=="carbon.super") {
+        viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/laptop1hrsummary_publisher";
+    } else {
+        viewModel["socketEndpoint"]= websocketEndpoint+"/outputwebsocket/"+"t/"+user.domain+"/laptop1hrsummary_publisher";
+    }
     return viewModel;
-
-
 }

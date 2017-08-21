@@ -13,11 +13,13 @@
       <module name="linuxdevice" target="1.7" />
       <module name="linuxdevice-component" target="1.7" />
       <module name="linuxdevice-feature" target="1.7" />
+      <module name="org.laptiop.linuxdevice.core" target="1.7" />
       <module name="org.laptop.linuxdevice.analytics" target="1.7" />
       <module name="org.laptop.linuxdevice.api" target="1.7" />
       <module name="org.laptop.linuxdevice.feature" target="1.7" />
       <module name="org.laptop.linuxdevice.plugin" target="1.7" />
       <module name="org.laptop.linuxdevice.ui" target="1.7" />
+      <module name="orglaptoplinuxdevicecore" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

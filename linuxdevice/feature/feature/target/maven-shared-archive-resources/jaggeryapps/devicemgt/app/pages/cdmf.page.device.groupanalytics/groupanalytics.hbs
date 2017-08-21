@@ -1,5 +1,5 @@
 {{!
-  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 
   WSO2 Inc. licenses this file to you under the Apache License,
   Version 2.0 (the "License"); you may not use this file except
@@ -15,6 +15,7 @@
   specific language governing permissions and limitations
   under the License.
 }}
+
 {{#zone "topCss"}}
     {{css "css/groupanalytics.css"}}
 {{/zone}}
@@ -32,11 +33,6 @@
         </a>
     </li>
     <li>
-        <a href="{{@app.context}}/devices">
-            Devices
-        </a>
-    </li>
-    <li>
         <a href="#">
             Group - Analytics
         </a>
@@ -46,12 +42,6 @@
 {{#zone "content"}}
     <div class="container container-bg  white-bg">
         <div class=" margin-top-double">
-            <div class="row padding-top-double padding-bottom-double margin-bottom-double">
-                <div class="col-lg-3  margin-top-double">
-                    <h1 class="grey ">{{deviceType}} - Group Analytics</h1>
-                </div>
-                {{unit "cdmf.unit.analytics.date-range-picker"}}
-            </div>
             <hr>
             <div class="clear"></div>
             <div id="div-chart">

@@ -17,7 +17,6 @@
  */
 
 function onRequest(context) {
-	var log = new Log("device-view.js");
 	var deviceType = context.uriParams.deviceType;
 	var deviceId = request.getParameter("id");
 	var autoCompleteParams = [

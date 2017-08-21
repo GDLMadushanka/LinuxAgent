@@ -1,6 +1,6 @@
 
  /*
- * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -16,18 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var groupId =null;
-var profileId =null;
-var currentSummaryTime = "1HR";
-var currentSensorName ="memoryusage";
-var timeFormat = 'hh:mm';
-var persist_cpuusage = []
-var persist_diskusage = []
- var persist_memoryusage = []
- var persist_batterypercentage = []
- var persist_batterypluggedin=[]
- var persist_bytessent = 0
- var persist_bytesrecv = 0
+ var groupId =null;
+ var profileId =null;
+ var currentSummaryTime = "1HR";
+ var currentSensorName ="memoryusage";
+ var timeFormat = 'hh:mm';
+ var persist_cpuusage = [];
+ var persist_diskusage = [];
+ var persist_memoryusage = [];
+ var persist_batterypercentage = [];
+ var persist_batterypluggedin=[];
+ var persist_bytessent = 0;
+ var persist_bytesrecv = 0;
  var persist_time = [];
  var ws;
  var avgRamUsage = 0;
@@ -39,7 +39,6 @@ var persist_diskusage = []
      groupId = $("#groupName").find("option:first-child").val();
      profileId=$("#profileName").find("option:first-child").val();
      var websocketUrl = $("#laptop-details").data("websocketurl");
-    // var websocketUrl = "wss://localhost:9445/outputwebsocket/t/gdsoft.com/laptop1hrsummary_publisher";
      console.log(websocketUrl);
      connect(websocketUrl);
      reloadData();
@@ -72,7 +71,8 @@ var persist_diskusage = []
         from = Math.floor(from);
         to = Math.floor(to);
 
-        invokerUtil.get("/linuxdevice/1.0.0/device/groupStats?profileId="+profileId+"&groupId="+groupId+"&summaryType="+currentSummaryTime+"&from="+to+"&to="+from, function (message) {
+        invokerUtil.get("/linuxdevice/1.0.0/device/groupStats?profileId="+profileId+"&groupId="+groupId+"&summaryType="
+            +currentSummaryTime+"&from="+to+"&to="+from, function (message) {
             var temp = JSON.parse(message);
             extractData(temp);
             updateCharts();
@@ -87,15 +87,20 @@ var persist_diskusage = []
         if(numOfValues>60) {summaryfactor=2;}
         for(var i=0;i<numOfValues;i+=summaryfactor) {
             if(jsonpayload[i] != null && (i+summaryfactor-1)<numOfValues) {
-                persist_cpuusage.push(((jsonpayload[i].values.cpuusage+jsonpayload[i+summaryfactor-1].values.cpuusage)/2).toFixed(2));
-                persist_diskusage.push(((jsonpayload[i].values.diskusage+jsonpayload[i+summaryfactor-1].values.diskusage)/2).toFixed(2));
-                persist_memoryusage.push(((jsonpayload[i].values.memoryusage+jsonpayload[i+summaryfactor-1].values.memoryusage)/2).toFixed(2));
-                persist_batterypercentage.push(((jsonpayload[i].values.batterypercentage+jsonpayload[i+summaryfactor-1].values.batterypercentage)/2).toFixed(2));
+                persist_cpuusage.push(((jsonpayload[i].values.cpuusage+jsonpayload[i+summaryfactor-1]
+                    .values.cpuusage)/2).toFixed(2));
+                persist_diskusage.push(((jsonpayload[i].values.diskusage+jsonpayload[i+summaryfactor-1]
+                    .values.diskusage)/2).toFixed(2));
+                persist_memoryusage.push(((jsonpayload[i].values.memoryusage+jsonpayload[i+summaryfactor-1]
+                    .values.memoryusage)/2).toFixed(2));
+                persist_batterypercentage.push(((jsonpayload[i].values.batterypercentage+jsonpayload[i+summaryfactor-1]
+                    .values.batterypercentage)/2).toFixed(2));
                 var tempBatValue=0,tempBatvalue2=0;
                 if(jsonpayload[i].values.batterypluggedin==1){tempBatValue=100;}
                 if(jsonpayload[i+summaryfactor-1].values.batterypluggedin==1){tempBatvalue2=100;}
                 persist_batterypluggedin.push(((tempBatValue+tempBatvalue2)/2).toFixed(2));
-                var tempDate = ((jsonpayload[i].values.meta_time +jsonpayload[i+summaryfactor-1].values.meta_time)/2).toFixed(0);
+                var tempDate = ((jsonpayload[i].values.meta_time +jsonpayload[i+summaryfactor-1]
+                    .values.meta_time)/2).toFixed(0);
                 var date = new Date(parseInt(tempDate));
                 persist_time.push(date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}));
             }
@@ -111,14 +116,14 @@ var persist_diskusage = []
     }
 
     function  clearExistingData() {
-        persist_cpuusage = []
+        persist_cpuusage = [];
         persist_diskusage = [];
-        persist_memoryusage = []
-        persist_batterypercentage = []
-        persist_batterypluggedin=[]
-        persist_bytessent = 0
-        persist_bytesrecv = 0
-        persist_time = []
+        persist_memoryusage = [];
+        persist_batterypercentage = [];
+        persist_batterypluggedin=[];
+        persist_bytessent = 0;
+        persist_bytesrecv = 0;
+        persist_time = [];
 
     }
 
@@ -180,7 +185,7 @@ var persist_diskusage = []
                     data : data
                 }
             ]
-        }
+        };
 
         if(window.myLine!=null) {
             window.myLine.destroy();
@@ -284,18 +289,3 @@ var persist_diskusage = []
      $('span', $('#easypiechart-teal')).text(avgDiskUsage.toFixed(0)+"%");
 
  }
-
- /*
- var ws = new WebSocket("wss://localhost:9445/outputwebsocket/websocketlocaltest");
- ws.onopen = function() {
-     console.log("opened");
- };
- ws.onmessage = function (evt) {
-     alert("Message: " + evt.data);
- };
- ws.onclose = function() {
-     console.log("closed!");
- };
- ws.onerror = function(err) {
-     console.log("Error: " + err);
- };*/

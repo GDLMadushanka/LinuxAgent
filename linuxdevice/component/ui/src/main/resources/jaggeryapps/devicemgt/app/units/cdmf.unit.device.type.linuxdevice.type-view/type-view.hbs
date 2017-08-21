@@ -36,6 +36,9 @@
     <a href="#" class="download-link btn-operations">
         <i class="fw fw-download add-margin-1x"></i>Download Agent
     </a>
+    <a href="{{@app.context}}/device/linuxdevice/deviceprofiles" class="btn-operations">
+        <i class="fw fw-add add-margin-1x"></i>Add Device Profile
+    </a>
     <div id="download-device-modal-content" class="hide">
         <div class="modal-content">
             <div class="row">
@@ -51,6 +54,7 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
+                                Device Name<br/>
                                 <input class="new-device-name" style="color:#3f3f3f;padding:5px"
                                        type="text"
                                        placeholder="Ex. Lobby_Device"
@@ -58,14 +62,22 @@
                             <br/><br/>
                             <div class="row">
                                 <div class="col-md-6">
+                                    Select Profile
                                     <select id="profileId" name="profileId" class="form-control">
+                                        {{#if defaultProfileNotExists}}
+                                            <option selected="selected" value="DefaultProfile">DefaultProfile</option>
+                                        {{/if}}
                                         {{#each profileTypes}}
                                             <option value="{{profileName}}">{{profileName}}</option>
                                         {{/each}}
                                     </select>
                                 </div>
                                 <div class="col-md-6">
+                                    Select Group
                                     <select id="groupId" name="groupId" class="form-control">
+                                        {{#if defaultGroupNotExists}}
+                                            <option selected="selected" value="-1">DefaultGroup</option>
+                                        {{/if}}
                                         {{#each deviceGroups}}
                                             <option value="{{groupId}}">{{name}}</option>
                                         {{/each}}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
@@ -46,7 +46,7 @@ function drawGraph_linuxdevice(from, to)
             padding: {top: 0.2, left: 0.02, right: 0.02, bottom: 0.2},
             series: []
         }
-    };
+    }
 
     if (devices) {
         for (var i = 0; i < devices.length; i++) {
@@ -197,7 +197,3 @@ function drawGraph_linuxdevice(from, to)
         graph.update();
     }
 }
-
-
-/*,"memoryusage","batterypluggedin","diskusage","diskreads","diskwrites","diskreadcount","diskwritecount","bytessent","bytesrecv"];*/
-
