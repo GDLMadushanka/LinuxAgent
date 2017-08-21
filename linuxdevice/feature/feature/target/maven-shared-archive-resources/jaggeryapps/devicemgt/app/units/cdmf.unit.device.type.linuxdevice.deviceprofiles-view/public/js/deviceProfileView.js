@@ -20,16 +20,23 @@ var deviceProfiles;
 
 function createDeviceProfile() {
     var profilename = document.getElementById("profilename").value;
+    var formData = $("#createProfileForm").serialize();
+    var requestURL = "/linuxdevice/1.0.0/device/addprofile";
+    var contentType = "application/x-www-form-urlencoded";
 
     invokerUtil.get("/linuxdevice/1.0.0/device/profiles", function (message) {
         deviceProfiles = JSON.parse(message);
-
         var result = $.grep(deviceProfiles, function(e){ return (e.profileName==profilename) ; });
         if(result.length>0) {
             document.getElementById("warningMessage").style.display = "inline";
         } else {
             document.getElementById("warningMessage").style.display = "none";
-            $('#createProfileForm').submit();
+            invokerUtil.post(requestURL, formData, function (data) {
+                console.log(data);
+            }, function (jqXHR) {
+                console.log(jqXHR);
+            }, contentType);
+            window.location.reload();
         }
     });
 }
