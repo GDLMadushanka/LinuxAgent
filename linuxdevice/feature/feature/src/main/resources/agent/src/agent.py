@@ -22,7 +22,6 @@
 import time, threading, datetime, calendar
 from uuid import uuid4
 
-
 import logging, logging.handlers
 import sys, os, argparse
 import time
@@ -32,13 +31,12 @@ import mqttConnector
 import agentSettings
 
 import importer
+
 importer.installMissingPackages()
 
-
 from dataCollector import *
+
 agentSettings.init()
-
-
 
 PUSH_INTERVAL = 5000  # time interval between successive data pushes in seconds
 
@@ -48,6 +46,7 @@ PUSH_INTERVAL = 5000  # time interval between successive data pushes in seconds
 LOG_FILENAME = "linuxdevice.log"
 logging_enabled = False
 LOG_LEVEL = logging.INFO  # Could be e.g. "DEBUG" or "WARNING"
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -64,6 +63,8 @@ class UtilsThread(object):
 
     def run(self):
         iotUtils.main()
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -78,6 +79,8 @@ class SubscribeToMQTTQueue(object):
 
     def run(self):
         mqttConnector.main()
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -93,6 +96,8 @@ class IOTLogger(object):
     def write(self, message):
         if message.rstrip() != "":  # Only log if there is a message (not just a new line)
             self.logger.log(self.level, message.rstrip())
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -113,6 +118,8 @@ def configureLogger(loggerName):
     if (logging_enabled):
         sys.stdout = IOTLogger(logger, logging.INFO)  # Replace stdout with logging to file at INFO level
         sys.stderr = IOTLogger(logger, logging.ERROR)  # Replace stderr with logging to file at ERROR level
+
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -126,39 +133,60 @@ def connectAndPushData():
 
     agentSettings.cpuusage = float(agentSettings.cpuusage)
     agentSettings.batterypercentage = float(agentSettings.batterypercentage)
-    agentSettings.batterypluggedin = 0
-    if(agentSettings.batterypluggedin):
-        agentSettings.batterypluggedin=1
-    agentSettings.memoryusage=float(agentSettings.memoryusage)
-    agentSettings.diskusage=float(agentSettings.diskusage)
-    agentSettings.diskreads=float(agentSettings.diskreads)
-    agentSettings.diskwrites=float(agentSettings.diskwrites)
-    agentSettings.diskreadcount=float(agentSettings.diskreadcount)
-    agentSettings.diskwritecount=float(agentSettings.diskwritecount)
-    agentSettings.bytessent=float(agentSettings.bytessent)
-    agentSettings.bytesrecv=float(agentSettings.bytesrecv)
+    if (agentSettings.batterypluggedin == True):
+        agentSettings.batterypluggedin = 1
+    else:
+        agentSettings.batterypluggedin = 0
+    agentSettings.memoryusage = float(agentSettings.memoryusage)
+    agentSettings.diskusage = float(agentSettings.diskusage)
+    agentSettings.diskreads = float(agentSettings.diskreads)
+    agentSettings.diskwrites = float(agentSettings.diskwrites)
+    agentSettings.diskreadcount = float(agentSettings.diskreadcount)
+    agentSettings.diskwritecount = float(agentSettings.diskwritecount)
+    agentSettings.bytessent = float(agentSettings.bytessent)
+    agentSettings.bytesrecv = float(agentSettings.bytesrecv)
 
-    if(agentSettings.firstDataNotPushed):
+    if (agentSettings.firstDataNotPushed):
         agentSettings.currentBytesSent = agentSettings.bytessent
-        agentSettings.bytessent=0
+        agentSettings.bytessent = 0
         agentSettings.currentBytesRecv = agentSettings.bytesrecv
-        agentSettings.bytesrecv=0
+        agentSettings.bytesrecv = 0
         agentSettings.currentDiskWrite = agentSettings.diskwrites
-        agentSettings.diskwrites=0
+        agentSettings.diskwrites = 0
         agentSettings.currentDiskRead = agentSettings.diskreads
-        agentSettings.diskreads  =0
+        agentSettings.diskreads = 0
         agentSettings.firstDataNotPushed = False
-    else :
-        agentSettings.bytessent = agentSettings.bytessent - agentSettings.currentBytesSent
-        agentSettings.currentBytesSent = agentSettings.currentBytesSent + agentSettings.bytessent
-        agentSettings.bytesrecv = agentSettings.bytesrecv - agentSettings.currentBytesRecv
-        agentSettings.currentBytesRecv = agentSettings.currentBytesRecv + agentSettings.bytesrecv
-        agentSettings.diskreads = agentSettings.diskreads - agentSettings.currentDiskRead
-        agentSettings.currentDiskRead = agentSettings.currentDiskRead - agentSettings.diskreads
-        agentSettings.diskwrites = agentSettings.diskwrites -  agentSettings.currentDiskWrite
-        agentSettings.currentDiskWrite = agentSettings.currentDiskWrite + agentSettings.diskwrites
+    else:
+        if (agentSettings.bytessent > agentSettings.currentBytesSent):
+            agentSettings.bytessent = agentSettings.bytessent - agentSettings.currentBytesSent
+            agentSettings.currentBytesSent = agentSettings.currentBytesSent + agentSettings.bytessent
+        else:
+            agentSettings.currentBytesSent = agentSettings.bytessent
+            agentSettings.bytessent = 0
+        if (agentSettings.bytesrecv > agentSettings.currentBytesRecv):
+            agentSettings.bytesrecv = agentSettings.bytesrecv - agentSettings.currentBytesRecv
+            agentSettings.currentBytesRecv = agentSettings.currentBytesRecv + agentSettings.bytesrecv
+        else:
+            agentSettings.currentBytesRecv = agentSettings.bytesrecv
+            agentSettings.bytesrecv = 0
+        if (agentSettings.diskreads > agentSettings.currentDiskRead):
+            agentSettings.diskreads = agentSettings.diskreads - agentSettings.currentDiskRead
+            agentSettings.currentDiskRead = agentSettings.currentDiskRead + agentSettings.diskreads
+        else:
+            agentSettings.currentDiskRead = agentSettings.diskreads
+            agentSettings.diskreads = 0
+        if (agentSettings.diskwrites > agentSettings.currentDiskWrite):
+            agentSettings.diskwrites = agentSettings.diskwrites - agentSettings.currentDiskWrite
+            agentSettings.currentDiskWrite = agentSettings.currentDiskWrite + agentSettings.diskwrites
+        else:
+            agentSettings.currentDiskWrite = agentSettings.diskwrites
+            agentSettings.diskwrites = 0
 
-    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, agentSettings.cpuusage,agentSettings.batterypercentage,agentSettings.batterypluggedin,agentSettings.memoryusage,agentSettings.diskusage,agentSettings.diskreads,agentSettings.diskwrites,agentSettings.diskreadcount,agentSettings.diskwritecount,agentSettings.bytessent,agentSettings.bytesrecv)
+    PUSH_DATA = iotUtils.DEVICE_INFO.format(currentTime, agentSettings.cpuusage, agentSettings.batterypercentage,
+                                            agentSettings.batterypluggedin, agentSettings.memoryusage,
+                                            agentSettings.diskusage, agentSettings.diskreads, agentSettings.diskwrites,
+                                            agentSettings.diskreadcount, agentSettings.diskwritecount,
+                                            agentSettings.bytessent, agentSettings.bytesrecv)
 
     print '~~~~~~~~~~~~~~~~~~~~~~~~ Publishing Device-Data ~~~~~~~~~~~~~~~~~~~~~~~~~'
     print ('PUBLISHED DATA: ' + PUSH_DATA)
@@ -172,7 +200,6 @@ def connectAndPushData():
 #           Collect Data
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def collectData():
-
     agentSettings.cpuusage = getCpuUsage()
     agentSettings.batterypercentage = getBatteryPercentage()
     agentSettings.batterypluggedin = getBatteryPluggedin()
@@ -184,6 +211,7 @@ def collectData():
     agentSettings.diskwritecount = getDiskWriteCount()
     agentSettings.bytessent = getBytesSent()
     agentSettings.bytesrecv = getBytesRecv()
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -235,6 +263,7 @@ def main():
         collectData()
         connectAndPushData()  # Push Sensor (Temperature) data to WSO2 BAM
         time.sleep(15)
+
 
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@
 
 package org.laptop.linuxdevice.api.dto;
 
-public class deviceProfile {
+public class DeviceProfile {
     private String tenantId;
     private String profileName;
     private String vender;

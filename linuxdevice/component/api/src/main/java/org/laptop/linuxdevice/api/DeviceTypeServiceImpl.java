@@ -23,7 +23,7 @@ import org.laptop.linuxdevice.api.dao.LaptopDAO;
 import org.laptop.linuxdevice.api.dao.LaptopDAOImpl;
 import org.laptop.linuxdevice.api.dto.DeviceJSON;
 import org.laptop.linuxdevice.api.dto.SensorRecord;
-import org.laptop.linuxdevice.api.dto.deviceProfile;
+import org.laptop.linuxdevice.api.dto.DeviceProfile;
 import org.laptop.linuxdevice.api.exception.DeviceTypeException;
 import org.laptop.linuxdevice.api.util.APIUtil;
 import org.laptop.linuxdevice.api.util.ZipUtil;
@@ -169,14 +169,13 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String to_date = toDate + "000";
         String query = "meta_deviceType:linuxdevice"+ " AND meta_time : [" + from_date + " TO " + to_date + "]";
         String sensorTableName = getTableBySensorType(sensorType);
-
         try {
             if (sensorTableName != null) {
                 List<SortByField> sortByFields = new ArrayList<>();
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
                 List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query,
-                        sortByFields,20);
+                        sortByFields,120);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -217,7 +216,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
                 SortByField sortByField = new SortByField("meta_time", SortType.ASC);
                 sortByFields.add(sortByField);
                 List<SensorRecord> sensorRecords = APIUtil.getAllEventsForDeviceWithLimit(sensorTableName, query,
-                        sortByFields,100);
+                        sortByFields,120);
                 return Response.status(Response.Status.OK.getStatusCode()).entity(sensorRecords).build();
             }
         } catch (AnalyticsException e) {
@@ -289,8 +288,8 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
 
     // Creating the default group for new tenants
     private void createDefaultProfileIfNotExists(String tenantId) {
-        List<deviceProfile> arr =new ArrayList<>();
-        deviceProfile temp = new deviceProfile();
+        List<DeviceProfile> arr =new ArrayList<>();
+        DeviceProfile temp = new DeviceProfile();
         temp.setTenantId(tenantId);
         temp.setProfileName("DefaultProfile");
         temp.setOther("");
@@ -407,7 +406,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @GET
     @Produces("application/json")
     public Response getDeviceprofiles() {
-        List<deviceProfile> arr = new ArrayList<deviceProfile>();
+        List<DeviceProfile> arr = new ArrayList<DeviceProfile>();
         try {
             arr = laptopDAOImpl.getAllProfiles();
         } catch (DeviceTypeException e) {
@@ -444,7 +443,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         String tenantId = Integer.toString(PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId(true));
         boolean status = false;
         if(tenantId!=null) {
-            deviceProfile deviceProfile = new deviceProfile();
+            DeviceProfile deviceProfile = new DeviceProfile();
             deviceProfile.setTenantId(tenantId);
             deviceProfile.setProfileName(profileName);
             deviceProfile.setVender(vender);

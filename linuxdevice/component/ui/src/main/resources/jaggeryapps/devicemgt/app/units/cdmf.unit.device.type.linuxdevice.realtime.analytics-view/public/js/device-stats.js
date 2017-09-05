@@ -42,16 +42,11 @@ batteryChartData[0]=[];  // battery level
 batteryChartData[1]=[];  // plugged in or not
 
 var palette = new Rickshaw.Color.Palette({scheme: "classic9"});
-var initialContextLoaded = false;
-var numOfCpu =0;
-var numOfDisks = 0;
-var bytesSend = 0;
-var bytesRecv = 0;
-var writeBytes = 0;
-var readBytes = 0;
+
 
 $(window).load(function () {
     var websocketUrl = $("#laptop-details").data("websocketurl");
+    processChartContext();
     connect(websocketUrl);
 });
 
@@ -77,91 +72,79 @@ function connect(target) {
             var payloadData = dataPoint.event.payloadData;
             var metaData = dataPoint.event.metaData;
 
-            if(!initialContextLoaded) {
-                bytesRecv = payloadData.bytesrecv;
-                bytesSend = payloadData.bytessent;
-                writeBytes = payloadData.diskwrites;
-                readBytes = payloadData.diskreads;
-                processChartContext();
-                initialContextLoaded = true;
-            } else {
-                //momory
-                memoryChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.memoryusage)
-                });
-                memoryChartData[0].shift();
-                memoryGraph.graph.update();
 
-                //network
-                var currentBytesRecv = parseFloat(payloadData.bytesrecv);
-                var currentBytesSent = parseFloat(payloadData.bytessent);
-                networkChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(currentBytesRecv-bytesRecv)/8
-                });
-                networkChartData[1].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(currentBytesSent-bytesSend)/8
-                });
-                bytesRecv = currentBytesRecv;
-                bytesSend = currentBytesSent;
-                networkChartData[0].shift();
-                networkChartData[1].shift();
-                networkGraph.graph.update();
+            //momory
+            memoryChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(payloadData.memoryusage)
+            });
+            memoryChartData[0].shift();
+            memoryGraph.graph.update();
 
-                //Disk IO
-                var currentWriteBytes = parseFloat(payloadData.diskwrites);
-                var currentReadBytes = parseFloat(payloadData.diskreads);
-                diskIOChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(currentWriteBytes-writeBytes)/8
-                });
-                diskIOChartData[1].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(currentReadBytes-readBytes)/8
-                });
-                readBytes = currentReadBytes;
-                writeBytes = currentWriteBytes;
-                diskIOChartData[0].shift();
-                diskIOChartData[1].shift();
-                diskIOGraph.graph.update();
+            //network
+            var currentBytesRecv = parseFloat(payloadData.bytesrecv);
+            var currentBytesSent = parseFloat(payloadData.bytessent);
+            networkChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(currentBytesRecv)/8
+            });
+            networkChartData[1].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(currentBytesSent)/8
+            });
+            networkChartData[0].shift();
+            networkChartData[1].shift();
+            networkGraph.graph.update();
 
-                //battery
-                var plugged=0;
-                if(payloadData.batterypluggedin) {
-                    plugged = 100;
-                }
-                batteryChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.batterypercentage)
-                });
-                batteryChartData[1].push({
-                    x: parseInt(metaData.time),
-                    y: parseInt(plugged)
-                });
-                batteryChartData[0].shift();
-                batteryChartData[1].shift();
-                battryGraph.graph.update();
+            //Disk IO
+            var currentWriteBytes = parseFloat(payloadData.diskwrites);
+            var currentReadBytes = parseFloat(payloadData.diskreads);
+            diskIOChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(currentWriteBytes)/8/1024
+            });
+            diskIOChartData[1].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(currentReadBytes)/8/1024
+            });
+            diskIOChartData[0].shift();
+            diskIOChartData[1].shift();
+            diskIOGraph.graph.update();
 
-                //CPU
-
-                cpuChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.cpuusage)
-                });
-                cpuChartData[0].shift();
-                cpuGraph.graph.update();
-
-                //disks
-
-                diskChartData[0].push({
-                    x: parseInt(metaData.time),
-                    y: parseFloat(payloadData.diskusage)
-                })
-                diskChartData[0].shift();
-                diskGraph.graph.update();
+            //battery
+            var plugged=0;
+            if(payloadData.batterypluggedin) {
+                plugged = 100;
             }
+            batteryChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(payloadData.batterypercentage)
+            });
+            batteryChartData[1].push({
+                x: parseInt(metaData.time),
+                y: parseInt(plugged)
+            });
+            batteryChartData[0].shift();
+            batteryChartData[1].shift();
+            battryGraph.graph.update();
+
+            //CPU
+
+            cpuChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(payloadData.cpuusage)
+            });
+            cpuChartData[0].shift();
+            cpuGraph.graph.update();
+
+            //disks
+
+            diskChartData[0].push({
+                x: parseInt(metaData.time),
+                y: parseFloat(payloadData.diskusage)
+            });
+            diskChartData[0].shift();
+            diskGraph.graph.update();
         };
     }
 }
@@ -171,7 +154,7 @@ function processChartContext(){
     processMultiChart("#div-chart-memory","chart_memory",memoryChartData,memChartName,memoryGraph,"y_axis_memory","legend_memory");
     var networkGraphNames=["Upload (B)","Download (B)"];
     processMultiChart("#div-chart-network","chart_network",networkChartData,networkGraphNames,networkGraph,"y_axis_network","legend_network");
-    var diskioGraphNames=["Write (B)","Read (B)"];
+    var diskioGraphNames=["Write (KB)","Read (KB)"];
     processMultiChart("#div-chart-diskio","chart_diskio",diskIOChartData,diskioGraphNames,diskIOGraph,"y_axis_diskio","legend_diskio");
     var batteryGraphNames=["Percentage","Plugged status"];
     processMultiChart("#div-chart-battery","chart_battery",batteryChartData,batteryGraphNames,battryGraph,"y_axis_battery","legend_battery");

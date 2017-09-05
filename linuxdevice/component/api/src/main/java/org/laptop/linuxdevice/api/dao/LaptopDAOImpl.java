@@ -1,8 +1,26 @@
+/*
+* Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+* WSO2 Inc. licenses this file to you under the Apache License,
+* Version 2.0 (the "License"); you may not use this file except
+* in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied. See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*/
+
 package org.laptop.linuxdevice.api.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.laptop.linuxdevice.api.dto.deviceProfile;
+import org.laptop.linuxdevice.api.dto.DeviceProfile;
 import org.laptop.linuxdevice.api.exception.DeviceTypeException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,14 +29,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lahiru on 7/6/17.
- */
 public class LaptopDAOImpl {
     private static final Log log = LogFactory.getLog(LaptopDAOImpl.class);
 
-    public List<deviceProfile> getAllProfiles() throws DeviceTypeException {
-        List<deviceProfile> profileList = new ArrayList<deviceProfile>();
+    public List<DeviceProfile> getAllProfiles() throws DeviceTypeException {
+        List<DeviceProfile> profileList = new ArrayList<DeviceProfile>();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
@@ -30,7 +45,7 @@ public class LaptopDAOImpl {
             resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
-                deviceProfile profile = new deviceProfile();
+                DeviceProfile profile = new DeviceProfile();
                 profile.setTenantId(resultSet.getString("TENANT_ID"));
                 profile.setCpu(resultSet.getString("CPU"));
                 profile.setDisk(resultSet.getString("DISK"));
@@ -52,8 +67,8 @@ public class LaptopDAOImpl {
         return profileList;
     }
 
-    public deviceProfile getProfileByName(String profileName) throws DeviceTypeException {
-        deviceProfile profile = new deviceProfile();
+    public DeviceProfile getProfileByName(String profileName) throws DeviceTypeException {
+        DeviceProfile profile = new DeviceProfile();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
@@ -87,13 +102,14 @@ public class LaptopDAOImpl {
         return profile;
     }
 
-    public boolean addDeviceProfile(deviceProfile profile) throws DeviceTypeException {
+    public boolean addDeviceProfile(DeviceProfile profile) throws DeviceTypeException {
         Connection conn = null;
         PreparedStatement stmt = null;
         boolean status = false;
         try {
             conn = LaptopDAO.getConnection();
-            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_PROFILES (TENANT_ID,PROFILE_NAME,VENDER,CPU,MEMORY,OS,DISK,OTHER) VALUES (?,?,?,?,?,?,?,?)";
+            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_PROFILES (TENANT_ID,PROFILE_NAME,VENDER,CPU,MEMORY,OS," +
+                    "DISK,OTHER) VALUES (?,?,?,?,?,?,?,?)";
             stmt = conn.prepareStatement(updateDeviceQuery);
             stmt.setString(1,profile.getTenantId());
             stmt.setString(2,profile.getProfileName());
@@ -116,37 +132,9 @@ public class LaptopDAOImpl {
         return status;
     }
 
-    public boolean updateDevice(String deviceId,String name,String profileId,String tenantId) throws DeviceTypeException {
-        /*
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        boolean status = false;
-        try {
-            conn = LaptopDAO.getConnection();
-            String updateDeviceQuery = "INSERT INTO  LINUXDEVICE_DEVICE (LINUXDEVICE_DEVICE_ID,DEVICE_NAME,PROFILE_ID,TENANT_ID) VALUES (?,?,?,?)";
-            stmt = conn.prepareStatement(updateDeviceQuery);
-            stmt.setString(1,deviceId);
-            stmt.setString(2,name);
-            stmt.setString(3,profileId);
-            stmt.setString(4,tenantId);
-            stmt.executeUpdate();
-            if(!conn.getAutoCommit()) {
-                conn.commit();
-            }
-            status = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            LaptopUtils.cleanupResources(stmt,null);
-            LaptopDAO.closeConnection();
-        }
-        return status;*/
-        return true;
-    }
-
     public List<String> getMatchingDevicesForProfile(List<String> deviceIds,String profileId) throws DeviceTypeException {
-        ArrayList<String> deviceIdArray = new ArrayList<>();
-        ArrayList<String> results = new ArrayList<>();
+        List<String> deviceIdArray = new ArrayList<>();
+        List<String> results = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
@@ -163,9 +151,9 @@ public class LaptopDAOImpl {
                 deviceIdArray.add(resultSet.getString("LINUXDEVICE_DEVICE_ID"));
             }
 
-            for(int i=0;i<deviceIds.size();i++) {
-                if (deviceIdArray.contains(deviceIds.get(i))) {
-                    results.add(deviceIds.get(i));
+            for (String deviceId : deviceIds) {
+                if (deviceIdArray.contains(deviceId)) {
+                    results.add(deviceId);
                 }
             }
 
